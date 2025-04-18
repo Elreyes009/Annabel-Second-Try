@@ -19,6 +19,7 @@ public class Lights : MonoBehaviour
             Enemigo enem = collision.gameObject.GetComponent<Enemigo>();
             enem.inLight = true;
         }
+
         if (collision.CompareTag("Player"))
         {
             pLight.GetComponent<Light2D>().intensity = 0f;
@@ -32,6 +33,7 @@ public class Lights : MonoBehaviour
             Enemigo enem = collision.gameObject.GetComponent<Enemigo>();
             enem.inLight = false;
         }
+
         if (collision.CompareTag("Player"))
         {
             pLight.GetComponent<Light2D>().intensity = 0.5f * Time.deltaTime;

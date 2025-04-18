@@ -30,6 +30,7 @@ public class Mov : MonoBehaviour
         playerSprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
+        flowchart = FindAnyObjectByType<Flowchart>();
         puntoDeRespawn = transform.position;
 
         obstacleLayer = LayerMask.GetMask("detalle");
@@ -73,7 +74,7 @@ public class Mov : MonoBehaviour
             anim.SetInteger("Direccion", 1);
         }
 
-        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.W)|| Input.GetKeyUp(KeyCode.D)|| Input.GetKeyUp(KeyCode.A))
+        if (!isMoving)
         {
             anim.SetInteger("Direccion", 0);
         }
@@ -88,7 +89,6 @@ public class Mov : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
-
 
         transform.position = targetPosition;
         isMoving = false;
@@ -105,7 +105,7 @@ public class Mov : MonoBehaviour
             lastMovementDirection = new Vector2(horizontal, vertical).normalized;
         }
         Debug.DrawRay(transform.position, lastMovementDirection * 5, Color.green);
-        // Si se presiona "E", lanzar un raycast en la dirección del movimiento
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, lastMovementDirection);
@@ -115,8 +115,7 @@ public class Mov : MonoBehaviour
                 {
 
                     NPC npc = hit.collider.GetComponent<NPC>();
-                    //Puerta_ puerta = hit.collider.GetComponent<Puerta_>();
-
+                   
                     if (npc != null)
                     {
                         flowchart.SetBooleanVariable("Disponible", true);
