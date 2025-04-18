@@ -1,8 +1,43 @@
-# Auto detect text files and perform LF normalization
+# ──────────────────────────────────────────────────────
+# 1) Forzar detección automática y line endings CRLF
+# ──────────────────────────────────────────────────────
 * text=auto eol=crlf
 
-*.png binary
-*.jpg binary
-*.psd binary
-*.fbx binary
+# ──────────────────────────────────────────────────────
+# 2) Archivos de texto comunes en Unity
+# ──────────────────────────────────────────────────────
+# C#, shaders, metadatos
+*.cs        text eol=crlf
+*.shader    text eol=crlf
+*.meta      text eol=crlf
+*.json      text eol=crlf
+*.xml       text eol=crlf
+*.asmdef    text eol=crlf
+
+# ──────────────────────────────────────────────────────
+# 3) Ficheros de configuración y scripts adicionales
+# ──────────────────────────────────────────────────────
+*.yml       text eol=crlf
+*.yaml      text eol=crlf
+*.txt       text eol=crlf
+*.asm       text eol=crlf
+
+# ──────────────────────────────────────────────────────
+# 4) Assets binarios (no tocar line endings)
+# ──────────────────────────────────────────────────────
+*.png       binary
+*.jpg       binary
+*.tga       binary
+*.psd       binary
+*.fbx       binary
+*.anim      binary
 *.controller binary
+*.mat       binary
+*.dll       binary
+*.so        binary
+
+# ──────────────────────────────────────────────────────
+# 5) Git LFS para archivos muy pesados (opcional)
+# ──────────────────────────────────────────────────────
+#*.psd      filter=lfs diff=lfs merge=lfs -text
+#*.fbx      filter=lfs diff=lfs merge=lfs -text
