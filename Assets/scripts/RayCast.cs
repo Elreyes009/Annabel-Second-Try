@@ -11,12 +11,15 @@ public class RayCast : MonoBehaviour
     [SerializeField] private LayerMask interactionMask;   // Crea una capa “Interactuable” y asígnala aquí
 
     private Vector2 lastMovementDirection = Vector2.down;
-
+    private GameObject player;
+    [SerializeField] private float pushForce = 1f;
     private void Awake()
     {
+        player = gameObject;
         // Si no lo asignaste en el Inspector, lo busca en escena
         if (flowchart == null)
             flowchart = FindObjectOfType<Flowchart>();
+
     }
 
     private void Update()
@@ -54,18 +57,43 @@ public class RayCast : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log("InteraccionDisponible");
+            
 
             if (hit.collider.CompareTag("Interactuable"))
             {
                 NPC npc = hit.collider.GetComponent<NPC>();
+
                 if (npc != null)
                 {
-                    
-
+                    flowchart.SetBooleanVariable("InterObject", false);
                     flowchart.SetBooleanVariable("Personaje", true);
                     string name = npc.Name;
                     flowchart.SetStringVariable("Name", name);
+                    return;
+                }
+
+
+
+
+
+
+
+
+
+
+                if (npc == null)
+                {
+                    flowchart.SetBooleanVariable("Personaje", false);
+                    flowchart.SetStringVariable("Name", null);
+
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        print("e presed");
+                        Vector2 pushDir = (hit.transform.position - player.transform.position).normalized;
+                        Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
+                        rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
+                        
+                    }
                 }
             }
 
@@ -75,6 +103,7 @@ public class RayCast : MonoBehaviour
             Debug.Log("Ya no");
             flowchart.SetBooleanVariable("Personaje", false);
             flowchart.SetStringVariable("Name", null);
+            flowchart.SetBooleanVariable("InterObject", false);
         }
     }
 }
