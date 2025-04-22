@@ -6,4 +6,14 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public string Name;
+
+
+    private void Start()
+    {
+        if (Name == null)
+        {
+            Name = gameObject.name;
+        }
+    }
+
 }

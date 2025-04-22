@@ -36,7 +36,7 @@ public class Lights : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            pLight.GetComponent<Light2D>().intensity = 0.5f * Time.deltaTime;
+            pLight.GetComponent<Light2D>().intensity = 0.5f;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Fungus;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +7,9 @@ using UnityEngine.Tilemaps;
 public class Mov : MonoBehaviour
 {
     #region Parámetros
-    [SerializeField] Flowchart flowchart;
     [SerializeField] private float moveSpeed = 3f;               
     [SerializeField] private Vector2 gridSize = new Vector2(1f, 1f); 
-    private LayerMask obstacleLayer;                             
-    private Vector2 lastMovementDirection = Vector2.down;        
+    private LayerMask obstacleLayer;                              
     private Vector2 direction;                                   
     private Animator anim;                                       
 
@@ -22,6 +20,7 @@ public class Mov : MonoBehaviour
     private Mov playerMovement;                                  
     private SpriteRenderer playerSprite;
     [SerializeField] List<string> inventario = new List<string>();
+    
     #endregion
 
     void Awake()
@@ -29,13 +28,14 @@ public class Mov : MonoBehaviour
         playerMovement = GetComponent<Mov>();
         playerSprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
-        flowchart = FindAnyObjectByType<Flowchart>();
         puntoDeRespawn = transform.position;
 
         obstacleLayer = LayerMask.GetMask("detalle");
     }
-
+    void Update()
+    {
+        Animations();
+    }
     void FixedUpdate()
     {
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -52,8 +52,6 @@ public class Mov : MonoBehaviour
                 StartCoroutine(Move(targetPosition));
             }
         }
-        Interractions();
-        Animations();
     }
     private void Animations()
     {
@@ -94,54 +92,6 @@ public class Mov : MonoBehaviour
         isMoving = false;
     }
 
-    private void Interractions()
-    {
-        // Actualiza la dirección para el raycast según el input actual
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        if (horizontal != 0 || vertical != 0)
-        {
-            lastMovementDirection = new Vector2(horizontal, vertical).normalized;
-        }
-        Debug.DrawRay(transform.position, lastMovementDirection * 5, Color.green);
-        
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, lastMovementDirection);
-            if (hit.collider != null)
-            {
-                if (hit.transform.CompareTag("Interactuable"))
-                {
-
-                    NPC npc = hit.collider.GetComponent<NPC>();
-                   
-                    if (npc != null)
-                    {
-                        flowchart.SetBooleanVariable("Disponible", true);
-                        string name = npc.Name;
-
-                        if(name == "Daina")
-                        {
-                            flowchart.SetBooleanVariable("EsDaina", true);
-                        }
-
-                        return;
-                    }
-                    //if (puerta != null)
-                    //{
-                    //    puerta.AbrirPuerta();
-                    //    return;
-                    //}
-                }
-            }
-            else
-            {
-                flowchart.SetBooleanVariable("Disponible", false);
-            }
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.GetComponent<Recogible>())
@@ -162,15 +112,10 @@ public class Mov : MonoBehaviour
         //    }
         //}
     }
-
-
-    // Se llama para cuando el jugador muere y reviva
     public void Reaparecer()
     {
         StartCoroutine(RespawnCoroutine());
     }
-
-    // Se llama cada vez que se quiere cambiar el punto de respawn
     public void ActualizarPuntoDeRespawn(Vector3 nuevaPosicion)
     {
         puntoDeRespawn = nuevaPosicion;
