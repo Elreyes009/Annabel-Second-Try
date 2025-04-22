@@ -19,7 +19,6 @@ public class Mov : MonoBehaviour
 
     private Mov playerMovement;                                  
     private SpriteRenderer playerSprite;
-    [SerializeField] List<string> inventario = new List<string>();
     
     #endregion
 
@@ -65,26 +64,6 @@ public class Mov : MonoBehaviour
         isMoving = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.GetComponent<Recogible>())
-        {
-            collision.transform.gameObject.SetActive(false);
-            inventario.Add(collision.transform.GetComponent<Recogible>().itemName);
-        }
-
-        //if (collision.CompareTag("Puerta"))
-        //{
-        //    foreach (string nombre in inventario)
-        //    {
-        //        if (nombre == collision.transform.GetComponent<Puerta>().requerimiento)
-        //        {
-        //            collision.transform.GetComponent<Animator>().SetBool("Acción", true);
-        //            return;
-        //        }
-        //    }
-        //}
-    }
     public void Reaparecer()
     {
         StartCoroutine(RespawnCoroutine());

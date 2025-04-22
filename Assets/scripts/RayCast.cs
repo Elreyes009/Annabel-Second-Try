@@ -1,11 +1,13 @@
 ﻿using Fungus;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RayCast : MonoBehaviour
 {
     [Header("Fungus Flowchart")]
     [SerializeField] private Flowchart flowchart;
+    [SerializeField] List<string> inventario = new List<string>();
 
     [Header("Raycast Settings")]
     [SerializeField] private float rayDistance = 2f;
@@ -80,8 +82,6 @@ public class RayCast : MonoBehaviour
 
 
 
-
-
                 if (npc == null)
                 {
                     flowchart.SetBooleanVariable("Personaje", false);
@@ -121,8 +121,44 @@ public class RayCast : MonoBehaviour
 
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Interactuable"))
+        {
+            Puerta puerta = collision.transform.GetComponent<Puerta>();
+            Animator puertaAnim = collision.transform.GetComponent<Animator>();
+            Recogible rec = collision.transform.GetComponent<Recogible>();
+
+
+            if (rec != null || Input.GetKeyDown(KeyCode.E))
+            {
+                collision.transform.gameObject.SetActive(false);
+                inventario.Add(collision.transform.GetComponent<Recogible>().itemName);
+                return;
+            }
+
+            if(puerta != null)
+            {
+                if (puerta.requerimiento == "null")
+                {
+                    puertaAnim.SetBool("Puerta", true);
+                    return;
+                }
+
+                foreach (string nombre in inventario)
+                {
+                    if (nombre == puerta.requerimiento)
+                    {
+                        puertaAnim.SetBool("Puerta", true);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
 }

@@ -56,7 +56,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   isMoving: 0
-  patrolEmty: {fileID: 0}
+  patrolEmty: {fileID: 5268090478660459741}
   posicionInicial: {x: 0, y: 0, z: 0}
   inLight: 0
   inVision: 0
@@ -195,7 +195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7865486821517475835
 Transform:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zonaMovimiento: {fileID: 3736084109554725460}
-  intervalo: 10
+  intervalo: 4
 --- !u!1 &7133151158434638297
 GameObject:
   m_ObjectHideFlags: 0
