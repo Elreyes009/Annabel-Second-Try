@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1522839757139770036}
   - component: {fileID: 8443021901457965309}
+  - component: {fileID: 6724331432964757535}
+  - component: {fileID: 887306256620271569}
   - component: {fileID: 3976106298147460631}
   - component: {fileID: 746242028465500085}
   - component: {fileID: 1724510158141733214}
@@ -134,10 +136,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0b3d4ddeb5b004b972e15568896ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flowchart: {fileID: 0}
   moveSpeed: 3
   gridSize: {x: 1, y: 1}
   inventario: []
+--- !u!114 &6724331432964757535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763916745347823177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e86348700d3ba74fa07119dccd29159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowchart: {fileID: 0}
+  rayDistance: 0.8
+  interactionMask:
+    serializedVersion: 2
+    m_Bits: 64
+  pushForce: 5
+--- !u!114 &887306256620271569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763916745347823177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f150d1d3ad5b485479284fa8dbad022a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &3976106298147460631
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -287,7 +318,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 2
+  m_Constraints: 4
 --- !u!1 &6683522364463856418
 GameObject:
   m_ObjectHideFlags: 0

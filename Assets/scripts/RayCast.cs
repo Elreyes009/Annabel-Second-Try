@@ -1,4 +1,5 @@
-using Fungus;
+Ôªøusing Fungus;
+using System.Collections;
 using UnityEngine;
 
 public class RayCast : MonoBehaviour
@@ -8,7 +9,7 @@ public class RayCast : MonoBehaviour
 
     [Header("Raycast Settings")]
     [SerializeField] private float rayDistance = 2f;
-    [SerializeField] private LayerMask interactionMask;   // Crea una capa ìInteractuableî y asÌgnala aquÌ
+    [SerializeField] private LayerMask interactionMask;   // Crea una capa ‚ÄúInteractuable‚Äù y as√≠gnala aqu√≠
 
     private Vector2 lastMovementDirection = Vector2.down;
     private GameObject player;
@@ -88,11 +89,22 @@ public class RayCast : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
+
                         print("e presed");
                         Vector2 pushDir = (hit.transform.position - player.transform.position).normalized;
                         Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
+                        if (Mathf.Abs(pushDir.x) > 0.1f)
+                        {
+                            // Empujando horizontal ‚Üí bloquea movimiento vertical
+                            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                        }
+                        else
+                        {
+                            // Empujando vertical ‚Üí bloquea movimiento horizontal
+                            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                        }
                         rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
-                        
+                        StartCoroutine(ReleasePlayerConstraints(rb));
                     }
                 }
             }
@@ -105,5 +117,12 @@ public class RayCast : MonoBehaviour
             flowchart.SetStringVariable("Name", null);
             flowchart.SetBooleanVariable("InterObject", false);
         }
+    }
+
+    private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
+    {
+        yield return new WaitForSeconds(2f);
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

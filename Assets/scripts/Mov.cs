@@ -11,7 +11,7 @@ public class Mov : MonoBehaviour
     [SerializeField] private Vector2 gridSize = new Vector2(1f, 1f); 
     private LayerMask obstacleLayer;                              
     private Vector2 direction;                                   
-    private Animator anim;                                       
+                                           
 
     private bool isHiding = false;                               
     private bool isMoving = false;                               
@@ -27,15 +27,12 @@ public class Mov : MonoBehaviour
     {
         playerMovement = GetComponent<Mov>();
         playerSprite = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
+        
         puntoDeRespawn = transform.position;
 
         obstacleLayer = LayerMask.GetMask("detalle");
     }
-    void Update()
-    {
-        Animations();
-    }
+
     void FixedUpdate()
     {
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -51,30 +48,6 @@ public class Mov : MonoBehaviour
             {
                 StartCoroutine(Move(targetPosition));
             }
-        }
-    }
-    private void Animations()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            anim.SetInteger("Direccion", 3);
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            anim.SetInteger("Direccion", 4);
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            anim.SetInteger("Direccion", 2);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            anim.SetInteger("Direccion", 1);
-        }
-
-        if (!isMoving)
-        {
-            anim.SetInteger("Direccion", 0);
         }
     }
 
