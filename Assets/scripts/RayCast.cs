@@ -134,7 +134,7 @@ public class RayCast : MonoBehaviour
             Recogible rec = collision.transform.GetComponent<Recogible>();
 
 
-            if (rec != null || Input.GetKeyDown(KeyCode.E))
+            if (rec != null)
             {
                 collision.transform.gameObject.SetActive(false);
                 inventario.Add(collision.transform.GetComponent<Recogible>().itemName);
