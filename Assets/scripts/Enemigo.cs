@@ -38,7 +38,19 @@ public class Enemigo : MonoBehaviour
         }
 
         posicionInicial = transform.position;
+
+        //StartCoroutine(Movement());
     }
+
+    //private IEnumerator Movement()
+    //{
+    //    while(true){
+
+    //        if(
+    //        yield return new WaitForSecondsRealtime(3);
+
+    //    }
+    //}
 
     void FixedUpdate()
     {
@@ -130,8 +142,8 @@ public class Enemigo : MonoBehaviour
 
     public void SetPlayerHiding(bool isHiding)
     {
-        playerIsHiding = isHiding;
-        if (playerIsHiding)
+
+        if (isHiding)
         {
             inVision = false;
             

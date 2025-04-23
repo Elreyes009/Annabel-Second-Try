@@ -11,9 +11,7 @@ public class Mov : MonoBehaviour
     [SerializeField] private Vector2 gridSize = new Vector2(1f, 1f); 
     private LayerMask obstacleLayer;                              
     private Vector2 direction;                                   
-                                           
-
-    private bool isHiding = false;                               
+                                                                   
     private bool isMoving = false;                               
     private Vector3 puntoDeRespawn;                                                        
 
@@ -93,12 +91,6 @@ public class Mov : MonoBehaviour
     public bool IsPlayerMoving()
     {
         return isMoving;
-    }
-
-    public void SetHiding(bool hiding)
-    {
-        isHiding = hiding;
-        FindAnyObjectByType<Enemigo>()?.SetPlayerHiding(hiding);
     }
     #endregion
 }

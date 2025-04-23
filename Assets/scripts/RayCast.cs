@@ -13,9 +13,12 @@ public class RayCast : MonoBehaviour
     [SerializeField] private float rayDistance = 2f;
     [SerializeField] private LayerMask interactionMask;   // Crea una capa “Interactuable” y asígnala aquí
 
+
+    [Header("Otros")]
     private Vector2 lastMovementDirection = Vector2.down;
     private GameObject player;
     [SerializeField] private float pushForce = 1f;
+
     private void Awake()
     {
         player = gameObject;
@@ -30,6 +33,7 @@ public class RayCast : MonoBehaviour
         interactionMask = LayerMask.GetMask("detalle");
         HandleInput();
         TryInteract();
+
     }
 
     private void HandleInput()
@@ -40,9 +44,6 @@ public class RayCast : MonoBehaviour
         if (rawInput != Vector2.zero)
             lastMovementDirection = rawInput.normalized;
 
-
-        
-        
     }
 
     private void TryInteract()
@@ -66,6 +67,7 @@ public class RayCast : MonoBehaviour
             {
                 NPC npc = hit.collider.GetComponent<NPC>();
 
+
                 if (npc != null)
                 {
                     flowchart.SetBooleanVariable("InterObject", false);
@@ -74,13 +76,6 @@ public class RayCast : MonoBehaviour
                     flowchart.SetStringVariable("Name", name);
                     return;
                 }
-
-
-
-
-
-
-
 
                 if (npc == null)
                 {
@@ -109,6 +104,10 @@ public class RayCast : MonoBehaviour
                 }
             }
 
+            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
+            {
+                flowchart.SetBooleanVariable("Escondido", true);
+            }
         }
         else
         {
