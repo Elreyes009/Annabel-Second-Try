@@ -156,6 +156,8 @@ public class Enemigo : MonoBehaviour
 
     public IEnumerator MatarJugador()
     {
+        Mov respawnScript = player.GetComponent<Mov>();
+        StartCoroutine(respawnScript.RespawnCoroutine());
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
@@ -174,22 +176,7 @@ public class Enemigo : MonoBehaviour
             Debug.LogError("Animator del jugador no encontrado.");
         }
 
-        yield return new WaitForSeconds(2f);
-
-        Mov respawnScript = player.GetComponent<Mov>();
-        if (respawnScript != null)
-        {
-            respawnScript.Reaparecer();
-        }
-        else
-        {
-            Debug.LogError("El script Respawn no está asignado al jugador.");
-        }
-
-        if (playerMovement != null)
-        {
-            playerMovement.enabled = true;
-        }
+        yield return new WaitForSeconds(1f);
 
         enemManager.VolverAposicionInicial();
     }

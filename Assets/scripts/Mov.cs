@@ -62,16 +62,12 @@ public class Mov : MonoBehaviour
         isMoving = false;
     }
 
-    public void Reaparecer()
-    {
-        StartCoroutine(RespawnCoroutine());
-    }
     public void ActualizarPuntoDeRespawn(Vector3 nuevaPosicion)
     {
         puntoDeRespawn = nuevaPosicion;
     }
 
-    IEnumerator RespawnCoroutine()
+    public IEnumerator RespawnCoroutine()
     {
         playerSprite.enabled = false;            
         yield return new WaitForSeconds(1f);       

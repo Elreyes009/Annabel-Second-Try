@@ -7,7 +7,7 @@ public class GestorDeEnemigos : MonoBehaviour
 {
     public List<Enemigo> enemigos; // Lista de enemigos
     public GameObject player;
-    private Mov mov;
+    private bool esco;
     [SerializeField] private Flowchart flowchart;
     
 
@@ -23,7 +23,7 @@ public class GestorDeEnemigos : MonoBehaviour
     private void Update()
     {
 
-        if (flowchart.GetBooleanVariable("Escondido") == true && Input.GetKeyDown(KeyCode.F))
+        if (esco == true && flowchart.GetBooleanVariable("Escondido") == true && Input.GetKeyDown(KeyCode.F))
         {
             flowchart.SetBooleanVariable("Escondido", false);
         }
