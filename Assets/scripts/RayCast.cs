@@ -18,6 +18,7 @@ public class RayCast : MonoBehaviour
     private Vector2 lastMovementDirection = Vector2.down;
     private GameObject player;
     [SerializeField] private float pushForce = 1f;
+    public bool wfs = false;
 
     private void Awake()
     {
@@ -34,6 +35,11 @@ public class RayCast : MonoBehaviour
         HandleInput();
         TryInteract();
 
+        if(wfs == true && Input.GetKeyUp(KeyCode.E))
+        {
+            flowchart.SetBooleanVariable("Escondido", false);
+            wfs = false;
+        }
     }
 
     private void HandleInput()
@@ -104,20 +110,20 @@ public class RayCast : MonoBehaviour
                 }
             }
 
-            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
+            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E) && wfs == false)
             {
+                wfs = true;
                 flowchart.SetBooleanVariable("Escondido", true);
             }
         }
         else
         {
-            Debug.Log("Ya no");
             flowchart.SetBooleanVariable("Personaje", false);
             flowchart.SetStringVariable("Name", null);
             flowchart.SetBooleanVariable("InterObject", false);
         }
-    }
 
+    }
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
     {
         yield return new WaitForSeconds(1f);

@@ -7,7 +7,6 @@ public class GestorDeEnemigos : MonoBehaviour
 {
     public List<Enemigo> enemigos; // Lista de enemigos
     public GameObject player;
-    private bool esco;
     [SerializeField] private Flowchart flowchart;
     
 
@@ -23,27 +22,25 @@ public class GestorDeEnemigos : MonoBehaviour
     private void Update()
     {
 
-        if (esco == true && flowchart.GetBooleanVariable("Escondido") == true && Input.GetKeyDown(KeyCode.F))
-        {
-            flowchart.SetBooleanVariable("Escondido", false);
-        }
         if (flowchart.GetBooleanVariable("Escondido") == true)
         {
+            NotificarEscondite(true);
             player.GetComponent<Mov>().enabled = false;
             player.GetComponent<SpriteRenderer>().enabled = false;
             player.GetComponent<PlayerAnimations>().enabled = false;
             player.GetComponent<BoxCollider2D>().enabled = false;
-            Debug.Log("1");
+            
         }
+        
         if(flowchart.GetBooleanVariable("Escondido") == false)
         {
-
+            
             NotificarEscondite(false);
             player.GetComponent<Mov>().enabled = true;
             player.GetComponent<PlayerAnimations>().enabled = true;
             player.GetComponent<SpriteRenderer>().enabled = true;
             player.GetComponent<BoxCollider2D>().enabled = true;
-            Debug.Log("2");
+            
 
         }
     }
