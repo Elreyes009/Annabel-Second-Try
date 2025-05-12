@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
             pause.SetActive(true);
             Time.timeScale = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == true)
+        else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == true && Controls.activeSelf == false && Options.activeSelf == false)
         {
             pause.SetActive(false);
             Time.timeScale = 1;
