@@ -1,13 +1,48 @@
 using UnityEngine;
 using Fungus;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject pause;
     public GameObject Options;
     public GameObject Controls;
+
+    public AudioMixer audioMixer;
+
+    public Slider masterSlider;
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+
+    void Start()
+    {
+        masterSlider.onValueChanged.AddListener(SetMasterVolume);
+        bgmSlider.onValueChanged.AddListener(SetMusicVolume);
+        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
+        // Inicializa sliders con valores del mixer
+        float vol;
+        if (audioMixer.GetFloat("Master", out vol)) masterSlider.value = vol;
+        if (audioMixer.GetFloat("BGM", out vol)) bgmSlider.value = vol;
+        if (audioMixer.GetFloat("SFX", out vol)) sfxSlider.value = vol;
+    }
+
+    void SetMasterVolume(float dB)
+    {
+        audioMixer.SetFloat("Master", dB);
+    }
+
+    void SetMusicVolume(float dB)
+    {
+        audioMixer.SetFloat("BGM", dB);
+    }
+
+    void SetSFXVolume(float dB)
+    {
+        audioMixer.SetFloat("SFX", dB);
+    }
 
 
     public void Update()
@@ -28,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void Controles()
     {
-        if(Controls.activeSelf == false)
+        if (Controls.activeSelf == false)
         {
             Controls.SetActive(true);
         }

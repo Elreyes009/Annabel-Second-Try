@@ -6,7 +6,8 @@ using UnityEngine;
 public class GestorDeEnemigos : MonoBehaviour
 {
     public List<Enemigo> enemigos; // Lista de enemigos
-    public GameObject player;
+    public GameObject playerSprite;
+    public GameObject playerMove;
     [SerializeField] private Flowchart flowchart;
     
 
@@ -15,7 +16,8 @@ public class GestorDeEnemigos : MonoBehaviour
     {
         // Asegúrate de que la lista de enemigos esté correctamente llena
         enemigos = new List<Enemigo>(FindObjectsOfType<Enemigo>());
-        player = FindFirstObjectByType <Mov>().gameObject;
+        playerMove = FindFirstObjectByType <Mov>().gameObject;
+        playerSprite = FindFirstObjectByType<PlayerAnimations>().gameObject;
         flowchart = FindFirstObjectByType<Flowchart>();
     }
 
@@ -25,10 +27,10 @@ public class GestorDeEnemigos : MonoBehaviour
         if (flowchart.GetBooleanVariable("Escondido") == true)
         {
             NotificarEscondite(true);
-            player.GetComponent<Mov>().enabled = false;
-            player.GetComponent<SpriteRenderer>().enabled = false;
-            player.GetComponent<PlayerAnimations>().enabled = false;
-            player.GetComponent<BoxCollider2D>().enabled = false;
+            playerMove.GetComponent<Mov>().enabled = false;
+            playerSprite.GetComponent<SpriteRenderer>().enabled = false;
+            playerSprite.GetComponent<PlayerAnimations>().enabled = false;
+            playerSprite.GetComponent<BoxCollider2D>().enabled = false;
             
         }
         
@@ -36,10 +38,10 @@ public class GestorDeEnemigos : MonoBehaviour
         {
             
             NotificarEscondite(false);
-            player.GetComponent<Mov>().enabled = true;
-            player.GetComponent<PlayerAnimations>().enabled = true;
-            player.GetComponent<SpriteRenderer>().enabled = true;
-            player.GetComponent<BoxCollider2D>().enabled = true;
+            playerMove.GetComponent<Mov>().enabled = true;
+            playerSprite.GetComponent<PlayerAnimations>().enabled = true;
+            playerSprite.GetComponent<SpriteRenderer>().enabled = true;
+            playerSprite.GetComponent<BoxCollider2D>().enabled = true;
             
 
         }
