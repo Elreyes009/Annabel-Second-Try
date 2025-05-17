@@ -91,12 +91,11 @@ public class RayCast : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.E))
                     {
 
-                        print("e presed");
                         Vector2 pushDir = (hit.transform.position - player.transform.position).normalized;
                         Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
                         if (Mathf.Abs(pushDir.x) > 0.1f)
                         {
-                            // Empujando horizontal → bloquea movimiento vertical
+                            
                             rb.constraints = RigidbodyConstraints2D.FreezePositionY;
                         }
                         else
@@ -105,6 +104,11 @@ public class RayCast : MonoBehaviour
                             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
                         }
                         rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
+                        AudioSource audio = hit.collider.GetComponent<AudioSource>();
+                        if (audio != null)
+                        {
+                            audio.Play();
+                        }
                         StartCoroutine(ReleasePlayerConstraints(rb));
                     }
                 }
@@ -114,6 +118,11 @@ public class RayCast : MonoBehaviour
             {
                 wfs = true;
                 flowchart.SetBooleanVariable("Escondido", true);
+                AudioSource audio = hit.collider.GetComponent<AudioSource>();
+                if (audio != null)
+                {
+                    audio.Play();
+                }
             }
         }
         else
