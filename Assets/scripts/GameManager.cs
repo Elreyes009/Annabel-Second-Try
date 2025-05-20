@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject Controls;
 
     public AudioMixer audioMixer;
+    [SerializeField] AudioSource sorrow;
+    [SerializeField] AudioSource unknown;
 
     public Slider masterSlider;
     public Slider bgmSlider;
