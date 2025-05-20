@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 8ba0aa7d1545ea64b8133c5266c393bb
+guid: 5f1e0a0657ce61c4abc13ecc5352d29e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6280614734925049399
-    second: MapaFinal_0
+      213: 581328306219059485
+    second: Daina_0
+  - first:
+      213: 7340620595813799033
+    second: Daina_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MapaFinal_0
+      name: Daina_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 591
-        height: 593
+        y: 599
+        width: 8
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c155b9bc26c6d8a0800000000000000
-      internalID: -6280614734925049399
+      spriteID: d190116b30b411800800000000000000
+      internalID: 581328306219059485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Daina_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 380
+        height: 812
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 974d5642a8f1fd560800000000000000
+      internalID: 7340620595813799033
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MapaFinal_0: -6280614734925049399
+      Daina_0: 581328306219059485
+      Daina_1: 7340620595813799033
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 8ba0aa7d1545ea64b8133c5266c393bb
+guid: 84f9da48121989b46b65f318affa6b82
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6280614734925049399
-    second: MapaFinal_0
+      213: -5898572833816749705
+    second: Marco_0
+  - first:
+      213: 6495446970679550999
+    second: Marco_1
+  - first:
+      213: 6219961838627577627
+    second: Marco_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MapaFinal_0
+      name: Marco_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 591
-        height: 593
+        x: 340
+        y: 849
+        width: 7
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c155b9bc26c6d8a0800000000000000
-      internalID: -6280614734925049399
+      spriteID: 7795596724f042ea0800000000000000
+      internalID: -5898572833816749705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marco_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 365
+        height: 844
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 714edb00b96742a50800000000000000
+      internalID: 6495446970679550999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marco_2
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 0
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1fd1e3665eb15650800000000000000
+      internalID: 6219961838627577627
       vertices: []
       indices: 
       edges: []
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MapaFinal_0: -6280614734925049399
+      Marco_0: -5898572833816749705
+      Marco_1: 6495446970679550999
+      Marco_2: 6219961838627577627
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
