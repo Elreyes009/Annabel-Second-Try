@@ -2,23 +2,28 @@ using UnityEngine;
 
 public class ActualCamera : MonoBehaviour
 {
-    public GameObject cameraObject;
+    [SerializeField] GameObject cameraObject;
+    private RayCast ray;
+
+    private void Start()
+    {
+        if (ray == null)
+        {
+            ray = FindFirstObjectByType<RayCast>();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Mov mov = collision.GetComponent<Mov>();
-        if (mov != null)
+        if (collision.gameObject == ray.gameObject)
         {
-            Debug.Log("Algo debería estar pasando");
             cameraObject.SetActive(true);
-            mov.aCamara = cameraObject;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Mov mov = collision.GetComponent<Mov>();
-        if (mov != null)
+        if (collision.gameObject == ray.gameObject)
         {
             cameraObject.SetActive(false);
         }
