@@ -374,6 +374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZoneSettings
       objectReference: {fileID: 0}
+    - target: {fileID: 8172891322557403243, guid: a877a2de52799424d835afac28bfe49e, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8297932955609401780, guid: a877a2de52799424d835afac28bfe49e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -598,9 +602,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6131833450325818629, guid: fdcfcfeb20e19304193efe669dc51b3b, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131833450325818629, guid: fdcfcfeb20e19304193efe669dc51b3b, type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 8042359803293847392, guid: fdcfcfeb20e19304193efe669dc51b3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.27
+      value: -5.51
       objectReference: {fileID: 0}
     - target: {fileID: 8042359803293847392, guid: fdcfcfeb20e19304193efe669dc51b3b, type: 3}
       propertyPath: m_LocalPosition.y
