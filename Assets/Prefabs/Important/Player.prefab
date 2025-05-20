@@ -146,8 +146,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3236913430641941354}
-  - component: {fileID: 2525101036049208562}
-  - component: {fileID: 8154409382545542309}
   - component: {fileID: 6013181536961075879}
   - component: {fileID: 849109769978186094}
   - component: {fileID: 972904986113054043}
@@ -177,46 +175,6 @@ Transform:
   - {fileID: 5791002127994873889}
   m_Father: {fileID: 5233178217426416254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2525101036049208562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609751983011298163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0b3d4ddeb5b004b972e15568896ae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  gridSize: {x: 1, y: 1}
---- !u!114 &8154409382545542309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609751983011298163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e86348700d3ba74fa07119dccd29159, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flowchart: {fileID: 0}
-  inventario:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  rayDistance: 0.8
-  interactionMask:
-    serializedVersion: 2
-    m_Bits: 64
-  pushForce: 5
-  wfs: 0
 --- !u!114 &6013181536961075879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3659267799349332957}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.61, y: -2.0939999, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
