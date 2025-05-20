@@ -17,7 +17,9 @@ public class Mov : MonoBehaviour
 
     private Mov playerMovement;                                  
     private SpriteRenderer playerSprite;
-    
+
+
+    public GameObject aCamara;
     #endregion
 
     void Awake()

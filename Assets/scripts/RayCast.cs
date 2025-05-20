@@ -185,6 +185,10 @@ public class RayCast : MonoBehaviour
                 }
             }
         }
+
+        //ActualCamera AC = collision.GetComponent<ActualCamera>();
+        //if (collision.)
     }
+
 
 }
