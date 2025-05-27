@@ -12,18 +12,22 @@ public class NpcMoveTo : MonoBehaviour
     private bool isMoving = false;
     private bool hasArrived = false;
 
-    private float gridOffsetX = 0.5f; // Offset de la grid en X
+    private float gridOffsetX = 0.5f;
+    [SerializeField] string npcName;
+    
 
     private void Start()
     {
+        npcName = gameObject.GetComponent<NPC>().name;
+        
+
         panelDiaologos = GameObject.FindWithTag("DialogPanel");
 
         if (moveTo == null)
         {
-            moveTo = GameObject.FindWithTag("MM");
+            moveTo = GameObject.FindWithTag(npcName+"Points");
         }
 
-        // Alinear el NPC a la cuadrícula al inicio con offset
         Vector2 aligned = new Vector2(
             Mathf.Round((transform.position.x - gridOffsetX) / gridSize.x) * gridSize.x + gridOffsetX,
             Mathf.Round(transform.position.y / gridSize.y) * gridSize.y
@@ -33,28 +37,23 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
-        // Esperar si hay diálogo activo
         if (panelDiaologos != null && panelDiaologos.activeSelf)
             return;
 
-        // Buscar el objetivo si no está asignado
         if (moveTo == null || !moveTo.activeSelf)
         {
-            moveTo = GameObject.FindWithTag("MM");
+            moveTo = GameObject.FindWithTag(npcName + "Points");
             if (moveTo == null) return;
         }
 
         Next nextComponent = moveTo.GetComponent<Next>();
         if (nextComponent == null) return;
 
-        // No seguir si no está activado
         if (!nextComponent.seguir)
             return;
 
-        // Si ya llegamos, no moverse más
         if (hasArrived) return;
 
-        // Comprobar si llegamos al destino
         if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
         {
             if (nextComponent.nextObject != null)
@@ -62,11 +61,9 @@ public class NpcMoveTo : MonoBehaviour
                 nextComponent.nextObject.SetActive(true);
             }
 
-            Debug.Log("Cambio");
 
             moveTo.SetActive(false);
         }
-        // Solo mover si no estamos en movimiento
         if (!isMoving)
         {
             MoverEnemigo(moveTo.transform.position);
@@ -80,13 +77,12 @@ public class NpcMoveTo : MonoBehaviour
         Vector2 enemyPosition = transform.position;
         Vector2 direction = (targetPosition - enemyPosition);
 
-        // Cancelar si ya estamos muy cerca
+
         if (direction.sqrMagnitude < 0.01f)
             return;
 
         Vector2 moveDirection = Vector2.zero;
 
-        // Elegir dirección cardinal dominante
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
             moveDirection = new Vector2(Mathf.Sign(direction.x), 0);
         else
@@ -94,7 +90,6 @@ public class NpcMoveTo : MonoBehaviour
 
         Vector2 finalTarget = enemyPosition + new Vector2(moveDirection.x * gridSize.x, moveDirection.y * gridSize.y);
 
-        // Redondear a la cuadrícula con offset en X
         finalTarget = new Vector2(
             Mathf.Round((finalTarget.x - gridOffsetX) / gridSize.x) * gridSize.x + gridOffsetX,
             Mathf.Round(finalTarget.y / gridSize.y) * gridSize.y
