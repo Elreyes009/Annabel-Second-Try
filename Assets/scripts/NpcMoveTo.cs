@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Fungus;
 
 public class NpcMoveTo : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class NpcMoveTo : MonoBehaviour
     private bool hasArrived = false;
 
     private float gridOffsetX = 0.5f; // Offset de la grid en X
+
+    [SerializeField] Flowchart flowchart;
 
     private void Start()
     {
@@ -33,44 +36,12 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
-        // Esperar si hay diálogo activo
-        if (panelDiaologos != null && panelDiaologos.activeSelf)
-            return;
-
-        // Buscar el objetivo si no está asignado
-        if (moveTo == null || !moveTo.activeSelf)
+        if (flowchart.GetBooleanVariable("Puede_moverse") == true)
         {
-            moveTo = GameObject.FindWithTag("MM");
-            if (moveTo == null) return;
+            Debug.Log("Funciona");
+            Moovement();
         }
 
-        Next nextComponent = moveTo.GetComponent<Next>();
-        if (nextComponent == null) return;
-
-        // No seguir si no está activado
-        if (!nextComponent.seguir)
-            return;
-
-        // Si ya llegamos, no moverse más
-        if (hasArrived) return;
-
-        // Comprobar si llegamos al destino
-        if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
-        {
-            if (nextComponent.nextObject != null)
-            {
-                nextComponent.nextObject.SetActive(true);
-            }
-
-            Debug.Log("Cambio");
-
-            moveTo.SetActive(false);
-        }
-        // Solo mover si no estamos en movimiento
-        if (!isMoving)
-        {
-            MoverEnemigo(moveTo.transform.position);
-        }
     }
 
     public void MoverEnemigo(Vector2 targetPosition)
@@ -124,5 +95,46 @@ public class NpcMoveTo : MonoBehaviour
     {
         Collider2D obstacle = Physics2D.OverlapCircle(targetPosition, 0.2f, obstacleLayer);
         return obstacle != null;
+    }
+    void Moovement()
+    {
+        // Esperar si hay diálogo activo
+        if (panelDiaologos != null && panelDiaologos.activeSelf)
+            return;
+
+        // Buscar el objetivo si no está asignado
+        if (moveTo == null || !moveTo.activeSelf)
+        {
+            moveTo = GameObject.FindWithTag("MM");
+            if (moveTo == null) return;
+        }
+
+        Next nextComponent = moveTo.GetComponent<Next>();
+        if (nextComponent == null) return;
+
+        // No seguir si no está activado
+        if (!nextComponent.seguir)
+            return;
+
+        // Si ya llegamos, no moverse más
+        if (hasArrived) return;
+
+        // Comprobar si llegamos al destino
+        if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
+        {
+            if (nextComponent.nextObject != null)
+            {
+                nextComponent.nextObject.SetActive(true);
+            }
+
+            Debug.Log("Cambio");
+
+            moveTo.SetActive(false);
+        }
+        // Solo mover si no estamos en movimiento
+        if (!isMoving)
+        {
+            MoverEnemigo(moveTo.transform.position);
+        }
     }
 }
