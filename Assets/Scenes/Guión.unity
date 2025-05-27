@@ -10270,6 +10270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 665221616}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &37380585
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10530,6 +10532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 755600688}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &83703520
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38639,6 +38643,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1576492998}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &285025523
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38731,6 +38737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1205063467}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &285027658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38965,6 +38973,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 2051061582}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &445223247
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39057,6 +39067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1430279632}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &456277093
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40032,6 +40044,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 2054282836}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &700312432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41996,6 +42010,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 716654096}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &1177759472
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42878,6 +42894,10 @@ PrefabInstance:
     - target: {fileID: 150034353475121600, guid: dcedaac6ba7bf4640bed10235c6b1606, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
       value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611650846726914269, guid: dcedaac6ba7bf4640bed10235c6b1606, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2050826224779410781, guid: dcedaac6ba7bf4640bed10235c6b1606, type: 3}
       propertyPath: m_IsActive
@@ -54325,6 +54345,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1952798550}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &1279854409
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54759,6 +54781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 44198655}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &1535759103
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55374,6 +55398,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1259984959}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &1797769589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55790,6 +55816,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 247842132}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &1877650284
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55882,6 +55910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 656564302}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &1880839499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63919,6 +63949,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 158910342}
+  salasLejanas: []
+  salasCercanas: []
 --- !u!61 &2071333210
 BoxCollider2D:
   m_ObjectHideFlags: 0
