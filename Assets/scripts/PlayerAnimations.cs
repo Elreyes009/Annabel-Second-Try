@@ -3,15 +3,23 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     private Animator anim;
+    private GameObject panelDiaologos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        panelDiaologos = GameObject.FindWithTag("DialogPanel");
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (panelDiaologos.activeSelf)
+        {
+            return;
+        }
+
         Animations();
     }
     private void Animations()

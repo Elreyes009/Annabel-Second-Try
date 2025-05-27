@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -20,11 +19,13 @@ public class Mov : MonoBehaviour
 
     private GameObject panelDiaologos;
 
+    public GameObject pl;
+
     #endregion
 
     void Awake()
     {
-        panelDiaologos = GameObject.Find("PanelDialogos");
+        panelDiaologos = GameObject.FindWithTag("DialogPanel");
         playerMovement = GetComponent<Mov>();
         playerSprite = GetComponent<SpriteRenderer>();
         
