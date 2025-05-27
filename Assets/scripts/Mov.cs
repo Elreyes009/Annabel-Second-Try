@@ -18,11 +18,13 @@ public class Mov : MonoBehaviour
     private Mov playerMovement;                                  
     private SpriteRenderer playerSprite;
 
+    private GameObject panelDiaologos;
 
     #endregion
 
     void Awake()
     {
+        panelDiaologos = GameObject.Find("PanelDialogos");
         playerMovement = GetComponent<Mov>();
         playerSprite = GetComponent<SpriteRenderer>();
         
@@ -33,6 +35,10 @@ public class Mov : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (panelDiaologos.activeSelf)
+        {
+            return;
+        }
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (direction.x != 0)
