@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -18,11 +17,15 @@ public class Mov : MonoBehaviour
     private Mov playerMovement;                                  
     private SpriteRenderer playerSprite;
 
+    private GameObject panelDiaologos;
+
+    public GameObject pl;
 
     #endregion
 
     void Awake()
     {
+        panelDiaologos = GameObject.FindWithTag("DialogPanel");
         playerMovement = GetComponent<Mov>();
         playerSprite = GetComponent<SpriteRenderer>();
         
@@ -33,6 +36,10 @@ public class Mov : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (panelDiaologos.activeSelf)
+        {
+            return;
+        }
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (direction.x != 0)

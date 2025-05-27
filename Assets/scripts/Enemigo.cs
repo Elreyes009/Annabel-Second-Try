@@ -114,7 +114,7 @@ public class Enemigo : MonoBehaviour
         }
         transform.position = targetPosition;
         isMoving = false;
-    }
+    } 
 
     bool IsObstacle(Vector3 targetPosition)
     {

@@ -3,11 +3,16 @@ using UnityEngine.Rendering.Universal;
 
 public class Lights : MonoBehaviour
 {
-    private GameObject pLight;
+
+    [SerializeField] GameObject pLight;
 
     private void Awake()
     {
         pLight = GameObject.FindWithTag("PlayerLight");
+        if(pLight == null)
+        {
+            pLight = FindAnyObjectByType<Mov>().pl.gameObject;
+        }
     }
 
 
