@@ -39373,7 +39373,7 @@ GameObject:
   - component: {fileID: 591366531}
   m_Layer: 5
   m_Name: Estandar
-  m_TagString: Untagged
+  m_TagString: DialogPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41713,7 +41713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 143496493}
+  selectedFlowchart: {fileID: 1987363345}
 --- !u!4 &913032837
 Transform:
   m_ObjectHideFlags: 1
@@ -57142,6 +57142,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 900134776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1987363345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1005653291977275250, guid: a877a2de52799424d835afac28bfe49e, type: 3}
+  m_PrefabInstance: {fileID: 1592486602}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2007601399
 GameObject:
   m_ObjectHideFlags: 0
