@@ -22,11 +22,6 @@ public class NpcMoveTo : MonoBehaviour
     {
         panelDiaologos = GameObject.FindWithTag("DialogPanel");
 
-        //if (moveTo == null)
-        //{
-        //    moveTo = GameObject.FindWithTag("MM");
-        //}
-
         // Alinear el NPC a la cuadrícula al inicio con offset
         Vector2 aligned = new Vector2(
             Mathf.Round((transform.position.x - gridOffsetX) / gridSize.x) * gridSize.x + gridOffsetX,
