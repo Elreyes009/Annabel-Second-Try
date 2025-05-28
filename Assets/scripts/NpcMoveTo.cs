@@ -7,6 +7,7 @@ public class NpcMoveTo : MonoBehaviour
     [SerializeField] private LayerMask obstacleLayer;
     public GameObject moveTo;
     [SerializeField] private float moveSpeed = 3f;
+
     [SerializeField] private Vector2 gridSize = new Vector2(1f, 1f);
 
     private GameObject panelDiaologos;
@@ -21,10 +22,10 @@ public class NpcMoveTo : MonoBehaviour
     {
         panelDiaologos = GameObject.FindWithTag("DialogPanel");
 
-        if (moveTo == null)
-        {
-            moveTo = GameObject.FindWithTag("MM");
-        }
+        //if (moveTo == null)
+        //{
+        //    moveTo = GameObject.FindWithTag("MM");
+        //}
 
         // Alinear el NPC a la cuadrícula al inicio con offset
         Vector2 aligned = new Vector2(
@@ -36,9 +37,8 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
-        if (flowchart.GetBooleanVariable("Puede_moverse") == true)
+        if (flowchart.GetBooleanVariable("Puede_moverse") == true && moveTo != null)
         {
-            Debug.Log("Funciona");
             Moovement();
         }
 
@@ -126,8 +126,6 @@ public class NpcMoveTo : MonoBehaviour
             {
                 nextComponent.nextObject.SetActive(true);
             }
-
-            Debug.Log("Cambio");
 
             moveTo.SetActive(false);
         }
