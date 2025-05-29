@@ -23,10 +23,6 @@ public class RayCast : MonoBehaviour
     private void Awake()
     {
         player = gameObject;
-        // Si no lo asignaste en el Inspector, lo busca en escena
-        if (flowchart == null)
-            flowchart = FindObjectOfType<Flowchart>();
-
     }
 
     private void Update()
@@ -67,12 +63,9 @@ public class RayCast : MonoBehaviour
 
         if (hit.collider != null)
         {
-            
-
             if (hit.collider.CompareTag("Interactuable"))
             {
                 NPC npc = hit.collider.GetComponent<NPC>();
-
 
                 if (npc != null)
                 {
