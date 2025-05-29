@@ -4,46 +4,73 @@ public class PlayerAnimations : MonoBehaviour
 {
     private Animator anim;
     private GameObject panelDiaologos;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
+    private Direccion direccionActiva = Direccion.Ninguna;
+
     void Start()
     {
+
         panelDiaologos = GameObject.FindWithTag("DialogPanel");
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-
         if (panelDiaologos.activeSelf)
         {
+            // Apagar todas las animaciones activas
+            anim.SetBool("Derecha", false);
+            anim.SetBool("Izquierda", false);
+            anim.SetBool("Arriba", false);
+            anim.SetBool("Abajo", false);
+            direccionActiva = Direccion.Ninguna; // Reinicia también la dirección
             return;
         }
 
         Animations();
     }
+
     private void Animations()
     {
-        if (Input.GetKey(KeyCode.D))
+        // Actualiza dirección si la tecla activa se ha soltado
+        if (direccionActiva != Direccion.Ninguna)
         {
-            anim.SetInteger("Direccion", 3); // Derecha
+            switch (direccionActiva)
+            {
+                case Direccion.Derecha:
+                    if (!Input.GetKey(KeyCode.D)) direccionActiva = Direccion.Ninguna;
+                    break;
+                case Direccion.Izquierda:
+                    if (!Input.GetKey(KeyCode.A)) direccionActiva = Direccion.Ninguna;
+                    break;
+                case Direccion.Arriba:
+                    if (!Input.GetKey(KeyCode.W)) direccionActiva = Direccion.Ninguna;
+                    break;
+                case Direccion.Abajo:
+                    if (!Input.GetKey(KeyCode.S)) direccionActiva = Direccion.Ninguna;
+                    break;
+            }
         }
-        else if (Input.GetKey(KeyCode.A))
+
+        // Si está en "Ninguna", buscar la nueva dirección, priorizando orden
+        if (direccionActiva == Direccion.Ninguna)
         {
-            anim.SetInteger("Direccion", 4); // Izquierda
+            if (Input.GetKey(KeyCode.D))
+                direccionActiva = Direccion.Derecha;
+            else if (Input.GetKey(KeyCode.A))
+                direccionActiva = Direccion.Izquierda;
+            else if (Input.GetKey(KeyCode.W))
+                direccionActiva = Direccion.Arriba;
+            else if (Input.GetKey(KeyCode.S))
+                direccionActiva = Direccion.Abajo;
         }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            anim.SetInteger("Direccion", 2); // Arriba
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            anim.SetInteger("Direccion", 1); // Abajo
-        }
-        else
-        {
-            anim.SetInteger("Direccion", 0); // Idle
-        }
+
+        // Actualiza animaciones
+        anim.SetBool("Derecha", direccionActiva == Direccion.Derecha);
+        anim.SetBool("Izquierda", direccionActiva == Direccion.Izquierda);
+        anim.SetBool("Arriba", direccionActiva == Direccion.Arriba);
+        anim.SetBool("Abajo", direccionActiva == Direccion.Abajo);
     }
 
 }
