@@ -19,7 +19,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         if (panelDiaologos.activeSelf)
         {
-            // Apagar todas las animaciones activas
+            Debug.Log("No se encontro");
             anim.SetBool("Derecha", false);
             anim.SetBool("Izquierda", false);
             anim.SetBool("Arriba", false);
