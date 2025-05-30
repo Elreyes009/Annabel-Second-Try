@@ -1,4 +1,5 @@
 using System.Collections;
+using Fungus;
 using UnityEngine;
 
 public class NpcMoveTo : MonoBehaviour
@@ -14,6 +15,8 @@ public class NpcMoveTo : MonoBehaviour
 
     private float gridOffsetX = 0.5f;
     [SerializeField] string npcName;
+
+    [SerializeField] Flowchart flowchart;
     
 
     private void Start()
@@ -37,36 +40,9 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
-        if (panelDiaologos != null && panelDiaologos.activeSelf)
-            return;
-
-        if (moveTo == null || !moveTo.activeSelf)
+        if (flowchart.GetBooleanVariable("Puede_moverse") == true && moveTo != null)
         {
-            moveTo = GameObject.FindWithTag(npcName + "Points");
-            if (moveTo == null) return;
-        }
-
-        Next nextComponent = moveTo.GetComponent<Next>();
-        if (nextComponent == null) return;
-
-        if (!nextComponent.seguir)
-            return;
-
-        if (hasArrived) return;
-
-        if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
-        {
-            if (nextComponent.nextObject != null)
-            {
-                nextComponent.nextObject.SetActive(true);
-            }
-
-
-            moveTo.SetActive(false);
-        }
-        if (!isMoving)
-        {
-            MoverEnemigo(moveTo.transform.position);
+            Moove();
         }
     }
 
@@ -98,6 +74,41 @@ public class NpcMoveTo : MonoBehaviour
         if (!IsObstacle(finalTarget))
         {
             StartCoroutine(Move(finalTarget));
+        }
+    }
+
+    void Moove()
+    {
+        if (panelDiaologos != null && panelDiaologos.activeSelf)
+            return;
+
+        if (moveTo == null || !moveTo.activeSelf)
+        {
+            moveTo = GameObject.FindWithTag(npcName + "Points");
+            if (moveTo == null) return;
+        }
+
+        Next nextComponent = moveTo.GetComponent<Next>();
+        if (nextComponent == null) return;
+
+        if (!nextComponent.seguir)
+            return;
+
+        if (hasArrived) return;
+
+        if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
+        {
+            if (nextComponent.nextObject != null)
+            {
+                nextComponent.nextObject.SetActive(true);
+            }
+
+
+            moveTo.SetActive(false);
+        }
+        if (!isMoving)
+        {
+            MoverEnemigo(moveTo.transform.position);
         }
     }
 

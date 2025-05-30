@@ -20,8 +20,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
+        if (masterSlider != null)
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
+
+        if (bgmSlider != null)
         bgmSlider.onValueChanged.AddListener(SetMusicVolume);
+
+        if (sfxSlider != null)
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
 
         // Inicializa sliders con valores del mixer

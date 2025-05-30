@@ -40,6 +40,7 @@ public class Mov : MonoBehaviour
         {
             return;
         }
+
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (direction.x != 0)
