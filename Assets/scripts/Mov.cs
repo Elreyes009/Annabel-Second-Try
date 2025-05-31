@@ -17,7 +17,7 @@ public class Mov : MonoBehaviour
     private Mov playerMovement;                                  
     private SpriteRenderer playerSprite;
 
-    private GameObject panelDiaologos;
+    [SerializeField] private GameObject panelDiaologos;
 
     public GameObject pl;
 

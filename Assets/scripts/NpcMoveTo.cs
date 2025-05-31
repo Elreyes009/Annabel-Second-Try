@@ -79,9 +79,6 @@ public class NpcMoveTo : MonoBehaviour
 
     void Moove()
     {
-        if (panelDiaologos != null && panelDiaologos.activeSelf)
-            return;
-
         if (moveTo == null || !moveTo.activeSelf)
         {
             moveTo = GameObject.FindWithTag(npcName + "Points");

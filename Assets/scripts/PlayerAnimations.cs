@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     private Animator anim;
-    private GameObject panelDiaologos;
+    [SerializeField] private GameObject panelDiaologos;
 
     private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
     private Direccion direccionActiva = Direccion.Ninguna;
