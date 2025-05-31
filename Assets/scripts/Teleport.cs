@@ -41,9 +41,9 @@ public class Teleport : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("exterior_puerta")) //Aquí estamos revizando que el jugador haya entrado en el gatillo correcto
+        if (collision.CompareTag("exterior_puerta")) //Aquí estamos revizando que el jugador haya entrado en el gatillo correcto y se haya quedado dentro
         {
             Oldposition = transform.position; //Se asigna la posición en la que el jugador entró al gatillo como OldPosition
                                                        //de esta forma, cuando terminé de jugar como Marco, el jugador será transportado a la misma posición en la que estaba
