@@ -33,7 +33,7 @@ public class Angelina_tmer : MonoBehaviour
     {
         if (regulator) //Revisamos que el regulador sea verdadero
         {
-            if (MainFlowchart.GetIntegerVariable("Diálogo") == 13) //Si estámos en la escena con el valor de Diálogo indicado
+            if (MainFlowchart.GetBooleanVariable("Marco") == true) //Si estámos en la escena con el valor de Diálogo indicado
             {
                 Debug.Log(timer);
                 timer -= Time.deltaTime;
