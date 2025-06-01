@@ -86,6 +86,22 @@ public class Angelina_tmer : MonoBehaviour
 
                     regulator = false; //Se desactiva el regulador para que el bloque no se reproduzca indefinidamente
                 }
+                else if (timer <= 0 && AngelinaFlowchart.GetIntegerVariable("Reinicio") == 2) //Cuando el temporizador llega a 0 y no haya habido reinicios
+                {
+                    AngelinaFlowchart.SetBooleanVariable("Atrapadas", true); //Esta variable deve ser verdadera para reproducir el bloque de código
+                    AngelinaFlowchart.ExecuteBlock("Atrapadas_3");  //Se reproduce el bloque de código indicado
+                    timer = 0f;
+
+                    regulator = false; //Se desactiva el regulador para que el bloque no se reproduzca indefinidamente
+                }
+                else if (timer <= 0 && AngelinaFlowchart.GetIntegerVariable("Reinicio") == 3) //Cuando el temporizador llega a 0 y no haya habido reinicios
+                {
+                    AngelinaFlowchart.SetBooleanVariable("Atrapadas", true); //Esta variable deve ser verdadera para reproducir el bloque de código
+                    AngelinaFlowchart.ExecuteBlock("Atrapadas_4");  //Se reproduce el bloque de código indicado
+                    timer = 0f;
+
+                    regulator = false; //Se desactiva el regulador para que el bloque no se reproduzca indefinidamente
+                }
             }
         }
 
