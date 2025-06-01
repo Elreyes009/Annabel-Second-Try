@@ -12,10 +12,6 @@ public class Angelina_tmer : MonoBehaviour
 
     bool regulator; //Booleana reguladora. Sin esta, el bloque de código que invoquemos se reproducirá indefinidamente.
 
-    [SerializeField] Mov mov;
-
-    [SerializeField] Vector3 Respawn_point;
-
     private void Awake()
     {
         timer = 20f;
@@ -51,8 +47,6 @@ public class Angelina_tmer : MonoBehaviour
 
         if (!regulator && AngelinaFlowchart.GetBooleanVariable("Terminó") == true) //Esta variable permitirá que el sistema se reinicie
         {
-            mov.ActualizarPuntoDeRespawn(Respawn_point);
-            StartCoroutine(mov.RespawnCoroutine());
             timer = 20f;
             AngelinaFlowchart.SetBooleanVariable("Atrapado", false);
             AngelinaFlowchart.SetBooleanVariable("Terminó", false);
@@ -69,7 +63,6 @@ public class Angelina_tmer : MonoBehaviour
             if (MainFlowchart.GetBooleanVariable("Timer") == true && MainFlowchart.GetBooleanVariable("Cambio") == false) //Si estámos en la escena con el valor de Diálogo indicado
             {
                 timer -= Time.deltaTime;
-                Debug.Log(timer);
 
                 if (timer <= 0 && AngelinaFlowchart.GetIntegerVariable("Reinicio") == 0) //Cuando el temporizador llega a 0 y no haya habido reinicios
                 {
@@ -108,13 +101,10 @@ public class Angelina_tmer : MonoBehaviour
 
         if (!regulator && AngelinaFlowchart.GetBooleanVariable("Terminó") == true) //Esta variable permitirá que el sistema se reinicie
         {
-            mov.ActualizarPuntoDeRespawn(Respawn_point);
-            StartCoroutine(mov.RespawnCoroutine());
             timer = 20f;
             AngelinaFlowchart.SetBooleanVariable("Atrapado", false);
             AngelinaFlowchart.SetBooleanVariable("Terminó", false);
             regulator = true;
-            Debug.Log(timer);
         }
     }
 }
