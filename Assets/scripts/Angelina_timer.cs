@@ -4,12 +4,16 @@ using Unity.VisualScripting;
 
 public class Angelina_tmer : MonoBehaviour
 {
-    [SerializeField] Flowchart MainFlowchart;
-    [SerializeField] Flowchart AngelinaFlowchart;
+    [SerializeField] Flowchart MainFlowchart; //El flowchart principal, para saber que estamos en la parte correcta del nivel
+    [SerializeField] Flowchart AngelinaFlowchart; //El flowchart con los diálogos de Angelina
 
-    float timer;
+    float timer; //Un temporizador
 
-    bool regulator;
+    bool regulator; //Booleana reguladora. Sin esta, el bloque de código que invoquemos se reproducirá indefinidamente.
+
+    [SerializeField] Mov mov;
+
+    [SerializeField] Vector3 Respawn_point;
 
     private void Awake()
     {
@@ -19,22 +23,73 @@ public class Angelina_tmer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (regulator)
+        Atrapar_Marco();
+
+        Atrapar_Annabel();
+    }
+
+    void Atrapar_Marco() //Función que provoca que atrapen a Marco en la oficina de Angelina
+    {
+        if (regulator) //Revisamos que el regulador sea verdadero
         {
-            if (MainFlowchart.GetIntegerVariable("Diálogo") == 13)
+            if (MainFlowchart.GetIntegerVariable("Diálogo") == 13) //Si estámos en la escena con el valor de Diálogo indicado
             {
                 Debug.Log(timer);
                 timer -= Time.deltaTime;
 
-                if (timer <= 0)
+                if (timer <= 0) //Cuando el temporizador llega a 0
                 {
-                    AngelinaFlowchart.SetBooleanVariable("Atrapado", true);
-                    AngelinaFlowchart.ExecuteBlock("Atrapar_Marco");
+                    AngelinaFlowchart.SetBooleanVariable("Atrapado", true); //Esta variable deve ser verdadera para reproducir el bloque de código
+                    AngelinaFlowchart.ExecuteBlock("Atrapar_Marco");  //Se reproduce el bloque de código indicado
                     timer = 0f;
 
-                    regulator = false;
+                    regulator = false; //Se desactiva el regulador para que el bloque no se reproduzca indefinidamente
                 }
             }
+        }
+
+        if (!regulator && AngelinaFlowchart.GetBooleanVariable("Terminó") == true) //Esta variable permitirá que el sistema se reinicie
+        {
+            mov.ActualizarPuntoDeRespawn(Respawn_point);
+            StartCoroutine(mov.RespawnCoroutine());
+            timer = 20f;
+            AngelinaFlowchart.SetBooleanVariable("Atrapado", false);
+            AngelinaFlowchart.SetBooleanVariable("Terminó", false);
+            regulator = true;
+            Debug.Log(timer);
+        }
+    }
+
+    void Atrapar_Annabel() //Función que provoca que atrapen a Annabel en la oficina de Angelina
+    {
+
+        if (regulator) //Revisamos que el regulador sea verdadero
+        {
+            if (MainFlowchart.GetIntegerVariable("Diálogo") == 12) //Si estámos en la escena con el valor de Diálogo indicado
+            {
+                timer -= Time.deltaTime;
+                Debug.Log(timer);
+
+                if (timer <= 0) //Cuando el temporizador llega a 0
+                {
+                    AngelinaFlowchart.SetBooleanVariable("Atrapadas", true); //Esta variable deve ser verdadera para reproducir el bloque de código
+                    AngelinaFlowchart.ExecuteBlock("Atrapadas_1");  //Se reproduce el bloque de código indicado
+                    timer = 0f;
+
+                    regulator = false; //Se desactiva el regulador para que el bloque no se reproduzca indefinidamente
+                }
+            }
+        }
+
+        if (!regulator && AngelinaFlowchart.GetBooleanVariable("Terminó") == true) //Esta variable permitirá que el sistema se reinicie
+        {
+            mov.ActualizarPuntoDeRespawn(Respawn_point);
+            StartCoroutine(mov.RespawnCoroutine());
+            timer = 20f;
+            AngelinaFlowchart.SetBooleanVariable("Atrapado", false);
+            AngelinaFlowchart.SetBooleanVariable("Terminó", false);
+            regulator = true;
+            Debug.Log(timer);
         }
     }
 }
