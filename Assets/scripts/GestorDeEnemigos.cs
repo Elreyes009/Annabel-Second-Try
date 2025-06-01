@@ -15,7 +15,7 @@ public class GestorDeEnemigos : MonoBehaviour
     void Start()
     {
         // Asegúrate de que la lista de enemigos esté correctamente llena
-        enemigos = new List<Enemigo>(FindObjectsOfType<Enemigo>());
+        //enemigos = new List<Enemigo>(FindObjectsOfType<Enemigo>());
         playerMove = FindFirstObjectByType <Mov>().gameObject;
         playerSprite = FindFirstObjectByType<PlayerAnimations>().gameObject;
         flowchart = FindFirstObjectByType<Flowchart>();
@@ -65,6 +65,8 @@ public class GestorDeEnemigos : MonoBehaviour
             enemigo.isMoving = false;
             // ¡Este transform sí es el del enemigo!
             enemigo.transform.position = enemigo.posicionInicial;
+
+            Debug.Log("Funcionando");
         }
     }
 

@@ -12,6 +12,8 @@ public class Angelina_tmer : MonoBehaviour
 
     bool regulator; //Booleana reguladora. Sin esta, el bloque de código que invoquemos se reproducirá indefinidamente.
 
+    [SerializeField] GestorDeEnemigos enemManager;
+
     private void Awake()
     {
         timer = 20f;
@@ -50,12 +52,12 @@ public class Angelina_tmer : MonoBehaviour
             timer = 20f;
             AngelinaFlowchart.SetBooleanVariable("Atrapado", false);
             AngelinaFlowchart.SetBooleanVariable("Terminó", false);
+            Debug.Log("Reinicio");
             regulator = true;
-            Debug.Log(timer);
         }
     }
 
-    void Atrapar_Annabel() //Función que provoca que atrapen a Annabel en la oficina de Angelina
+    void Atrapar_Annabel() //Función que provoca que atrapen a Annabel
     {
 
         if (regulator) //Revisamos que el regulador sea verdadero
@@ -104,7 +106,14 @@ public class Angelina_tmer : MonoBehaviour
             timer = 20f;
             AngelinaFlowchart.SetBooleanVariable("Atrapado", false);
             AngelinaFlowchart.SetBooleanVariable("Terminó", false);
+            Debug.Log("Reinicio");
+
             regulator = true;
+        }
+
+        if (MainFlowchart.GetBooleanVariable("Regreso") == true)
+        {
+            enemManager.VolverAposicionInicial();
         }
     }
 }
