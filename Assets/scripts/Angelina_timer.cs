@@ -1,6 +1,7 @@
 using UnityEngine;
 using Fungus;
 using Unity.VisualScripting;
+using System;
 
 public class Angelina_tmer : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class Angelina_tmer : MonoBehaviour
 
         if (regulator) //Revisamos que el regulador sea verdadero
         {
-            if (MainFlowchart.GetIntegerVariable("Diálogo") == 12) //Si estámos en la escena con el valor de Diálogo indicado
+            if (MainFlowchart.GetBooleanVariable("Timer") == true && MainFlowchart.GetBooleanVariable("Cambio") == false) //Si estámos en la escena con el valor de Diálogo indicado
             {
                 timer -= Time.deltaTime;
                 Debug.Log(timer);
