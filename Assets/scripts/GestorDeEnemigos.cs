@@ -65,8 +65,6 @@ public class GestorDeEnemigos : MonoBehaviour
             enemigo.isMoving = false;
             // ¡Este transform sí es el del enemigo!
             enemigo.transform.position = enemigo.posicionInicial;
-
-            Debug.Log("Funcionando");
         }
     }
 
