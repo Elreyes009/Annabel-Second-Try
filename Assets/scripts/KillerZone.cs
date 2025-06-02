@@ -9,6 +9,7 @@ public class KillerZone : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             StartCoroutine(enemigo.MatarJugador());
+            Debug.Log("muerte");
         }
     }
 }

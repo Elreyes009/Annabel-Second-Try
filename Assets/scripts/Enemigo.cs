@@ -4,6 +4,7 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using Fungus;
 
 public class Enemigo : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class Enemigo : MonoBehaviour
 
     public bool inLight;
     public bool inVision;
+
+    [SerializeField] Flowchart flowchart;
+
     void Start()
     {
         player = FindAnyObjectByType<Mov>().transform;
@@ -167,17 +171,36 @@ public class Enemigo : MonoBehaviour
             Debug.LogError("Movimiento del jugador no encontrado.");
         }
 
-        if (playerAnimator != null)
-        {
-            playerAnimator.SetTrigger("Muerte");
-        }
-        else
-        {
-            Debug.LogError("Animator del jugador no encontrado.");
-        }
+        //if (playerAnimator != null)
+        //{
+        //    playerAnimator.SetTrigger("Muerte");
+        //}
+        //else
+        //{
+        //    Debug.LogError("Animator del jugador no encontrado.");
+        //}
 
         yield return new WaitForSeconds(1f);
 
         enemManager.VolverAposicionInicial();
+
+        flowchart.SetBooleanVariable("Muerte", true);
+
+        if (flowchart.GetIntegerVariable("Reinicio") == 0)
+        {
+            flowchart.ExecuteBlock("Reinicio_1");
+        }
+        else if (flowchart.GetIntegerVariable("Reinicio") == 1)
+        {
+            flowchart.ExecuteBlock("Reinicio_2");
+        }
+        else if (flowchart.GetIntegerVariable("Reinicio") == 2)
+        {
+            flowchart.ExecuteBlock("Reinicio_3");
+        }
+        else if (flowchart.GetIntegerVariable("Reinicio") == 3)
+        {
+            flowchart.ExecuteBlock("Reinicio_4");
+        }
     }
 }
