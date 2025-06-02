@@ -111,7 +111,7 @@ public class Angelina_tmer : MonoBehaviour
             regulator = true;
         }
 
-        if (MainFlowchart.GetBooleanVariable("Regreso") == true)
+        if (MainFlowchart.GetBooleanVariable("Regreso") == true && MainFlowchart.GetIntegerVariable("Diálogo") == 16 || MainFlowchart.GetBooleanVariable("Regreso") == true && MainFlowchart.GetIntegerVariable("Diálogo") == 12 || MainFlowchart.GetBooleanVariable("Cambio") == true && MainFlowchart.GetIntegerVariable("Diálogo") == 13)
         {
             enemManager.VolverAposicionInicial();
         }
