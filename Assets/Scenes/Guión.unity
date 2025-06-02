@@ -43539,7 +43539,7 @@ PrefabInstance:
       objectReference: {fileID: 682877881}
     - target: {fileID: 1426938482819384040, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1426938482819384040, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: panelDiaologos
@@ -43619,9 +43619,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1609751983011298163, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 997860366}
-    - targetCorrespondingSourceObject: {fileID: 1609751983011298163, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 997860371}
   m_SourcePrefab: {fileID: 100100000, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
 --- !u!4 &682877880 stripped
 Transform:
@@ -46672,22 +46669,6 @@ MonoBehaviour:
   NewSprite: {fileID: 7541473604180598450, guid: 4cf1a813d3fd5994ea410a2683fa7700, type: 3}
   OldSprite: {fileID: 0}
   flowchart: {fileID: 0}
---- !u!114 &997860371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997860360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0b3d4ddeb5b004b972e15568896ae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  gridSize: {x: 1, y: 1}
-  panelDiaologos: {fileID: 0}
-  pl: {fileID: 682877881}
 --- !u!1 &1021319650
 GameObject:
   m_ObjectHideFlags: 0
