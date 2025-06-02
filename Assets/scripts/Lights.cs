@@ -29,6 +29,22 @@ public class Lights : MonoBehaviour
         {
             pLight.GetComponent<Light2D>().intensity = 0f;
         }
+
+        if (collision.CompareTag("Interactuable"))
+        {
+            NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
+            if (npc != null)
+            {
+                npc.spriteOscuro = true;
+                Debug.Log("spriteOscuro activado en " + npc.name);
+            }
+            else
+            {
+                Debug.LogWarning("NpcMoveTo component not found on " + collision.gameObject.name);
+            }
+        }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -43,5 +59,21 @@ public class Lights : MonoBehaviour
         {
             pLight.GetComponent<Light2D>().intensity = 0.5f;
         }
+
+        if (collision.CompareTag("Interactuable"))
+        {
+            NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
+            if (npc != null)
+            {
+                npc.spriteOscuro = false;
+                Debug.Log("spriteOscuro desactivado en " + npc.name);
+            }
+            else
+            {
+                               Debug.LogWarning("NpcMoveTo component not found on " + collision.gameObject.name);
+            }
+        }
+
     }
+
 }

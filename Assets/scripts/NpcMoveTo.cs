@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using Fungus;
 using UnityEngine;
 
@@ -14,21 +14,21 @@ public class NpcMoveTo : MonoBehaviour
     private bool hasArrived = false;
 
     private float gridOffsetX = 0.5f;
-    [SerializeField] string npcName;
+    [SerializeField] private string npcName;
 
-    [SerializeField] Flowchart flowchart;
-    
+    [SerializeField] private Flowchart flowchart;
 
-    private void Start()
+    public bool spriteOscuro;
+    private Animator anim;
+    private Vector2 ultimaDireccion = Vector2.zero;
+
+    private void Awake()
     {
-        npcName = gameObject.GetComponent<NPC>().name;
-        
-
         panelDiaologos = GameObject.FindWithTag("DialogPanel");
-
+        npcName = gameObject.GetComponent<NPC>().name;
         if (moveTo == null)
         {
-            moveTo = GameObject.FindWithTag(npcName+"Points");
+            moveTo = GameObject.FindWithTag(npcName + "Points");
         }
 
         Vector2 aligned = new Vector2(
@@ -36,6 +36,22 @@ public class NpcMoveTo : MonoBehaviour
             Mathf.Round(transform.position.y / gridSize.y) * gridSize.y
         );
         transform.position = aligned;
+
+        anim = GetComponent<Animator>();
+
+        int oscuroLayer = anim.GetLayerIndex("Oscuro");
+        int normalLayer = anim.GetLayerIndex("Default");
+
+        // Forzar pesos desde cero al inicio
+        if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, 0f);
+        if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, 1f);
+
+        // Ahora asigna correctamente según sOscuro
+        if (spriteOscuro)
+        {
+            if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, 1f);
+            if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, 0f);
+        }
     }
 
     private void Update()
@@ -44,6 +60,17 @@ public class NpcMoveTo : MonoBehaviour
         {
             Moove();
         }
+
+        // Actualiza animación cada frame según estado de movimiento
+        UpdateAnimation();
+
+
+
+            // Actualiza los pesos de los layers según el estado actual de spriteOscuro
+        int oscuroLayer = anim.GetLayerIndex("Oscuro");
+        int normalLayer = anim.GetLayerIndex("Default");
+        if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 0f : 1f);
+        if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 1f : 0f);
     }
 
     public void MoverEnemigo(Vector2 targetPosition)
@@ -53,9 +80,11 @@ public class NpcMoveTo : MonoBehaviour
         Vector2 enemyPosition = transform.position;
         Vector2 direction = (targetPosition - enemyPosition);
 
-
         if (direction.sqrMagnitude < 0.01f)
+        {
+            ultimaDireccion = Vector2.zero;
             return;
+        }
 
         Vector2 moveDirection = Vector2.zero;
 
@@ -63,6 +92,8 @@ public class NpcMoveTo : MonoBehaviour
             moveDirection = new Vector2(Mathf.Sign(direction.x), 0);
         else
             moveDirection = new Vector2(0, Mathf.Sign(direction.y));
+
+        ultimaDireccion = moveDirection;
 
         Vector2 finalTarget = enemyPosition + new Vector2(moveDirection.x * gridSize.x, moveDirection.y * gridSize.y);
 
@@ -77,6 +108,27 @@ public class NpcMoveTo : MonoBehaviour
         }
     }
 
+    // Actualiza animaciones según el estado de movimiento y dirección
+    private void UpdateAnimation()
+    {
+        if (anim == null) return;
+
+        if (isMoving)
+        {
+            anim.SetBool("Derecha", ultimaDireccion.x > 0);
+            anim.SetBool("Izquierda", ultimaDireccion.x < 0);
+            anim.SetBool("Arriba", ultimaDireccion.y > 0);
+            anim.SetBool("Abajo", ultimaDireccion.y < 0);
+        }
+        else
+        {
+            anim.SetBool("Derecha", false);
+            anim.SetBool("Izquierda", false);
+            anim.SetBool("Arriba", false);
+            anim.SetBool("Abajo", false);
+        }
+    }
+
     void Moove()
     {
         if (moveTo == null || !moveTo.activeSelf)
@@ -88,8 +140,7 @@ public class NpcMoveTo : MonoBehaviour
         Next nextComponent = moveTo.GetComponent<Next>();
         if (nextComponent == null) return;
 
-        if (!nextComponent.seguir)
-            return;
+        if (!nextComponent.seguir) return;
 
         if (hasArrived) return;
 
@@ -100,9 +151,9 @@ public class NpcMoveTo : MonoBehaviour
                 nextComponent.nextObject.SetActive(true);
             }
 
-
             moveTo.SetActive(false);
         }
+
         if (!isMoving)
         {
             MoverEnemigo(moveTo.transform.position);
