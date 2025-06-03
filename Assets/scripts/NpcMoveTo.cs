@@ -18,8 +18,7 @@ public class NpcMoveTo : MonoBehaviour
     [SerializeField] private string npcName;
 
     [SerializeField] private Flowchart flowchart;
-
-    public bool spriteOscuro;
+    [SerializeField] public bool spriteOscuro;
     private Animator anim;
     private Vector2 ultimaDireccion = Vector2.zero;
 
@@ -71,7 +70,7 @@ public class NpcMoveTo : MonoBehaviour
 
 
 
-        // Actualiza los pesos de los layers según el estado actual de spriteOscuro
+
         int oscuroLayer = anim.GetLayerIndex("Oscuro");
         int normalLayer = anim.GetLayerIndex("Default");
         if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 0f : 1f);
@@ -176,7 +175,7 @@ public class NpcMoveTo : MonoBehaviour
             if (player == null) return;
 
             // Si ya está cerca del jugador, no moverse más
-            if (Vector2.Distance(transform.position, player.transform.position) < 2f)
+            if (Vector2.Distance(transform.position, player.transform.position) < 3f)
                 return;
 
             if (!isMoving)
@@ -315,6 +314,6 @@ public class NpcMoveTo : MonoBehaviour
                 open.Add(new Nodo(vecino, actual, g, h));
             }
         }
-        return null; // No hay camino
+        return null;
     }
 }

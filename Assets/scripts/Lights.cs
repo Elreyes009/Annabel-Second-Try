@@ -5,9 +5,11 @@ public class Lights : MonoBehaviour
 {
 
     [SerializeField] GameObject pLight;
+    [SerializeField] GameObject player;
 
     private void Awake()
     {
+        player = GameObject.FindWithTag("Player");
         pLight = GameObject.FindWithTag("PlayerLight");
         if(pLight == null)
         {
@@ -27,6 +29,8 @@ public class Lights : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
+            PlayerAnimations panim = player.GetComponent<PlayerAnimations>();
+            panim.spriteOscuro = false;
             pLight.GetComponent<Light2D>().intensity = 0f;
         }
 
@@ -58,6 +62,9 @@ public class Lights : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             pLight.GetComponent<Light2D>().intensity = 0.5f;
+            PlayerAnimations panim = player.GetComponent<PlayerAnimations>();
+            panim.spriteOscuro = true;
+
         }
 
         if (collision.CompareTag("Interactuable"))
@@ -66,7 +73,6 @@ public class Lights : MonoBehaviour
             if (npc != null)
             {
                 npc.spriteOscuro = false;
-                Debug.Log("spriteOscuro desactivado en " + npc.name);
             }
             else
             {

@@ -8,6 +8,8 @@ public class PlayerAnimations : MonoBehaviour
     private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
     private Direccion direccionActiva = Direccion.Ninguna;
 
+    public bool spriteOscuro;
+
     void Start()
     {
 
@@ -28,6 +30,11 @@ public class PlayerAnimations : MonoBehaviour
         //}
 
         Animations();
+
+        int oscuroLayer = anim.GetLayerIndex("Oscuro");
+        int normalLayer = anim.GetLayerIndex("Default");
+        if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 1f : 0f);
+        if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
     }
 
     private void Animations()
