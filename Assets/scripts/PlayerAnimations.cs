@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     private Animator anim;
-    [SerializeField] private GameObject panelDiaologos;
+    //[SerializeField] private GameObject panelDiaologos;
 
     private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
     private Direccion direccionActiva = Direccion.Ninguna;
@@ -11,21 +11,21 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {
 
-        panelDiaologos = GameObject.FindWithTag("DialogPanel");
+        //panelDiaologos = GameObject.FindWithTag("DialogPanel");
         anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (panelDiaologos.activeSelf)
-        {
-            anim.SetBool("Derecha", false);
-            anim.SetBool("Izquierda", false);
-            anim.SetBool("Arriba", false);
-            anim.SetBool("Abajo", false);
-            direccionActiva = Direccion.Ninguna; // Reinicia también la dirección
-            return;
-        }
+        //if (panelDiaologos.activeSelf)
+        //{
+        //    anim.SetBool("Derecha", false);
+        //    anim.SetBool("Izquierda", false);
+        //    anim.SetBool("Arriba", false);
+        //    anim.SetBool("Abajo", false);
+        //    direccionActiva = Direccion.Ninguna; // Reinicia también la dirección
+        //    return;
+        //}
 
         Animations();
     }

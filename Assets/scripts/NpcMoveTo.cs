@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Fungus;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class NpcMoveTo : MonoBehaviour
 {
@@ -22,22 +23,26 @@ public class NpcMoveTo : MonoBehaviour
     private Animator anim;
     private Vector2 ultimaDireccion = Vector2.zero;
 
+    [SerializeField] public bool siguiendo = false;
+    [SerializeField] private GameObject player;
+
     private void Awake()
     {
         panelDiaologos = GameObject.FindWithTag("DialogPanel");
         npcName = gameObject.GetComponent<NPC>().name;
-        if (moveTo == null)
+        if (moveTo == null && !siguiendo)
         {
             moveTo = GameObject.FindWithTag(npcName + "Points");
         }
 
         Vector2 aligned = new Vector2(
-            Mathf.Round((transform.position.x - gridOffsetX) / gridSize.x) * gridSize.x + gridOffsetX,
-            Mathf.Round(transform.position.y / gridSize.y) * gridSize.y
-        );
+                Mathf.Round((transform.position.x - gridOffsetX) / gridSize.x) * gridSize.x + gridOffsetX,
+                Mathf.Round(transform.position.y / gridSize.y) * gridSize.y
+            );
         transform.position = aligned;
 
         anim = GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
 
         int oscuroLayer = anim.GetLayerIndex("Oscuro");
         int normalLayer = anim.GetLayerIndex("Default");
@@ -66,7 +71,7 @@ public class NpcMoveTo : MonoBehaviour
 
 
 
-            // Actualiza los pesos de los layers según el estado actual de spriteOscuro
+        // Actualiza los pesos de los layers según el estado actual de spriteOscuro
         int oscuroLayer = anim.GetLayerIndex("Oscuro");
         int normalLayer = anim.GetLayerIndex("Default");
         if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 0f : 1f);
@@ -78,6 +83,37 @@ public class NpcMoveTo : MonoBehaviour
         if (isMoving) return;
 
         Vector2 enemyPosition = transform.position;
+
+        // Si está siguiendo al jugador, usa siempre A*
+        if (siguiendo)
+        {
+            // Alinear el objetivo a la grilla
+            Vector2 alignedTarget = new Vector2(
+                Mathf.Round((targetPosition.x - gridOffsetX) / gridSize.x) * gridSize.x + gridOffsetX,
+                Mathf.Round(targetPosition.y / gridSize.y) * gridSize.y
+            );
+
+            // Si el objetivo es un obstáculo, no buscar camino
+            if (IsObstacle(alignedTarget))
+            {
+                ultimaDireccion = Vector2.zero;
+                return;
+            }
+
+            Vector2? nextStep = GetNextStepAStar(enemyPosition, alignedTarget);
+            if (nextStep.HasValue && !IsObstacle(nextStep.Value))
+            {
+                ultimaDireccion = (nextStep.Value - enemyPosition).normalized;
+                StartCoroutine(Move(nextStep.Value));
+            }
+            else
+            {
+                ultimaDireccion = Vector2.zero;
+            }
+            return;
+        }
+
+        // --- Lógica original para puntos normales ---
         Vector2 direction = (targetPosition - enemyPosition);
 
         if (direction.sqrMagnitude < 0.01f)
@@ -93,8 +129,6 @@ public class NpcMoveTo : MonoBehaviour
         else
             moveDirection = new Vector2(0, Mathf.Sign(direction.y));
 
-        ultimaDireccion = moveDirection;
-
         Vector2 finalTarget = enemyPosition + new Vector2(moveDirection.x * gridSize.x, moveDirection.y * gridSize.y);
 
         finalTarget = new Vector2(
@@ -104,7 +138,12 @@ public class NpcMoveTo : MonoBehaviour
 
         if (!IsObstacle(finalTarget))
         {
+            ultimaDireccion = moveDirection;
             StartCoroutine(Move(finalTarget));
+        }
+        else
+        {
+            ultimaDireccion = Vector2.zero;
         }
     }
 
@@ -131,6 +170,23 @@ public class NpcMoveTo : MonoBehaviour
 
     void Moove()
     {
+        if (siguiendo)
+        {
+            // Seguir al jugador por tiles
+            if (player == null) return;
+
+            // Si ya está cerca del jugador, no moverse más
+            if (Vector2.Distance(transform.position, player.transform.position) < 2f)
+                return;
+
+            if (!isMoving)
+            {
+                MoverEnemigo(player.transform.position);
+            }
+            return;
+        }
+
+        // Lógica normal de puntos
         if (moveTo == null || !moveTo.activeSelf)
         {
             moveTo = GameObject.FindWithTag(npcName + "Points");
@@ -141,7 +197,6 @@ public class NpcMoveTo : MonoBehaviour
         if (nextComponent == null) return;
 
         if (!nextComponent.seguir) return;
-
         if (hasArrived) return;
 
         if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
@@ -150,7 +205,6 @@ public class NpcMoveTo : MonoBehaviour
             {
                 nextComponent.nextObject.SetActive(true);
             }
-
             moveTo.SetActive(false);
         }
 
@@ -176,7 +230,91 @@ public class NpcMoveTo : MonoBehaviour
 
     bool IsObstacle(Vector3 targetPosition)
     {
-        Collider2D obstacle = Physics2D.OverlapCircle(targetPosition, 0.2f, obstacleLayer);
-        return obstacle != null;
+        var box = GetComponent<BoxCollider2D>();
+        if (box == null)
+            return Physics2D.OverlapCircle(targetPosition, 0.5f, obstacleLayer) != null;
+
+        // Simula el box en la posición destino
+        Collider2D hit = Physics2D.OverlapBox(
+            (Vector2)targetPosition + box.offset, // posición destino + offset del collider
+            box.size,
+            0f,
+            obstacleLayer
+        );
+        return hit != null;
+    }
+
+    // Nodo para A*
+    private class Nodo
+    {
+        public Vector2 pos;
+        public Nodo padre;
+        public float g, h;
+        public float f => g + h;
+        public Nodo(Vector2 pos, Nodo padre, float g, float h)
+        {
+            this.pos = pos;
+            this.padre = padre;
+            this.g = g;
+            this.h = h;
+        }
+    }
+
+    // Devuelve el siguiente paso hacia el objetivo usando A*
+    private Vector2? GetNextStepAStar(Vector2 start, Vector2 goal)
+    {
+        Vector2[] dirs = new Vector2[]
+        {
+            new Vector2(gridSize.x, 0),
+            new Vector2(-gridSize.x, 0),
+            new Vector2(0, gridSize.y),
+            new Vector2(0, -gridSize.y)
+        };
+
+        var open = new List<Nodo>();
+        var closed = new HashSet<Vector2>();
+        open.Add(new Nodo(start, null, 0, Vector2.Distance(start, goal)));
+
+        int maxNodos = 500; // Limita la cantidad de nodos para evitar bucles infinitos
+        int nodosExplorados = 0;
+
+        while (open.Count > 0)
+        {
+            if (++nodosExplorados > maxNodos)
+                return null;
+
+            open.Sort((a, b) => a.f.CompareTo(b.f));
+            Nodo actual = open[0];
+            open.RemoveAt(0);
+
+            if (Vector2.Distance(actual.pos, goal) < 0.01f)
+            {
+                Nodo paso = actual;
+                Nodo anterior = null;
+                while (paso.padre != null && paso.padre.padre != null)
+                {
+                    anterior = paso;
+                    paso = paso.padre;
+                }
+                return anterior != null ? anterior.pos : actual.pos;
+            }
+
+            closed.Add(actual.pos);
+
+            foreach (var dir in dirs)
+            {
+                Vector2 vecino = new Vector2(
+                    Mathf.Round((actual.pos.x + dir.x - gridOffsetX) / gridSize.x) * gridSize.x + gridOffsetX,
+                    Mathf.Round((actual.pos.y + dir.y) / gridSize.y) * gridSize.y
+                );
+                if (closed.Contains(vecino) || IsObstacle(vecino))
+                    continue;
+
+                float g = actual.g + gridSize.magnitude;
+                float h = Vector2.Distance(vecino, goal);
+                open.Add(new Nodo(vecino, actual, g, h));
+            }
+        }
+        return null; // No hay camino
     }
 }
