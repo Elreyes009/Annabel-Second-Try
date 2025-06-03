@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cade0649127d8804ab331ced135253a5
+guid: 366949a2a52d86844b9f9cbcd9b10e12
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8455102222014526465
-    second: pared tuberia_0
+      213: -5061854839800535741
+    second: CentroCancha_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,73 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pared tuberia_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ffb453d735179aa80800000000000000
-      internalID: -8455102222014526465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pared tuberia_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d816c133b4019a43bc00e9acfb4dedf
-      internalID: 598842441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pared tuberia_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da32a3b89d4d99544bd92799130eb5ab
-      internalID: -273695579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pared tuberia_3
+      name: CentroCancha_0
       rect:
         serializedVersion: 2
         x: 0
@@ -181,14 +115,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b80edee27780bb4f8be2893e2d3c0cd
-      internalID: -1399990406
+      spriteID: 785bea31edbb03a4cbb5fedc85024f44
+      internalID: 1006497793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pared tuberia_4
+      name: CentroCancha_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ce08931c300d69408b762c37fae57b2
+      internalID: 723222133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentroCancha_2
       rect:
         serializedVersion: 2
         x: 64
@@ -203,14 +159,80 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c014f3a9088dca45985335265822154
-      internalID: 647967246
+      spriteID: 2924296252188d7409de385f8f7a4eed
+      internalID: 804005007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pared tuberia_5
+      name: CentroCancha_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ecab134e3776494299b6486b13e69ba
+      internalID: -1472821744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentroCancha_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aad895e8ece49c54ab1f326459300f86
+      internalID: 960330907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentroCancha_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c14374bfe37e244bbaaa31ff5394325
+      internalID: 1477531850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentroCancha_6
       rect:
         serializedVersion: 2
         x: 0
@@ -225,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7049abef4f003a6408364acffeb71f5e
-      internalID: 1613818216
+      spriteID: 222c0996777677241aad9f6e32abdb69
+      internalID: 582233483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pared tuberia_6
+      name: CentroCancha_7
       rect:
         serializedVersion: 2
         x: 32
@@ -247,14 +269,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cbcc91fd6a04004bb32db0e2a44962c
-      internalID: -662767161
+      spriteID: 2eda6c216accb6f4aa6a629338a71d0a
+      internalID: -632474803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pared tuberia_7
+      name: CentroCancha_8
       rect:
         serializedVersion: 2
         x: 64
@@ -269,8 +291,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7233e1a505b7c74b971b2f2671f9d11
-      internalID: 1263707837
+      spriteID: bc8346ff30ea18c4baf702e072e72da2
+      internalID: -451660756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentroCancha_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4345241c3bab4b84e811571cf639adca
+      internalID: 495522318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentroCancha_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c2d38ac474cf2d468ca3c55b3497f4c
+      internalID: 1614758534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CentroCancha_11
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6dd940bde7db5c418ea89c54616323e
+      internalID: 624938485
       vertices: []
       indices: 
       edges: []
@@ -279,7 +367,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c8e78d668b020fb4884968915f20276c
+    spriteID: d4c48d9afb61f394fba4c2632657eb63
     internalID: 0
     vertices: []
     indices: 
@@ -289,14 +377,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pared tuberia_0: -8455102222014526465
-      pared tuberia_1: 598842441
-      pared tuberia_2: -273695579
-      pared tuberia_3: -1399990406
-      pared tuberia_4: 647967246
-      pared tuberia_5: 1613818216
-      pared tuberia_6: -662767161
-      pared tuberia_7: 1263707837
+      CentroCancha_0: 1006497793
+      CentroCancha_1: 723222133
+      CentroCancha_10: 1614758534
+      CentroCancha_11: 624938485
+      CentroCancha_2: 804005007
+      CentroCancha_3: -1472821744
+      CentroCancha_4: 960330907
+      CentroCancha_5: 1477531850
+      CentroCancha_6: 582233483
+      CentroCancha_7: -632474803
+      CentroCancha_8: -451660756
+      CentroCancha_9: 495522318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
