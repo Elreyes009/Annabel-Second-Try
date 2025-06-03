@@ -3,31 +3,38 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     private Animator anim;
-    [SerializeField] private GameObject panelDiaologos;
+    //[SerializeField] private GameObject panelDiaologos;
 
     private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
     private Direccion direccionActiva = Direccion.Ninguna;
 
+    public bool spriteOscuro;
+
     void Start()
     {
 
-        panelDiaologos = GameObject.FindWithTag("DialogPanel");
+        //panelDiaologos = GameObject.FindWithTag("DialogPanel");
         anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (panelDiaologos.activeSelf)
-        {
-            anim.SetBool("Derecha", false);
-            anim.SetBool("Izquierda", false);
-            anim.SetBool("Arriba", false);
-            anim.SetBool("Abajo", false);
-            direccionActiva = Direccion.Ninguna; // Reinicia también la dirección
-            return;
-        }
+        //if (panelDiaologos.activeSelf)
+        //{
+        //    anim.SetBool("Derecha", false);
+        //    anim.SetBool("Izquierda", false);
+        //    anim.SetBool("Arriba", false);
+        //    anim.SetBool("Abajo", false);
+        //    direccionActiva = Direccion.Ninguna; // Reinicia también la dirección
+        //    return;
+        //}
 
         Animations();
+
+        int oscuroLayer = anim.GetLayerIndex("Oscuro");
+        int normalLayer = anim.GetLayerIndex("Default");
+        if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 1f : 0f);
+        if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
     }
 
     private void Animations()

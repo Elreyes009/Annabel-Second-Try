@@ -5,9 +5,11 @@ public class Lights : MonoBehaviour
 {
 
     [SerializeField] GameObject pLight;
+    [SerializeField] GameObject player;
 
     private void Awake()
     {
+        player = GameObject.FindWithTag("Player");
         pLight = GameObject.FindWithTag("PlayerLight");
         if(pLight == null)
         {
@@ -27,8 +29,26 @@ public class Lights : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
+            PlayerAnimations panim = player.GetComponent<PlayerAnimations>();
+            panim.spriteOscuro = false;
             pLight.GetComponent<Light2D>().intensity = 0f;
         }
+
+        if (collision.CompareTag("Interactuable"))
+        {
+            NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
+            if (npc != null)
+            {
+                npc.spriteOscuro = true;
+                Debug.Log("spriteOscuro activado en " + npc.name);
+            }
+            else
+            {
+                Debug.LogWarning("NpcMoveTo component not found on " + collision.gameObject.name);
+            }
+        }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -42,6 +62,24 @@ public class Lights : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             pLight.GetComponent<Light2D>().intensity = 0.5f;
+            PlayerAnimations panim = player.GetComponent<PlayerAnimations>();
+            panim.spriteOscuro = true;
+
         }
+
+        if (collision.CompareTag("Interactuable"))
+        {
+            NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
+            if (npc != null)
+            {
+                npc.spriteOscuro = false;
+            }
+            else
+            {
+                               Debug.LogWarning("NpcMoveTo component not found on " + collision.gameObject.name);
+            }
+        }
+
     }
+
 }

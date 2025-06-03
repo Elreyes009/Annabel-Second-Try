@@ -36,13 +36,14 @@ public class Mov : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (panelDiaologos.activeSelf)
-        {
-            return;
-        }
+        //if (panelDiaologos.activeSelf)
+        //{
+        //    return;
+        //}
 
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
+        // Prioridad: horizontal sobre vertical
         if (direction.x != 0)
             direction.y = 0;
 
@@ -54,6 +55,7 @@ public class Mov : MonoBehaviour
             {
                 StartCoroutine(Move(targetPosition));
             }
+            // Si hay obstáculo, simplemente no se mueve. El jugador debe elegir otra dirección.
         }
     }
 
