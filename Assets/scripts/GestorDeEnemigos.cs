@@ -15,7 +15,7 @@ public class GestorDeEnemigos : MonoBehaviour
     void Start()
     {
         // Asegúrate de que la lista de enemigos esté correctamente llena
-        enemigos = new List<Enemigo>(FindObjectsOfType<Enemigo>());
+        //enemigos = new List<Enemigo>(FindObjectsOfType<Enemigo>());
         playerMove = FindFirstObjectByType <Mov>().gameObject;
         playerSprite = FindFirstObjectByType<PlayerAnimations>().gameObject;
         flowchart = FindFirstObjectByType<Flowchart>();

@@ -7,7 +7,7 @@ public class Teleport : MonoBehaviour
     Animator CurrentAnim;
     [SerializeField] Animator NewAnim; //El animator que aplicaremos al hacer el cambio
     
-    [SerializeField] Transform NewPosition; //Posición a la que nos vamos a trasladar
+    [SerializeField] Vector3 NewPosition; //Posición a la que nos vamos a trasladar
     [SerializeField] Vector3 Oldposition; //Posición a la que volveremos al cambiar
 
     [SerializeField] Sprite NewSprite; //El nuevo sprite que usaremos
@@ -28,7 +28,7 @@ public class Teleport : MonoBehaviour
     {
         if (flowchart != null && flowchart.GetBooleanVariable("Cambio") == true) //Aquí, flowchart le dice al código que hay que cambiar de Annabel a Marco
         {
-            transform.position = NewPosition.position; //La posición cambia para transportar al jugador a la posición correcta
+            transform.position = NewPosition; //La posición cambia para transportar al jugador a la posición correcta
             //cambiador.sprite = NewSprite; //El renderer cambia el sprite de Annabel por el de Marco
             //CurrentAnim = NewAnim; //El animator de Annabel es cambiado por el de Marco
         }
@@ -47,7 +47,6 @@ public class Teleport : MonoBehaviour
         {
             Oldposition = transform.position; //Se asigna la posición en la que el jugador entró al gatillo como OldPosition
                                                        //de esta forma, cuando terminé de jugar como Marco, el jugador será transportado a la misma posición en la que estaba
-            Debug.Log("posición");
         }
     }
 }
