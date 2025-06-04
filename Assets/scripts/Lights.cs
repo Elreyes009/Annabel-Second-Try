@@ -34,7 +34,7 @@ public class Lights : MonoBehaviour
             pLight.GetComponent<Light2D>().intensity = 0f;
         }
 
-        if (collision.CompareTag("Interactuable"))
+        if (collision.CompareTag("Interactuable") && gameObject.GetComponent<NpcMoveTo>() != null)
         {
             NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
             if (npc != null)
@@ -67,7 +67,7 @@ public class Lights : MonoBehaviour
 
         }
 
-        if (collision.CompareTag("Interactuable"))
+        if (collision.CompareTag("Interactuable") && gameObject.GetComponent<NpcMoveTo>() != null)
         {
             NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
             if (npc != null)

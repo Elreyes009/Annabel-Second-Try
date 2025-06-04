@@ -10,11 +10,10 @@ public class NpcMoveTo : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private Vector2 gridSize = new Vector2(1f, 1f);
 
-    private GameObject panelDiaologos;
     private bool isMoving = false;
     private bool hasArrived = false;
 
-    private float gridOffsetX = 0.5f;
+    public float gridOffsetX = 1;
     [SerializeField] private string npcName;
 
     [SerializeField] private Flowchart flowchart;
@@ -23,25 +22,15 @@ public class NpcMoveTo : MonoBehaviour
     private Vector2 ultimaDireccion = Vector2.zero;
 
     [SerializeField] public bool siguiendo = false;
-    bool compañero; //booleana que indica si este personaje pede seggir al PJ
     [SerializeField] private GameObject player;
 
     private void Awake()
     {
-        //panelDiaologos = GameObject.FindWithTag("DialogPanel");
+
         npcName = gameObject.GetComponent<NPC>().name;
         if (moveTo == null && !siguiendo)
         {
             moveTo = GameObject.FindWithTag(npcName + "Points");
-        }
-
-        if (npcName != "Serena") //A menos que se trate de Serena, el PNJ no puede seguir al PJ
-        {
-            compañero = false;
-        }
-        else
-        {
-            compañero= true;
         }
 
         Vector2 aligned = new Vector2(
@@ -70,15 +59,15 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
-        Moove();
+        if (flowchart.GetBooleanVariable("Puede_moverse") == true && moveTo != null)
+        {
+            Moove();
+        }
 
         // Actualiza animación cada frame según estado de movimiento
         UpdateAnimation();
 
-        if (flowchart.GetBooleanVariable("Seguir")== true && compañero)
-        {
-            siguiendo = true;
-        }
+
 
 
         int oscuroLayer = anim.GetLayerIndex("Oscuro");
@@ -94,7 +83,7 @@ public class NpcMoveTo : MonoBehaviour
         Vector2 enemyPosition = transform.position;
 
         // Si está siguiendo al jugador, usa siempre A*
-        if (siguiendo == true)
+        if (siguiendo)
         {
             // Alinear el objetivo a la grilla
             Vector2 alignedTarget = new Vector2(
@@ -102,7 +91,6 @@ public class NpcMoveTo : MonoBehaviour
                 Mathf.Round(targetPosition.y / gridSize.y) * gridSize.y
             );
 
-            // Si el objetivo es un obstáculo, no buscar camino
             if (IsObstacle(alignedTarget))
             {
                 ultimaDireccion = Vector2.zero;
@@ -195,34 +183,31 @@ public class NpcMoveTo : MonoBehaviour
             return;
         }
 
-        if (flowchart.GetBooleanVariable("Puede_moverse") == true && moveTo != null)
+        // Lógica normal de puntos
+        if (moveTo == null || !moveTo.activeSelf)
         {
-            // Lógica normal de puntos
-            if (moveTo == null || !moveTo.activeSelf)
+            moveTo = GameObject.FindWithTag(npcName + "Points");
+            if (moveTo == null) return;
+        }
+
+        Next nextComponent = moveTo.GetComponent<Next>();
+        if (nextComponent == null) return;
+
+        if (!nextComponent.seguir) return;
+        if (hasArrived) return;
+
+        if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
+        {
+            if (nextComponent.nextObject != null)
             {
-                moveTo = GameObject.FindWithTag(npcName + "Points");
-                if (moveTo == null) return;
+                nextComponent.nextObject.SetActive(true);
             }
+            moveTo.SetActive(false);
+        }
 
-            Next nextComponent = moveTo.GetComponent<Next>();
-            if (nextComponent == null) return;
-
-            if (!nextComponent.seguir) return;
-            if (hasArrived) return;
-
-            if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
-            {
-                if (nextComponent.nextObject != null)
-                {
-                    nextComponent.nextObject.SetActive(true);
-                }
-                moveTo.SetActive(false);
-            }
-
-            if (!isMoving)
-            {
-                MoverEnemigo(moveTo.transform.position);
-            }
+        if (!isMoving)
+        {
+            MoverEnemigo(moveTo.transform.position);
         }
     }
 
