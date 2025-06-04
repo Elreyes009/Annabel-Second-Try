@@ -27,7 +27,7 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Awake()
     {
-        panelDiaologos = GameObject.FindWithTag("DialogPanel");
+        //panelDiaologos = GameObject.FindWithTag("DialogPanel");
         npcName = gameObject.GetComponent<NPC>().name;
         if (moveTo == null && !siguiendo)
         {
@@ -68,7 +68,10 @@ public class NpcMoveTo : MonoBehaviour
         // Actualiza animación cada frame según estado de movimiento
         UpdateAnimation();
 
-
+        if (flowchart.GetBooleanVariable("Seguir")== true)
+        {
+            siguiendo = true;
+        }
 
 
         int oscuroLayer = anim.GetLayerIndex("Oscuro");
