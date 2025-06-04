@@ -23,6 +23,7 @@ public class NpcMoveTo : MonoBehaviour
     private Vector2 ultimaDireccion = Vector2.zero;
 
     [SerializeField] public bool siguiendo = false;
+    bool compañero; //booleana que indica si este personaje pede seggir al PJ
     [SerializeField] private GameObject player;
 
     private void Awake()
@@ -32,6 +33,15 @@ public class NpcMoveTo : MonoBehaviour
         if (moveTo == null && !siguiendo)
         {
             moveTo = GameObject.FindWithTag(npcName + "Points");
+        }
+
+        if (npcName != "Serena") //A menos que se trate de Serena, el PNJ no puede seguir al PJ
+        {
+            compañero = false;
+        }
+        else
+        {
+            compañero= true;
         }
 
         Vector2 aligned = new Vector2(
@@ -60,15 +70,12 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
-        if (flowchart.GetBooleanVariable("Puede_moverse") == true && moveTo != null)
-        {
-            Moove();
-        }
+        Moove();
 
         // Actualiza animación cada frame según estado de movimiento
         UpdateAnimation();
 
-        if (flowchart.GetBooleanVariable("Seguir")== true)
+        if (flowchart.GetBooleanVariable("Seguir")== true && compañero)
         {
             siguiendo = true;
         }
@@ -87,7 +94,7 @@ public class NpcMoveTo : MonoBehaviour
         Vector2 enemyPosition = transform.position;
 
         // Si está siguiendo al jugador, usa siempre A*
-        if (siguiendo)
+        if (siguiendo == true)
         {
             // Alinear el objetivo a la grilla
             Vector2 alignedTarget = new Vector2(
@@ -188,31 +195,34 @@ public class NpcMoveTo : MonoBehaviour
             return;
         }
 
-        // Lógica normal de puntos
-        if (moveTo == null || !moveTo.activeSelf)
+        if (flowchart.GetBooleanVariable("Puede_moverse") == true && moveTo != null)
         {
-            moveTo = GameObject.FindWithTag(npcName + "Points");
-            if (moveTo == null) return;
-        }
-
-        Next nextComponent = moveTo.GetComponent<Next>();
-        if (nextComponent == null) return;
-
-        if (!nextComponent.seguir) return;
-        if (hasArrived) return;
-
-        if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
-        {
-            if (nextComponent.nextObject != null)
+            // Lógica normal de puntos
+            if (moveTo == null || !moveTo.activeSelf)
             {
-                nextComponent.nextObject.SetActive(true);
+                moveTo = GameObject.FindWithTag(npcName + "Points");
+                if (moveTo == null) return;
             }
-            moveTo.SetActive(false);
-        }
 
-        if (!isMoving)
-        {
-            MoverEnemigo(moveTo.transform.position);
+            Next nextComponent = moveTo.GetComponent<Next>();
+            if (nextComponent == null) return;
+
+            if (!nextComponent.seguir) return;
+            if (hasArrived) return;
+
+            if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
+            {
+                if (nextComponent.nextObject != null)
+                {
+                    nextComponent.nextObject.SetActive(true);
+                }
+                moveTo.SetActive(false);
+            }
+
+            if (!isMoving)
+            {
+                MoverEnemigo(moveTo.transform.position);
+            }
         }
     }
 
