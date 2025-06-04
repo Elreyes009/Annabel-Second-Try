@@ -1,35 +1,28 @@
 using UnityEngine;
+using Fungus;
 
 public class PlayerAnimations : MonoBehaviour
 {
     private Animator anim;
-    //[SerializeField] private GameObject panelDiaologos;
 
     private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
     private Direccion direccionActiva = Direccion.Ninguna;
 
     public bool spriteOscuro;
 
+    [SerializeField] Flowchart flowchart;
+
     void Start()
     {
-
-        //panelDiaologos = GameObject.FindWithTag("DialogPanel");
         anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        //if (panelDiaologos.activeSelf)
-        //{
-        //    anim.SetBool("Derecha", false);
-        //    anim.SetBool("Izquierda", false);
-        //    anim.SetBool("Arriba", false);
-        //    anim.SetBool("Abajo", false);
-        //    direccionActiva = Direccion.Ninguna; // Reinicia también la dirección
-        //    return;
-        //}
-
-        Animations();
+        if (flowchart.GetBooleanVariable("Hablando") == false)
+        {
+            Animations();
+        }
 
         int oscuroLayer = anim.GetLayerIndex("Oscuro");
         int normalLayer = anim.GetLayerIndex("Default");

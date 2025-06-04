@@ -1,7 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using Fungus;
 
 public class Mov : MonoBehaviour
 {
@@ -17,15 +16,14 @@ public class Mov : MonoBehaviour
     private Mov playerMovement;                                  
     private SpriteRenderer playerSprite;
 
-    [SerializeField] private GameObject panelDiaologos;
-
     public GameObject pl;
+
+    [SerializeField] Flowchart flowhcart;
 
     #endregion
 
     void Awake()
     {
-        panelDiaologos = GameObject.FindWithTag("DialogPanel");
         playerMovement = GetComponent<Mov>();
         playerSprite = GetComponent<SpriteRenderer>();
         
@@ -36,18 +34,13 @@ public class Mov : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if (panelDiaologos.activeSelf)
-        //{
-        //    return;
-        //}
-
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         // Prioridad: horizontal sobre vertical
         if (direction.x != 0)
             direction.y = 0;
 
-        if (!isMoving && direction != Vector2.zero)
+        if (!isMoving && direction != Vector2.zero && flowhcart.GetBooleanVariable("Hablando")== false)
         {
             Vector3 targetPosition = transform.position + new Vector3(direction.x * gridSize.x, direction.y * gridSize.y, 0);
 
