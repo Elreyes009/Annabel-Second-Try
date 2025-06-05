@@ -34,12 +34,12 @@ public class Lights : MonoBehaviour
             pLight.GetComponent<Light2D>().intensity = 0f;
         }
 
-        if (collision.CompareTag("Interactuable"))
+        if (collision.CompareTag("Interactuable") && gameObject.GetComponent<NpcMoveTo>() != null)
         {
             NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
             if (npc != null)
             {
-                npc.spriteOscuro = true;
+                npc.spriteOscuro = false;
                 Debug.Log("spriteOscuro activado en " + npc.name);
             }
             else
@@ -67,12 +67,12 @@ public class Lights : MonoBehaviour
 
         }
 
-        if (collision.CompareTag("Interactuable"))
+        if (collision.CompareTag("Interactuable") && gameObject.GetComponent<NpcMoveTo>() != null)
         {
             NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
             if (npc != null)
             {
-                npc.spriteOscuro = false;
+                npc.spriteOscuro = true;
             }
             else
             {
