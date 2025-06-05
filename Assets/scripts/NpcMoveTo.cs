@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using Fungus;
-using UnityEngine;
+﻿using Fungus;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 
 public class NpcMoveTo : MonoBehaviour
 {
@@ -34,10 +35,7 @@ public class NpcMoveTo : MonoBehaviour
         }
 
         // Alinear posición inicial al centro del tile
-        Vector2 aligned = new Vector2(
-            Mathf.Round((transform.position.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-            Mathf.Round((transform.position.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
-        );
+        Vector2 aligned = AlignToGrid(transform.position);
         transform.position = aligned;
 
         anim = GetComponent<Animator>();
@@ -71,132 +69,16 @@ public class NpcMoveTo : MonoBehaviour
         if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
     }
 
-    public void MoverEnemigo(Vector2 targetPosition)
-    {
-        if (isMoving) return;
-
-        Vector2 enemyPosition = transform.position;
-
-        // Pathfinding si está siguiendo al jugador
-        if (siguiendo)
-        {
-            Vector2 alignedTarget = new Vector2(
-                Mathf.Round((targetPosition.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-                Mathf.Round((targetPosition.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
-            );
-
-            if (IsObstacle(alignedTarget))
-            {
-                ultimaDireccion = Vector2.zero;
-                return;
-            }
-
-            Vector2? nextStep = GetNextStepAStar(enemyPosition, alignedTarget);
-            if (nextStep.HasValue && !IsObstacle(nextStep.Value))
-            {
-                Vector2 step = nextStep.Value;
-                Vector2 delta = step - enemyPosition;
-
-                // Bloquear movimiento diagonal: solo permitir X o Y, no ambos
-                if (Mathf.Abs(delta.x) > Mathf.Epsilon && Mathf.Abs(delta.y) > Mathf.Epsilon)
-                {
-                    if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
-                        step = new Vector2(enemyPosition.x + Mathf.Sign(delta.x) * gridSize.x, enemyPosition.y);
-                    else
-                        step = new Vector2(enemyPosition.x, enemyPosition.y + Mathf.Sign(delta.y) * gridSize.y);
-                }
-
-                // Alinear el paso al grid
-                step = new Vector2(
-                    Mathf.Round((step.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-                    Mathf.Round((step.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
-                );
-
-                ultimaDireccion = (step - enemyPosition).normalized;
-                StartCoroutine(Move(step));
-            }
-            else
-            {
-                // Si no hay ruta o el siguiente tile está bloqueado, detén el NPC
-                ultimaDireccion = Vector2.zero;
-            }
-            return;
-        }
-
-        // Movimiento por puntos normales (ya está bloqueado a un solo eje)
-        Vector2 direction = (targetPosition - enemyPosition);
-
-        if (direction.sqrMagnitude < 0.01f)
-        {
-            ultimaDireccion = Vector2.zero;
-            return;
-        }
-
-        Vector2 moveDirection = Vector2.zero;
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-            moveDirection = new Vector2(Mathf.Sign(direction.x), 0);
-        else
-            moveDirection = new Vector2(0, Mathf.Sign(direction.y));
-
-        Vector2 finalTarget = enemyPosition + new Vector2(moveDirection.x * gridSize.x, moveDirection.y * gridSize.y);
-
-        // Intentar centrar en el tile
-        Vector2 alignedFinalTarget = new Vector2(
-            Mathf.Round((finalTarget.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-            Mathf.Round((finalTarget.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
-        );
-
-        if (!IsObstacle(alignedFinalTarget))
-        {
-            ultimaDireccion = moveDirection;
-            StartCoroutine(Move(alignedFinalTarget));
-        }
-        else
-        {
-            // Si no puede centrarse, intenta avanzar al siguiente tile sin alinear
-            Vector2 nextTile = enemyPosition + moveDirection * gridSize;
-            if (!IsObstacle(nextTile))
-            {
-                ultimaDireccion = moveDirection;
-                StartCoroutine(Move(nextTile));
-            }
-            else
-            {
-                ultimaDireccion = Vector2.zero;
-            }
-        }
-    }
-
-    private void UpdateAnimation()
-    {
-        if (anim == null) return;
-
-        if (isMoving)
-        {
-            anim.SetBool("Derecha", ultimaDireccion.x > 0);
-            anim.SetBool("Izquierda", ultimaDireccion.x < 0);
-            anim.SetBool("Arriba", ultimaDireccion.y > 0);
-            anim.SetBool("Abajo", ultimaDireccion.y < 0);
-        }
-        else
-        {
-            anim.SetBool("Derecha", false);
-            anim.SetBool("Izquierda", false);
-            anim.SetBool("Arriba", false);
-            anim.SetBool("Abajo", false);
-        }
-    }
-
     void Moove()
     {
         if (siguiendo)
         {
             if (player == null) return;
-            if (Vector2.Distance(transform.position, player.transform.position) < 1f)
+            if (Vector2.Distance(transform.position, player.transform.position) < 2f)
                 return;
             if (!isMoving)
             {
-                MoverEnemigo(player.transform.position);
+                StartCoroutine(MoverEnemigo(player.transform.position));
             }
             return;
         }
@@ -223,66 +105,98 @@ public class NpcMoveTo : MonoBehaviour
 
         if (!isMoving)
         {
-            MoverEnemigo(moveTo.transform.position);
+            StartCoroutine(MoverEnemigo(moveTo.transform.position));
         }
     }
 
-    IEnumerator Move(Vector3 targetPosition)
+    IEnumerator MoverEnemigo(Vector2 targetPosition)
     {
+        if (isMoving) yield break;
         isMoving = true;
-        while ((targetPosition - transform.position).sqrMagnitude > Mathf.Epsilon)
+
+        Vector2 start = AlignToGrid(transform.position);
+        Vector2 goal = AlignToGrid(targetPosition);
+
+        List<Vector2> path = FindPathAStar(start, goal);
+        if (path == null || path.Count == 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            yield return null;
+            isMoving = false;
+            yield break;
         }
-        transform.position = targetPosition;
+
+        foreach (var step in path)
+        {
+            if (IsObstacle(step))
+            {
+                isMoving = false;
+                StartCoroutine(MoverEnemigo(targetPosition)); // Reintenta con nueva ruta
+                yield break;
+            }
+
+            ultimaDireccion = ((Vector2)step - (Vector2)transform.position).normalized;
+            UpdateAnimation();
+            yield return Move(step);
+        }
+
+        ultimaDireccion = Vector2.zero;
+        UpdateAnimation();
         isMoving = false;
     }
 
-    bool IsObstacle(Vector3 targetPosition)
+    private void UpdateAnimation()
     {
-        // Alinea la posición antes de chequear
-        Vector2 aligned = new Vector2(
-            Mathf.Round((targetPosition.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-            Mathf.Round((targetPosition.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
-        );
+        if (anim == null) return;
 
-        var box = GetComponent<BoxCollider2D>();
-        bool result;
-        if (box == null)
-            result = Physics2D.OverlapCircle(aligned, 0.5f, obstacleLayer) != null;
+        if (isMoving)
+        {
+            anim.SetBool("Derecha", ultimaDireccion.x > 0);
+            anim.SetBool("Izquierda", ultimaDireccion.x < 0);
+            anim.SetBool("Arriba", ultimaDireccion.y > 0);
+            anim.SetBool("Abajo", ultimaDireccion.y < 0);
+        }
         else
-            result = Physics2D.OverlapBox(
+        {
+            anim.SetBool("Derecha", false);
+            anim.SetBool("Izquierda", false);
+            anim.SetBool("Arriba", false);
+            anim.SetBool("Abajo", false);
+        }
+    }
+
+    private Vector2 AlignToGrid(Vector2 pos)
+    {
+        return new Vector2(
+            Mathf.Round((pos.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
+            Mathf.Round((pos.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
+        );
+    }
+
+    IEnumerator Move(Vector2 targetPosition)
+    {
+        while (((Vector2)transform.position - targetPosition).sqrMagnitude > 0.01f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = targetPosition;
+    }
+
+    bool IsObstacle(Vector2 targetPosition)
+    {
+        Vector2 aligned = AlignToGrid(targetPosition);
+        var box = GetComponent<BoxCollider2D>();
+        if (box == null)
+            return Physics2D.OverlapCircle(aligned, 0.5f, obstacleLayer) != null;
+        else
+            return Physics2D.OverlapBox(
                 aligned + box.offset,
                 box.size,
                 0f,
                 obstacleLayer
             ) != null;
-
-        if (result)
-            Debug.LogWarning($"NPC {name} detecta obstáculo en {aligned}");
-
-        return result;
     }
 
-    // Nodo para A*
-    private class Nodo
-    {
-        public Vector2 pos;
-        public Nodo padre;
-        public float g, h;
-        public float f => g + h;
-        public Nodo(Vector2 pos, Nodo padre, float g, float h)
-        {
-            this.pos = pos;
-            this.padre = padre;
-            this.g = g;
-            this.h = h;
-        }
-    }
-
-    // Devuelve el siguiente paso hacia el objetivo usando A*
-    private Vector2? GetNextStepAStar(Vector2 start, Vector2 goal)
+    private List<Vector2> FindPathAStar(Vector2 start, Vector2 goal)
     {
         Vector2[] dirs = new Vector2[]
         {
@@ -310,47 +224,67 @@ public class NpcMoveTo : MonoBehaviour
 
             if (Vector2.Distance(actual.pos, goal) < 0.01f)
             {
+                // Reconstruir el camino
+                List<Vector2> path = new List<Vector2>();
                 Nodo paso = actual;
-                Nodo anterior = null;
-                while (paso.padre != null && paso.padre.padre != null)
+                while (paso.padre != null)
                 {
-                    anterior = paso;
+                    path.Insert(0, paso.pos);
                     paso = paso.padre;
                 }
-                return anterior != null ? anterior.pos : actual.pos;
+                return path;
             }
 
             closed.Add(actual.pos);
 
             foreach (var dir in dirs)
             {
-                Vector2 vecino = new Vector2(
-                    Mathf.Round((actual.pos.x + dir.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-                    Mathf.Round((actual.pos.y + dir.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
-                );
+                Vector2 vecino = AlignToGrid(actual.pos + dir);
                 if (closed.Contains(vecino) || IsObstacle(vecino))
                     continue;
 
                 float g = actual.g + gridSize.magnitude;
                 float h = Vector2.Distance(vecino, goal);
+
+                // Evitar nodos duplicados en open con peor g
+                Nodo existente = open.Find(n => n.pos == vecino);
+                if (existente != null && existente.g <= g)
+                    continue;
+
                 open.Add(new Nodo(vecino, actual, g, h));
             }
         }
         return null;
     }
 
-    private void OnDrawGizmos()
+    private class Nodo
     {
-        Gizmos.color = Color.red;
-        var box = GetComponent<BoxCollider2D>();
-        Vector2 center = transform.position;
-        if (box != null)
-            center += box.offset;
-
-        Vector2 pos = new Vector2(
-            Mathf.Round((center.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-            Mathf.Round((center.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
-        );
-        Gizmos.DrawWireCube(pos, gridSize);
+        public Vector2 pos;
+        public Nodo padre;
+        public float g, h;
+        public float f => g + h;
+        public Nodo(Vector2 pos, Nodo padre, float g, float h)
+        {
+            this.pos = pos;
+            this.padre = padre;
+            this.g = g;
+            this.h = h;
+        }
     }
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    for (float x = -10; x < 10; x += gridSize.x)
+    //    {
+    //        for (float y = -10; y < 10; y += gridSize.y)
+    //        {
+    //            Vector2 pos = AlignToGrid(new Vector2(x, y));
+    //            if (IsObstacle(pos))
+    //            {
+    //                Gizmos.DrawCube(pos, gridSize * 0.9f);
+    //            }
+    //        }
+    //    }
+    //}
 }
