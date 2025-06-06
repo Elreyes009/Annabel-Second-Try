@@ -38,16 +38,16 @@ public class PlayerAnimations : MonoBehaviour
             switch (direccionActiva)
             {
                 case Direccion.Derecha:
-                    if (!Input.GetKey(KeyCode.D)) direccionActiva = Direccion.Ninguna;
+                    if (!Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.RightArrow)) direccionActiva = Direccion.Ninguna;
                     break;
                 case Direccion.Izquierda:
-                    if (!Input.GetKey(KeyCode.A)) direccionActiva = Direccion.Ninguna;
+                    if (!Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) direccionActiva = Direccion.Ninguna;
                     break;
                 case Direccion.Arriba:
-                    if (!Input.GetKey(KeyCode.W)) direccionActiva = Direccion.Ninguna;
+                    if (!Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) direccionActiva = Direccion.Ninguna;
                     break;
                 case Direccion.Abajo:
-                    if (!Input.GetKey(KeyCode.S)) direccionActiva = Direccion.Ninguna;
+                    if (!Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) direccionActiva = Direccion.Ninguna;
                     break;
             }
         }
@@ -55,13 +55,13 @@ public class PlayerAnimations : MonoBehaviour
         // Si está en "Ninguna", buscar la nueva dirección, priorizando orden
         if (direccionActiva == Direccion.Ninguna)
         {
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey (KeyCode.RightArrow))
                 direccionActiva = Direccion.Derecha;
-            else if (Input.GetKey(KeyCode.A))
+            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 direccionActiva = Direccion.Izquierda;
-            else if (Input.GetKey(KeyCode.W))
+            else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
                 direccionActiva = Direccion.Arriba;
-            else if (Input.GetKey(KeyCode.S))
+            else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
                 direccionActiva = Direccion.Abajo;
         }
 
