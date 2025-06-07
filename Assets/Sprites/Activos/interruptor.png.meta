@@ -8,6 +8,24 @@ TextureImporter:
   - first:
       213: 9026538795880327264
     second: interruptor_1
+  - first:
+      213: -1054240806345021819
+    second: interruptor_2
+  - first:
+      213: -4920354955430006308
+    second: interruptor_3
+  - first:
+      213: 6386852360806582755
+    second: interruptor_4
+  - first:
+      213: -4164163292354797044
+    second: interruptor_5
+  - first:
+      213: -2534249595600565891
+    second: interruptor_6
+  - first:
+      213: -8821920259468650829
+    second: interruptor_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 72
+  spritePixelsToUnits: 42
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,8 +124,8 @@ TextureImporter:
       name: interruptor_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 37
+        x: 8
+        y: 69
         width: 16
         height: 22
       alignment: 0
@@ -128,8 +146,8 @@ TextureImporter:
       name: interruptor_1
       rect:
         serializedVersion: 2
-        x: 7
-        y: 5
+        x: 40
+        y: 69
         width: 16
         height: 22
       alignment: 0
@@ -142,6 +160,138 @@ TextureImporter:
       bones: []
       spriteID: 068aabfc535b44d70800000000000000
       internalID: 9026538795880327264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interruptor_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 63
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 586651e72959e51f0800000000000000
+      internalID: -1054240806345021819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interruptor_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 31
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd1f2c8bc3367bbb0800000000000000
+      internalID: -4920354955430006308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interruptor_4
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 37
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e9cdb61268a2a850800000000000000
+      internalID: 6386852360806582755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interruptor_5
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 37
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02a87c5c8be536c0800000000000000
+      internalID: -4164163292354797044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interruptor_6
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 5
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d790d0a7b6984dcd0800000000000000
+      internalID: -2534249595600565891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interruptor_7
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 5
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b69c89b34e329580800000000000000
+      internalID: -8821920259468650829
       vertices: []
       indices: 
       edges: []
@@ -162,6 +312,12 @@ TextureImporter:
     nameFileIdTable:
       interruptor_0: -2786588404111997750
       interruptor_1: 9026538795880327264
+      interruptor_2: -1054240806345021819
+      interruptor_3: -4920354955430006308
+      interruptor_4: 6386852360806582755
+      interruptor_5: -4164163292354797044
+      interruptor_6: -2534249595600565891
+      interruptor_7: -8821920259468650829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
