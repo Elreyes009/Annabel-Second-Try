@@ -21,10 +21,11 @@ public class NpcMoveTo : MonoBehaviour
     [SerializeField] public bool siguiendo = false;
     [SerializeField] private GameObject player;
 
-    private Animator anim;
+    [SerializeField] private Animator anim;
     private Vector2 ultimaDireccion = Vector2.zero;
     private bool isMoving = false;
     private bool hasArrived = false;
+    bool compañero;
 
     private void Awake()
     {
@@ -32,6 +33,15 @@ public class NpcMoveTo : MonoBehaviour
         if (moveTo == null && !siguiendo)
         {
             moveTo = GameObject.FindWithTag(npcName + "Points");
+        }
+
+        if (npcName != "Serena") //A menos que se trate de Serena, el PNJ no puede seguir al PJ
+        {
+            compañero = false;
+        }
+        else
+        {
+            compañero = true;
         }
 
         // Alinear posición inicial al centro del tile
@@ -61,6 +71,24 @@ public class NpcMoveTo : MonoBehaviour
             Moove();
         }
 
+        if (flowchart.GetBooleanVariable("Seguir") == true && compañero)
+        {
+            siguiendo = true;
+
+            if (siguiendo)
+            {
+                if (player == null) return;
+                if (Vector2.Distance(transform.position, player.transform.position) < 2f)
+                    return;
+                if (!isMoving)
+                {
+                    StartCoroutine(MoverEnemigo(player.transform.position));
+                }
+                return;
+            }
+        }
+
+
         UpdateAnimation();
 
         int oscuroLayer = anim.GetLayerIndex("Oscuro");
@@ -71,18 +99,6 @@ public class NpcMoveTo : MonoBehaviour
 
     void Moove()
     {
-        if (siguiendo)
-        {
-            if (player == null) return;
-            if (Vector2.Distance(transform.position, player.transform.position) < 2f)
-                return;
-            if (!isMoving)
-            {
-                StartCoroutine(MoverEnemigo(player.transform.position));
-            }
-            return;
-        }
-
         if (moveTo == null || !moveTo.activeSelf)
         {
             moveTo = GameObject.FindWithTag(npcName + "Points");

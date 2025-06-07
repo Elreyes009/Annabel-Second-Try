@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Fungus;
+using UnityEngine.Splines;
 
 public class Mov : MonoBehaviour
 {
@@ -18,14 +19,14 @@ public class Mov : MonoBehaviour
 
     public GameObject pl;
 
-    [SerializeField] Flowchart flowhcart;
+    [SerializeField] Flowchart flowchart;
 
     #endregion
 
     void Awake()
     {
         playerMovement = GetComponent<Mov>();
-        playerSprite = GetComponent<SpriteRenderer>();
+        playerSprite = GetComponentInChildren<SpriteRenderer>();
         
         puntoDeRespawn = transform.position;
 
@@ -40,7 +41,7 @@ public class Mov : MonoBehaviour
         if (direction.x != 0)
             direction.y = 0;
 
-        if (!isMoving && direction != Vector2.zero && flowhcart.GetBooleanVariable("Hablando")== false)
+        if (!isMoving && direction != Vector2.zero && flowchart.GetBooleanVariable("Hablando")== false)
         {
             Vector3 targetPosition = transform.position + new Vector3(direction.x * gridSize.x, direction.y * gridSize.y, 0);
 
