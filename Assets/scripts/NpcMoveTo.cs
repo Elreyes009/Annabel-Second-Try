@@ -21,7 +21,7 @@ public class NpcMoveTo : MonoBehaviour
     [SerializeField] public bool siguiendo = false;
     [SerializeField] private GameObject player;
 
-    private Animator anim;
+    [SerializeField] private Animator anim;
     private Vector2 ultimaDireccion = Vector2.zero;
     private bool isMoving = false;
     private bool hasArrived = false;

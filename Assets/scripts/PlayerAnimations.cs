@@ -1,9 +1,12 @@
 using UnityEngine;
 using Fungus;
+using UnityEngine.Splines;
 
 public class PlayerAnimations : MonoBehaviour
 {
     private Animator anim;
+    [SerializeField] Animator OldAnim; //El animator que asignaremos al volver
+    [SerializeField] Animator NewAnim; //El animator que aplicaremos al hacer el cambio
 
     private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
     private Direccion direccionActiva = Direccion.Ninguna;
@@ -24,10 +27,23 @@ public class PlayerAnimations : MonoBehaviour
             Animations();
         }
 
+        if (flowchart != null && flowchart.GetBooleanVariable("Cambio") == true) //Aquí, flowchart le dice al código que hay que cambiar de Annabel a Marco
+        {
+            anim = NewAnim; //El animator de Annabel es cambiado por el de Marco
+            Debug.Log("cambio");
+        }
+
+        if (flowchart != null && flowchart.GetBooleanVariable("Regreso") == true) //Aquí, flowchart le dice al código que hay que cambiar de Marco a Annabel
+        {
+            anim = OldAnim; //El animator de Marco es cambiado por el de Annabel
+        }
+
         int oscuroLayer = anim.GetLayerIndex("Oscuro");
         int normalLayer = anim.GetLayerIndex("Default");
         if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 1f : 0f);
         if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
+
+
     }
 
     private void Animations()
