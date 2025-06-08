@@ -65,6 +65,7 @@ public class Angelina_tmer : MonoBehaviour
             if (MainFlowchart.GetBooleanVariable("Timer") == true && MainFlowchart.GetBooleanVariable("Cambio") == false) //Si estámos en la escena con el valor de Diálogo indicado
             {
                 timer -= Time.deltaTime;
+                Debug.Log(timer);
 
                 if (timer <= 0 && AngelinaFlowchart.GetIntegerVariable("Reinicio") == 0) //Cuando el temporizador llega a 0 y no haya habido reinicios
                 {
