@@ -12,7 +12,7 @@ public class Mov : MonoBehaviour
     private Vector2 direction;                                   
                                                                    
     private bool isMoving = false;                               
-    private Vector3 puntoDeRespawn;                                                        
+    [SerializeField] Vector3 puntoDeRespawn;                                                        
 
     private Mov playerMovement;                                  
     private SpriteRenderer playerSprite;
@@ -27,8 +27,6 @@ public class Mov : MonoBehaviour
     {
         playerMovement = GetComponent<Mov>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
-        
-        puntoDeRespawn = transform.position;
 
         obstacleLayer = LayerMask.GetMask("detalle");
     }

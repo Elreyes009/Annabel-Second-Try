@@ -35,13 +35,13 @@ public class NpcMoveTo : MonoBehaviour
             moveTo = GameObject.FindWithTag(npcName + "Points");
         }
 
-        if (npcName != "Serena") //A menos que se trate de Serena, el PNJ no puede seguir al PJ
+        if (npcName == "Serena" || npcName == "Angelina") //A menos que se trate de Serena, el PNJ no puede seguir al PJ
         {
-            compañero = false;
+            compañero = true;
         }
         else
         {
-            compañero = true;
+            compañero = false;
         }
 
         // Alinear posición inicial al centro del tile
