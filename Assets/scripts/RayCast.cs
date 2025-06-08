@@ -73,6 +73,15 @@ public class RayCast : MonoBehaviour
                     flowchart.SetBooleanVariable("Personaje", true);
                     string name = npc.Name;
                     flowchart.SetStringVariable("Name", name);
+
+                    if (name == "Luz")
+                    {
+                        Interruptor_luz interruptor = hit.collider.GetComponent<Interruptor_luz>();
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            interruptor.encendido = true;
+                        }
+                    }
                     return;
                 }
 
@@ -105,6 +114,7 @@ public class RayCast : MonoBehaviour
                         StartCoroutine(ReleasePlayerConstraints(rb));
                     }
                 }
+
             }
 
             if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E) && wfs == false)
@@ -124,7 +134,6 @@ public class RayCast : MonoBehaviour
             flowchart.SetStringVariable("Name", null);
             flowchart.SetBooleanVariable("InterObject", false);
         }
-
     }
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
     {
