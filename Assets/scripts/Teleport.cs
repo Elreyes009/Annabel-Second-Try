@@ -19,7 +19,7 @@ public class Teleport : MonoBehaviour
             transform.position = NewPosition; //La posición cambia para transportar al jugador a la posición correcta
         }
 
-        if (flowchart !=null && flowchart.GetBooleanVariable("Regreso") == true && !Player) //Aquí, flowchart le dice al código que hay que cambiar de Marco a Annabel
+        if (flowchart !=null && flowchart.GetBooleanVariable("Regreso") == true && !Player || flowchart != null && flowchart.GetBooleanVariable("Cambio") == true && !Player) //Aquí, flowchart le dice al código que hay que cambiar de Marco a Annabel
         {
             transform.position = Respawn.position;
         }
