@@ -66,7 +66,7 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
-        if (flowchart.GetBooleanVariable("Puede_moverse") && moveTo != null)
+        if (flowchart.GetBooleanVariable("Puede_moverse") && moveTo != null && !siguiendo)
         {
             Moove();
         }

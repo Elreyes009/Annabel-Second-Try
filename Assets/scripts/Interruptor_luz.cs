@@ -8,7 +8,6 @@ public class Interruptor_luz : MonoBehaviour
     private void Awake()
     {
         encendido = false;
-        luz = GetComponentInChildren<GameObject>();
         luz.SetActive(false);
     }
 
@@ -17,6 +16,10 @@ public class Interruptor_luz : MonoBehaviour
         if (encendido)
         {
             luz.SetActive(true);
+        }
+        else
+        {
+            luz.SetActive(false);
         }
     }
 }
