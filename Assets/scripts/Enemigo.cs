@@ -5,139 +5,92 @@ using Fungus;
 
 public class Enemigo : MonoBehaviour
 {
-    public GestorDeEnemigos enemManager;
-    public float moveSpeed = 3f;
-    public Vector2 gridSize = new Vector2(1f, 1f);
-    public LayerMask obstacleLayer;
+    [Header("Movimiento y Grid")]
+    [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private Vector2 gridSize = new Vector2(1f, 1f);
+    [Tooltip("Offset del grid en X e Y. Dejar en X(-0.4) Y(0.6).")]
+    public Vector2 gridOffset = Vector2.zero;
 
-    private bool playerIsHiding = false;
+    [Header("Referencias")]
+    public Transform patrolEmty; // Punto de patrulla
+    [SerializeField] private Flowchart flowchart;
+    [SerializeField] public bool spriteOscuro;
+    [SerializeField] private Animator anim;
+
+    private Vector2 ultimaDireccion = Vector2.zero;
     public bool isMoving = false;
-    private Transform player;
-    public Transform patrolEmty; // Debe tener el script Teletransportador
-    private Teletransportador patrolTarget;
-    private Mov playerMovement;
-    private Animator anim;
+    private bool hasArrived = false;
+    private bool pasoJugadorProcesado = false;
+    private bool playerIsHiding = false;
 
-    public Vector3 posicionInicial;
+    private Transform player;
+    private Mov playerMovement;
+
+    public GestorDeEnemigos enemManager;
 
     public bool inLight;
     public bool inVision;
 
-    [SerializeField] Flowchart flowchart;
+    public Vector3 posicionInicial;
 
-    private Vector2 ultimaDireccion = Vector2.zero;
+    [SerializeField] BoxCollider2D colliderMovimiento; // Referencia al collider del hijo
 
-    // NUEVO: Para controlar el paso en la luz
-    private bool pasoJugadorProcesado = false;
-
-    [Header("Collider de colisión real (NO el de detección)")]
-    [SerializeField] private BoxCollider2D colliderMovimiento;
-
-    // Flags para logs únicos
-    private bool logInLight = false;
-    private bool logOutLight = false;
-    private bool logPlayerMovement = false;
-    private bool logPatrolTarget = false;
-    private bool logColliderMovimiento = false;
-
-    private void Start()
+    private void Awake()
     {
-        if (!logPlayerMovement)
-        {
-            player = FindAnyObjectByType<Mov>()?.transform;
-            if (player != null)
-            {
-                playerMovement = player.GetComponent<Mov>();
-                Debug.Log("[Enemigo] playerMovement asignado correctamente.");
-            }
-            else
-            {
-                Debug.LogError("[Enemigo] No se encontró el objeto del jugador en la escena.");
-            }
-            logPlayerMovement = true;
-        }
+        // Alinear posición inicial al centro del tile
+        Vector2 aligned = AlignToGrid(transform.position);
+        transform.position = aligned;
+
+        anim = GetComponent<Animator>();
+        player = FindAnyObjectByType<Mov>()?.transform;
+        if (player != null)
+            playerMovement = player.GetComponent<Mov>();
+
+        // Animación de sprite oscuro
+        int oscuroLayer = anim.GetLayerIndex("Oscuro");
+        int normalLayer = anim.GetLayerIndex("Default");
+        if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 1f : 0f);
+        if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
 
         posicionInicial = transform.position;
-        anim = GetComponent<Animator>();
-
-        if (!logPatrolTarget)
-        {
-            if (patrolEmty != null)
-            {
-                patrolTarget = patrolEmty.GetComponent<Teletransportador>();
-                Debug.Log("[Enemigo] patrolTarget asignado correctamente.");
-            }
-            else
-            {
-                Debug.LogWarning("[Enemigo] patrolEmty no asignado.");
-            }
-            logPatrolTarget = true;
-        }
-
-        if (!logColliderMovimiento)
-        {
-            if (colliderMovimiento == null)
-                Debug.LogWarning("[Enemigo] colliderMovimiento NO asignado en el Inspector.");
-            else
-                Debug.Log("[Enemigo] colliderMovimiento asignado correctamente.");
-            logColliderMovimiento = true;
-        }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        Vector2 moveTo;
+        // Determinar objetivo
+        Vector2 objetivo;
         if (inVision)
         {
-            moveTo = player.position;
+            objetivo = player.position;
         }
         else
         {
-            moveTo = patrolEmty.position;
+            objetivo = patrolEmty != null ? patrolEmty.position : transform.position;
         }
 
-        // Verifica si ya está en el objetivo (alineado al grid)
-        Vector2 posActual = AlignToGrid(transform.position);
-        Vector2 posObjetivo = AlignToGrid(moveTo);
-        if (posActual == posObjetivo)
-            return; // Ya está en el objetivo, no hace falta mover
+        // Evitar recalcular si ya está en el objetivo
+        if (Vector2.Distance(AlignToGrid(transform.position), AlignToGrid(objetivo)) < 0.01f)
+            return;
 
-        // Log de estado de luz solo cuando cambia
-        if (inLight && !logInLight)
-        {
-            Debug.Log("[Enemigo] Está en la luz.");
-            logInLight = true;
-            logOutLight = false;
-        }
-        else if (!inLight && !logOutLight)
-        {
-            Debug.Log("[Enemigo] Está FUERA de la luz.");
-            logOutLight = true;
-            logInLight = false;
-        }
-
+        // Lógica de luz: solo avanza un paso por cada paso del jugador
         if (inLight)
         {
             if (playerMovement != null && playerMovement.IsPlayerMoving() && !isMoving && !playerIsHiding && !pasoJugadorProcesado)
             {
-                Debug.Log("[Enemigo] Condición para mover en luz CUMPLIDA. Llamando a MoverEnemigo.");
-                StartCoroutine(MoverEnemigo(moveTo));
+                StartCoroutine(MoverEnemigo(objetivo));
                 pasoJugadorProcesado = true;
             }
             if (playerMovement != null && !playerMovement.IsPlayerMoving())
             {
-                if (pasoJugadorProcesado)
-                    Debug.Log("[Enemigo] El jugador dejó de moverse. Reseteando pasoJugadorProcesado.");
                 pasoJugadorProcesado = false;
             }
         }
         else
         {
+            // Movimiento libre fuera de la luz
             if (!isMoving)
-            {
-                Debug.Log("[Enemigo] Condición para mover fuera de la luz CUMPLIDA. Llamando a MoverEnemigo.");
-                StartCoroutine(MoverEnemigo(moveTo));
-            }
+                StartCoroutine(MoverEnemigo(objetivo));
         }
 
         UpdateAnimation();
@@ -145,77 +98,49 @@ public class Enemigo : MonoBehaviour
 
     IEnumerator MoverEnemigo(Vector2 targetPosition)
     {
-        Debug.Log($"[Enemigo] MoverEnemigo llamado hacia {targetPosition}");
-        if (isMoving)
-        {
-            Debug.Log("[Enemigo] Ya está moviéndose, saliendo de MoverEnemigo.");
-            yield break;
-        }
+        if (isMoving) yield break;
         isMoving = true;
 
         Vector2 start = AlignToGrid(transform.position);
         Vector2 goal = AlignToGrid(targetPosition);
 
-        Debug.Log($"[Enemigo] Pathfinding de {start} a {goal}");
         List<Vector2> path = FindPathAStar(start, goal);
         if (path == null || path.Count == 0)
         {
-            Debug.LogWarning($"[Enemigo] No se encontró camino de {start} a {goal}");
             isMoving = false;
             yield break;
         }
 
+        // En la luz, solo da un paso por movimiento del jugador
         if (inLight)
         {
             Vector2 step = path[0];
-            Debug.Log($"[Enemigo] En luz, intentando dar un paso a {step}");
             if (!IsObstacle(step))
             {
                 ultimaDireccion = ((Vector2)step - (Vector2)transform.position).normalized;
                 UpdateAnimation();
                 yield return Move(step);
-                Debug.Log($"[Enemigo] Paso dado en la luz a {step}");
-            }
-            else
-            {
-                Debug.LogWarning($"[Enemigo] Obstáculo detectado en {step} (en luz)");
             }
         }
         else
         {
             foreach (var step in path)
             {
-                Debug.Log($"[Enemigo] Fuera de la luz, intentando mover a {step}");
                 if (IsObstacle(step))
                 {
-                    Debug.LogWarning($"[Enemigo] Obstáculo detectado en {step} (fuera de luz), reintentando.");
                     isMoving = false;
-                    StartCoroutine(MoverEnemigo(targetPosition));
+                    StartCoroutine(MoverEnemigo(targetPosition)); // Reintenta con nueva ruta
                     yield break;
                 }
-
                 ultimaDireccion = ((Vector2)step - (Vector2)transform.position).normalized;
                 UpdateAnimation();
                 yield return Move(step);
-                Debug.Log($"[Enemigo] Paso dado fuera de la luz a {step}");
-            }
-        }
-
-        if (!inVision && patrolTarget != null)
-        {
-            float distancia = Vector2.Distance(transform.position, patrolEmty.position);
-            Debug.Log($"[Enemigo] Distancia a patrolEmty: {distancia}");
-            if (distancia < 0.1f)
-            {
-                Debug.Log("[Enemigo] Llegó a patrolEmty, notificando a Teletransportador.");
-                patrolTarget.NotificarLlegadaEnemigo();
             }
         }
 
         ultimaDireccion = Vector2.zero;
         UpdateAnimation();
         isMoving = false;
-        Debug.Log("[Enemigo] Movimiento terminado.");
     }
 
     private void UpdateAnimation()
@@ -240,41 +165,34 @@ public class Enemigo : MonoBehaviour
 
     private Vector2 AlignToGrid(Vector2 pos)
     {
-        Vector2 aligned = new Vector2(
-            Mathf.Round((pos.x) / gridSize.x) * gridSize.x,
-            Mathf.Round((pos.y) / gridSize.y) * gridSize.y
+        return new Vector2(
+            Mathf.Round((pos.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
+            Mathf.Round((pos.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
         );
-        Debug.Log($"[Enemigo] AlignToGrid: {pos} -> {aligned}");
-        return aligned;
     }
 
     IEnumerator Move(Vector2 targetPosition)
     {
-        Debug.Log($"[Enemigo] Move hacia {targetPosition}");
         while (((Vector2)transform.position - targetPosition).sqrMagnitude > 0.01f)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPosition;
-        Debug.Log($"[Enemigo] Move completado en {targetPosition}");
     }
 
     bool IsObstacle(Vector2 targetPosition)
     {
         Vector2 aligned = AlignToGrid(targetPosition);
-        bool resultado;
         if (colliderMovimiento == null)
-            resultado = Physics2D.OverlapCircle(aligned, 0.5f, obstacleLayer) != null;
+            return Physics2D.OverlapCircle(aligned, 0.5f, obstacleLayer) != null;
         else
-            resultado = Physics2D.OverlapBox(
-                aligned + colliderMovimiento.offset,
+            return Physics2D.OverlapBox(
+                aligned + (Vector2)colliderMovimiento.transform.localPosition + colliderMovimiento.offset,
                 colliderMovimiento.size,
                 0f,
                 obstacleLayer
             ) != null;
-        Debug.Log($"[Enemigo] IsObstacle en {aligned}: {resultado}");
-        return resultado;
     }
 
     private List<Vector2> FindPathAStar(Vector2 start, Vector2 goal)
@@ -297,10 +215,7 @@ public class Enemigo : MonoBehaviour
         while (open.Count > 0)
         {
             if (++nodosExplorados > maxNodos)
-            {
-                Debug.LogWarning("[Enemigo] Pathfinding: se superó el máximo de nodos explorados.");
                 return null;
-            }
 
             open.Sort((a, b) => a.f.CompareTo(b.f));
             Nodo actual = open[0];
@@ -315,7 +230,6 @@ public class Enemigo : MonoBehaviour
                     path.Insert(0, paso.pos);
                     paso = paso.padre;
                 }
-                Debug.Log($"[Enemigo] Path encontrado de longitud {path.Count}");
                 return path;
             }
 
@@ -337,7 +251,6 @@ public class Enemigo : MonoBehaviour
                 open.Add(new Nodo(vecino, actual, g, h));
             }
         }
-        Debug.LogWarning("[Enemigo] Pathfinding: no se encontró camino.");
         return null;
     }
 
@@ -356,40 +269,29 @@ public class Enemigo : MonoBehaviour
         }
     }
 
+    // --- Lógica de visión y escondite ---
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"[Enemigo] OnTriggerEnter2D con {collision.gameObject.name} ({collision.tag})");
         if (collision.CompareTag("Player"))
         {
-            // Solo activa inVision si el jugador NO está escondido
             if (!playerIsHiding)
-            {
                 inVision = true;
-                Debug.Log("[Enemigo] inVision = true (jugador entró en trigger y no está escondido)");
-            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log($"[Enemigo] OnTriggerExit2D con {collision.gameObject.name} ({collision.tag})");
         if (collision.CompareTag("Player"))
         {
             inVision = false;
-            Debug.Log("[Enemigo] inVision = false (jugador salió del trigger)");
         }
     }
 
     public void SetPlayerHiding(bool isHiding)
     {
-        Debug.Log($"[Enemigo] SetPlayerHiding({isHiding})");
         playerIsHiding = isHiding;
         if (isHiding)
-        {
             inVision = false;
-            Debug.Log("[Enemigo] inVision = false (jugador se escondió)");
-        }
-        // Si el jugador deja de estar escondido y está dentro del trigger, puedes reactivar inVision aquí si lo necesitas.
     }
 
     public IEnumerator MatarJugador()

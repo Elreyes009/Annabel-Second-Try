@@ -2,33 +2,36 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Teletransportador : MonoBehaviour
+public class RandomBoxPosition : MonoBehaviour
 {
     public Collider2D zonaMovimiento; // Asigna en el Inspector
     [SerializeField] private LayerMask obstacleLayer; // Asigna en el Inspector
+    [SerializeField] private float radioCercaniaEnemigo = 0.6f; // Radio para detectar al enemigo cerca
     private List<Collider2D> zonasInLight = new List<Collider2D>();
 
     private bool enemigoEnObjetivo = false;
     private bool playerDioPaso = false;
+    private bool playerEstabaMoviendo = false; // NUEVO: para detectar el cambio de estado
     private Mov playerMovement;
     private Vector2 gridSize = new Vector2(1f, 1f);
 
     private void Start()
     {
         playerMovement = FindObjectOfType<Mov>();
-
-        // Obtener gridSize desde el primer Enemigo encontrado
-        Enemigo enemigo = FindObjectOfType<Enemigo>();
-        if (enemigo != null)
-            gridSize = enemigo.gridSize;
     }
 
     public void Update()
     {
-        if (playerMovement.IsPlayerMoving())
+        // Detectar si hay un enemigo cerca
+        enemigoEnObjetivo = HayEnemigoCerca();
+
+        // Detectar un "paso" real del jugador (transición de quieto a moviendo)
+        bool playerMoviendoAhora = playerMovement != null && playerMovement.IsPlayerMoving();
+        if (playerMoviendoAhora && !playerEstabaMoviendo)
         {
             NotificarPasoJugador();
         }
+        playerEstabaMoviendo = playerMoviendoAhora;
 
         zonasInLight.Clear();
 
@@ -43,10 +46,15 @@ public class Teletransportador : MonoBehaviour
         }
     }
 
-    public void NotificarLlegadaEnemigo()
+    private bool HayEnemigoCerca()
     {
-        enemigoEnObjetivo = true;
-        IntentarTeletransportar();
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radioCercaniaEnemigo);
+        foreach (var col in colliders)
+        {
+            if (col.CompareTag("Enemigo"))
+                return true;
+        }
+        return false;
     }
 
     public void NotificarPasoJugador()
