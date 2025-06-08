@@ -38,7 +38,6 @@ public class NpcMoveTo : MonoBehaviour
         if (npcName == "Serena" || npcName == "Angelina") //A menos que se trate de Serena, el PNJ no puede seguir al PJ
         {
             compañero = true;
-            Debug.Log(compañero);
         }
         else
         {
