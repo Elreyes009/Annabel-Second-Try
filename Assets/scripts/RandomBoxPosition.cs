@@ -5,12 +5,33 @@ using System.Collections.Generic;
 public class Teletransportador : MonoBehaviour
 {
     public Collider2D zonaMovimiento; // Asigna en el Inspector
-    public float intervalo = 10f;     // Intervalo en segundos
-
+    [SerializeField] private LayerMask obstacleLayer; // Asigna en el Inspector
     private List<Collider2D> zonasInLight = new List<Collider2D>();
+
+    private bool enemigoEnObjetivo = false;
+    private bool playerDioPaso = false;
+    private Mov playerMovement;
+    private Vector2 gridSize = new Vector2(1f, 1f);
 
     private void Start()
     {
+        playerMovement = FindObjectOfType<Mov>();
+
+        // Obtener gridSize desde el primer Enemigo encontrado
+        Enemigo enemigo = FindObjectOfType<Enemigo>();
+        if (enemigo != null)
+            gridSize = enemigo.gridSize;
+    }
+
+    public void Update()
+    {
+        if (playerMovement.IsPlayerMoving())
+        {
+            NotificarPasoJugador();
+        }
+
+        zonasInLight.Clear();
+
         Lights[] luces = FindObjectsOfType<Lights>();
         foreach (Lights luz in luces)
         {
@@ -20,17 +41,28 @@ public class Teletransportador : MonoBehaviour
                 zonasInLight.Add(col);
             }
         }
-
-        StartCoroutine(TeletransportarCadaIntervalo());
     }
 
-    private IEnumerator TeletransportarCadaIntervalo()
+    public void NotificarLlegadaEnemigo()
     {
-        while (true)
+        enemigoEnObjetivo = true;
+        IntentarTeletransportar();
+    }
+
+    public void NotificarPasoJugador()
+    {
+        playerDioPaso = true;
+        IntentarTeletransportar();
+    }
+
+    private void IntentarTeletransportar()
+    {
+        if (enemigoEnObjetivo && playerDioPaso)
         {
-            yield return new WaitForSeconds(intervalo);
             Vector2 nuevaPosicion = ObtenerPosicionValida();
             transform.position = nuevaPosicion;
+            enemigoEnObjetivo = false;
+            playerDioPaso = false;
         }
     }
 
@@ -44,15 +76,19 @@ public class Teletransportador : MonoBehaviour
         {
             float x = Random.Range(boundsMovimiento.min.x, boundsMovimiento.max.x);
             float y = Random.Range(boundsMovimiento.min.y, boundsMovimiento.max.y);
+
+            // Alinear al grid del enemigo
+            x = Mathf.Round(x / gridSize.x) * gridSize.x;
+            y = Mathf.Round(y / gridSize.y) * gridSize.y;
             posicionAleatoria = new Vector2(x, y);
+
             intentos++;
             if (intentos > 100)
             {
-                Debug.LogWarning("No se encontró una posición válida fuera de las zonas de luz después de 100 intentos.");
                 break;
             }
         }
-        while (EstaEnZonaInLight(posicionAleatoria));
+        while (EstaEnZonaInLight(posicionAleatoria) || HayObstaculo(posicionAleatoria));
 
         return posicionAleatoria;
     }
@@ -67,5 +103,12 @@ public class Teletransportador : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private bool HayObstaculo(Vector2 posicion)
+    {
+        // Ajusta el radio según el tamaño de la caja
+        float radio = 0.3f;
+        return Physics2D.OverlapCircle(posicion, radio, obstacleLayer) != null;
     }
 }

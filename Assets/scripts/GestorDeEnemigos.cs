@@ -9,42 +9,35 @@ public class GestorDeEnemigos : MonoBehaviour
     public GameObject playerSprite;
     public GameObject playerMove;
     [SerializeField] private Flowchart flowchart;
-    
 
+    private bool estadoEscondidoPrevio = false;
 
     void Start()
     {
-        // Asegúrate de que la lista de enemigos esté correctamente llena
-        //enemigos = new List<Enemigo>(FindObjectsOfType<Enemigo>());
-        playerMove = FindFirstObjectByType <Mov>().gameObject;
+        playerMove = FindFirstObjectByType<Mov>().gameObject;
         playerSprite = FindFirstObjectByType<PlayerAnimations>().gameObject;
         flowchart = FindFirstObjectByType<Flowchart>();
+        estadoEscondidoPrevio = flowchart.GetBooleanVariable("Escondido");
+        AplicarEstadoEscondido(estadoEscondidoPrevio);
     }
 
     private void Update()
     {
-
-        if (flowchart.GetBooleanVariable("Escondido") == true)
+        bool estadoEscondidoActual = flowchart.GetBooleanVariable("Escondido");
+        if (estadoEscondidoActual != estadoEscondidoPrevio)
         {
-            NotificarEscondite(true);
-            playerMove.GetComponent<Mov>().enabled = false;
-            playerSprite.GetComponent<SpriteRenderer>().enabled = false;
-            playerSprite.GetComponent<PlayerAnimations>().enabled = false;
-            playerSprite.GetComponent<BoxCollider2D>().enabled = false;
-            
+            AplicarEstadoEscondido(estadoEscondidoActual);
+            estadoEscondidoPrevio = estadoEscondidoActual;
         }
-        
-        if(flowchart.GetBooleanVariable("Escondido") == false)
-        {
-            
-            NotificarEscondite(false);
-            playerMove.GetComponent<Mov>().enabled = true;
-            playerSprite.GetComponent<PlayerAnimations>().enabled = true;
-            playerSprite.GetComponent<SpriteRenderer>().enabled = true;
-            playerSprite.GetComponent<BoxCollider2D>().enabled = true;
-            
+    }
 
-        }
+    private void AplicarEstadoEscondido(bool estaEscondido)
+    {
+        NotificarEscondite(estaEscondido);
+        playerMove.GetComponent<Mov>().enabled = !estaEscondido;
+        playerSprite.GetComponent<PlayerAnimations>().enabled = !estaEscondido;
+        playerSprite.GetComponent<SpriteRenderer>().enabled = !estaEscondido;
+        playerSprite.GetComponent<BoxCollider2D>().enabled = !estaEscondido;
     }
 
     public void NotificarEscondite(bool estaEscondido)
@@ -59,13 +52,9 @@ public class GestorDeEnemigos : MonoBehaviour
     {
         foreach (Enemigo enemigo in enemigos)
         {
-            // Detén cualquier corrutina DE ESE enemigo
             enemigo.StopAllCoroutines();
-            // Asegúrate de resetear su flag de movimiento
             enemigo.isMoving = false;
-            // ¡Este transform sí es el del enemigo!
             enemigo.transform.position = enemigo.posicionInicial;
         }
     }
-
 }

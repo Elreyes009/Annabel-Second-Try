@@ -3,40 +3,40 @@ using UnityEngine.Rendering.Universal;
 
 public class Lights : MonoBehaviour
 {
-
     [SerializeField] GameObject pLight;
     [SerializeField] GameObject player;
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player");
-        pLight = GameObject.FindWithTag("PlayerLight");
-        if(pLight == null)
-        {
-            pLight = FindAnyObjectByType<Mov>().pl.gameObject;
-        }
+        if (player == null)
+            player = GameObject.FindWithTag("Player");
+        if (pLight == null)
+            pLight = GameObject.FindWithTag("PlayerLight");
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemigo"))
         {
-            Enemigo enem = collision.gameObject.GetComponent<Enemigo>();
-            enem.inLight = true;
+            var enem = collision.GetComponent<Enemigo>();
+            if (enem != null)
+                enem.inLight = true;
         }
 
         if (collision.CompareTag("Player"))
         {
-            PlayerAnimations panim = player.GetComponent<PlayerAnimations>();
-            panim.spriteOscuro = false;
-            pLight.GetComponent<Light2D>().intensity = 0f;
+            var panim = player != null ? player.GetComponent<PlayerAnimations>() : null;
+            if (panim != null)
+                panim.spriteOscuro = false;
+
+            var light2D = pLight != null ? pLight.GetComponent<Light2D>() : null;
+            if (light2D != null)
+                light2D.intensity = 0f;
         }
 
-        if (collision.CompareTag("Interactuable") && collision.gameObject.GetComponent<NpcMoveTo>() != null)
+        if (collision.CompareTag("Interactuable"))
         {
-            NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
+            var npc = collision.GetComponent<NpcMoveTo>();
             if (npc != null)
             {
                 npc.spriteOscuro = false;
@@ -49,27 +49,27 @@ public class Lights : MonoBehaviour
     {
         if (collision.CompareTag("Enemigo"))
         {
-            Enemigo enem = collision.gameObject.GetComponent<Enemigo>();
-            enem.inLight = false;
+            var enem = collision.GetComponent<Enemigo>();
+            if (enem != null)
+                enem.inLight = false;
         }
 
         if (collision.CompareTag("Player"))
         {
-            pLight.GetComponent<Light2D>().intensity = 0.5f;
-            PlayerAnimations panim = player.GetComponent<PlayerAnimations>();
-            panim.spriteOscuro = true;
+            var light2D = pLight != null ? pLight.GetComponent<Light2D>() : null;
+            if (light2D != null)
+                light2D.intensity = 0.5f;
 
+            var panim = player != null ? player.GetComponent<PlayerAnimations>() : null;
+            if (panim != null)
+                panim.spriteOscuro = true;
         }
 
-        if (collision.CompareTag("Interactuable") && collision.gameObject.GetComponent<NpcMoveTo>() != null)
+        if (collision.CompareTag("Interactuable"))
         {
-            NpcMoveTo npc = collision.gameObject.GetComponent<NpcMoveTo>();
+            var npc = collision.GetComponent<NpcMoveTo>();
             if (npc != null)
-            {
                 npc.spriteOscuro = true;
-            }
         }
-
     }
-
 }
