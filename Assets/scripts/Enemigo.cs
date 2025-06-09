@@ -13,14 +13,13 @@ public class Enemigo : MonoBehaviour
     public Vector2 gridOffset = Vector2.zero;
 
     [Header("Referencias")]
-    public Transform patrolEmty; // Punto de patrulla
+    public Transform patrolEmty;
     [SerializeField] private Flowchart flowchart;
     [SerializeField] public bool spriteOscuro;
     [SerializeField] private Animator anim;
 
     private Vector2 ultimaDireccion = Vector2.zero;
     public bool isMoving = false;
-    private bool hasArrived = false;
     private bool pasoJugadorProcesado = false;
     private bool playerIsHiding = false;
 
@@ -34,11 +33,10 @@ public class Enemigo : MonoBehaviour
 
     public Vector3 posicionInicial;
 
-    [SerializeField] BoxCollider2D colliderMovimiento; // Referencia al collider del hijo
+    [SerializeField] BoxCollider2D colliderMovimiento;
 
     private void Awake()
     {
-        // Alinear posición inicial al centro del tile
         Vector2 aligned = AlignToGrid(transform.position);
         transform.position = aligned;
 
