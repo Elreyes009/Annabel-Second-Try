@@ -57,8 +57,8 @@ public class RayCast : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
             lastMovementDirection,
-            rayDistance,
-            interactionMask
+            rayDistance
+            
         );
 
         if (hit.collider != null)
