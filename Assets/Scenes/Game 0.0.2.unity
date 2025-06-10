@@ -31026,7 +31026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1002063402
 Transform:
   m_ObjectHideFlags: 0
@@ -38749,7 +38749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 37579483}
+  selectedFlowchart: {fileID: 1569968420}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -40041,6 +40041,17 @@ MonoBehaviour:
   scope: 0
   key: Puede_moverse
   value: 1
+--- !u!114 &1569968420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1005653291977275250, guid: a877a2de52799424d835afac28bfe49e, type: 3}
+  m_PrefabInstance: {fileID: 2302339959193642026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569968379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1581467679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41177,7 +41188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1508456662246836532, guid: ba6a9fd11c09adb4cb8bc4640f431004, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1603437842508384999, guid: ba6a9fd11c09adb4cb8bc4640f431004, type: 3}
       propertyPath: m_IsActive
@@ -43271,8 +43282,7 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1824823371}
+  selectedBlocks: []
   selectedCommands: []
   variables:
   - {fileID: 1824822918}
@@ -86864,14 +86874,30 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 551111680404775989, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438932765386218884, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1703910089203465942, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 2262823741086471471, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2455453559689524580, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 3466222898163540087, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4638482688337703643, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
@@ -86908,6 +86934,10 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 7792299081135809176, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7863084380354016638, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
@@ -87320,6 +87350,10 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 8492411489979684089, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9108816169305485195, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
