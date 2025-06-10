@@ -11,8 +11,7 @@ public class RayCast : MonoBehaviour
 
     [Header("Raycast Settings")]
     [SerializeField] private float rayDistance = 2f;
-    [SerializeField] private LayerMask interactionMask;   // Crea una capa “Interactuable” y asígnala aquí
-
+    [SerializeField] private LayerMask interactionMask;   // Configura en el inspector, excluye "Ignore Raycast"
 
     [Header("Otros")]
     private Vector2 lastMovementDirection = Vector2.down;
@@ -27,11 +26,10 @@ public class RayCast : MonoBehaviour
 
     private void Update()
     {
-        interactionMask = LayerMask.GetMask("detalle");
         HandleInput();
         TryInteract();
 
-        if(wfs == true && Input.GetKeyUp(KeyCode.E))
+        if (wfs == true && Input.GetKeyUp(KeyCode.E))
         {
             flowchart.SetBooleanVariable("Escondido", false);
             wfs = false;
@@ -40,25 +38,21 @@ public class RayCast : MonoBehaviour
 
     private void HandleInput()
     {
-
         Vector2 rawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (rawInput.x != 0) rawInput.y = 0;
         if (rawInput != Vector2.zero)
             lastMovementDirection = rawInput.normalized;
-
     }
 
     private void TryInteract()
     {
-
         Debug.DrawRay(transform.position, lastMovementDirection * rayDistance, Color.green, 0.5f);
-
 
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
             lastMovementDirection,
-            rayDistance
-            
+            rayDistance,
+            interactionMask
         );
 
         if (hit.collider != null)
@@ -92,29 +86,28 @@ public class RayCast : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-
                         Vector2 pushDir = (hit.transform.position - player.transform.position).normalized;
                         Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
-                        if (Mathf.Abs(pushDir.x) > 0.1f)
+                        if (rb != null)
                         {
-                            
-                            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                            if (Mathf.Abs(pushDir.x) > 0.1f)
+                            {
+                                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                            }
+                            else
+                            {
+                                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                            }
+                            rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
+                            AudioSource audio = hit.collider.GetComponent<AudioSource>();
+                            if (audio != null)
+                            {
+                                audio.Play();
+                            }
+                            StartCoroutine(ReleasePlayerConstraints(rb));
                         }
-                        else
-                        {
-                            // Empujando vertical → bloquea movimiento horizontal
-                            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-                        }
-                        rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
-                        AudioSource audio = hit.collider.GetComponent<AudioSource>();
-                        if (audio != null)
-                        {
-                            audio.Play();
-                        }
-                        StartCoroutine(ReleasePlayerConstraints(rb));
                     }
                 }
-
             }
 
             if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E) && wfs == false)
@@ -135,12 +128,14 @@ public class RayCast : MonoBehaviour
             flowchart.SetBooleanVariable("InterObject", false);
         }
     }
+
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
     {
         yield return new WaitForSeconds(1f);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Interactuable"))
@@ -148,7 +143,6 @@ public class RayCast : MonoBehaviour
             Puerta puerta = collision.transform.GetComponent<Puerta>();
             Animator puertaAnim = collision.transform.GetComponent<Animator>();
             Recogible rec = collision.transform.GetComponent<Recogible>();
-
 
             if (rec != null)
             {
@@ -162,7 +156,7 @@ public class RayCast : MonoBehaviour
                 return;
             }
 
-            if(puerta != null)
+            if (puerta != null)
             {
                 if (puerta.requerimiento == "null")
                 {
@@ -187,8 +181,5 @@ public class RayCast : MonoBehaviour
                 }
             }
         }
-
     }
-
-
 }
