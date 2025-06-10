@@ -27260,11 +27260,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 63036334437071964, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.091638036
+      value: -5.696762
       objectReference: {fileID: 0}
     - target: {fileID: 63036334437071964, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32200116
+      value: -13.338689
       objectReference: {fileID: 0}
     - target: {fileID: 499566781535925001, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_Layer
@@ -27324,11 +27324,11 @@ PrefabInstance:
       objectReference: {fileID: 1824822904}
     - target: {fileID: 5233178217426416254, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.397
+      value: 3.57
       objectReference: {fileID: 0}
     - target: {fileID: 5233178217426416254, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.164
+      value: 17.12
       objectReference: {fileID: 0}
     - target: {fileID: 5233178217426416254, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -38749,7 +38749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1569968420}
+  selectedFlowchart: {fileID: 1824822904}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -40041,17 +40041,6 @@ MonoBehaviour:
   scope: 0
   key: Puede_moverse
   value: 1
---- !u!114 &1569968420 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1005653291977275250, guid: a877a2de52799424d835afac28bfe49e, type: 3}
-  m_PrefabInstance: {fileID: 2302339959193642026}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569968379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1581467679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43250,7 +43239,6 @@ GameObject:
   - component: {fileID: 1824823412}
   - component: {fileID: 1824823413}
   - component: {fileID: 1824823415}
-  - component: {fileID: 1824823416}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -43282,7 +43270,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 1824823371}
   selectedCommands: []
   variables:
   - {fileID: 1824822918}
@@ -68566,7 +68555,7 @@ MonoBehaviour:
   itemId: 0
   blockName: Escenas_01.0-02.0
   description: 
-  eventHandler: {fileID: 1824823416}
+  eventHandler: {fileID: 0}
   commandList:
   - {fileID: 1824823317}
   - {fileID: 1824823053}
@@ -72822,21 +72811,6 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
---- !u!114 &1824823416
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824822903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f6487d21a03404cb21b245f0242e79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 1824823371}
-  suppressBlockAutoSelect: 0
-  waitForFrames: 1
 --- !u!1 &1844352223
 GameObject:
   m_ObjectHideFlags: 0
@@ -86902,6 +86876,14 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 5003593586192982447, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003593586192982447, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 17.12
+      objectReference: {fileID: 0}
     - target: {fileID: 5241662494588216366, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
