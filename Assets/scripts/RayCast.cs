@@ -11,7 +11,6 @@ public class RayCast : MonoBehaviour
 
     [Header("Raycast Settings")]
     [SerializeField] private float rayDistance = 2f;
-    [SerializeField] private LayerMask interactionMask;   // Configura en el inspector, excluye "Ignore Raycast"
 
     [Header("Otros")]
     private Vector2 lastMovementDirection = Vector2.down;
@@ -51,8 +50,7 @@ public class RayCast : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
             lastMovementDirection,
-            rayDistance,
-            interactionMask
+            rayDistance
         );
 
         if (hit.collider != null)
