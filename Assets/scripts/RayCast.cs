@@ -61,6 +61,7 @@ public class RayCast : MonoBehaviour
 
                 if (npc != null)
                 {
+                    Debug.Log("Detectado");
                     flowchart.SetBooleanVariable("InterObject", false);
                     flowchart.SetBooleanVariable("Personaje", true);
                     string name = npc.Name;
@@ -79,6 +80,7 @@ public class RayCast : MonoBehaviour
 
                 if (npc == null)
                 {
+                    Debug.Log("No detectado");
                     flowchart.SetBooleanVariable("Personaje", false);
                     flowchart.SetStringVariable("Name", null);
 
@@ -120,12 +122,12 @@ public class RayCast : MonoBehaviour
                 }
             }
         }
-        //else
-        //{
-        //    flowchart.SetBooleanVariable("Personaje", false);
-        //    flowchart.SetStringVariable("Name", null);
-        //    flowchart.SetBooleanVariable("InterObject", false);
-        //}
+        else
+        {
+            flowchart.SetBooleanVariable("Personaje", false);
+            flowchart.SetStringVariable("Name", null);
+            flowchart.SetBooleanVariable("InterObject", false);
+        }
     }
 
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
