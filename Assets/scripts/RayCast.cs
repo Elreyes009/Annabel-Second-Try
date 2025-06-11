@@ -84,28 +84,29 @@ public class RayCast : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
+
                         Vector2 pushDir = (hit.transform.position - player.transform.position).normalized;
                         Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
-                        if (rb != null)
+                        if (Mathf.Abs(pushDir.x) > 0.1f)
                         {
-                            if (Mathf.Abs(pushDir.x) > 0.1f)
-                            {
-                                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-                            }
-                            else
-                            {
-                                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-                            }
-                            rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
-                            AudioSource audio = hit.collider.GetComponent<AudioSource>();
-                            if (audio != null)
-                            {
-                                audio.Play();
-                            }
-                            StartCoroutine(ReleasePlayerConstraints(rb));
+
+                            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
                         }
+                        else
+                        {
+                            // Empujando vertical → bloquea movimiento horizontal
+                            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                        }
+                        rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
+                        AudioSource audio = hit.collider.GetComponent<AudioSource>();
+                        if (audio != null)
+                        {
+                            audio.Play();
+                        }
+                        StartCoroutine(ReleasePlayerConstraints(rb));
                     }
                 }
+
             }
 
             if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E) && wfs == false)
@@ -119,12 +120,12 @@ public class RayCast : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            flowchart.SetBooleanVariable("Personaje", false);
-            flowchart.SetStringVariable("Name", null);
-            flowchart.SetBooleanVariable("InterObject", false);
-        }
+        //else
+        //{
+        //    flowchart.SetBooleanVariable("Personaje", false);
+        //    flowchart.SetStringVariable("Name", null);
+        //    flowchart.SetBooleanVariable("InterObject", false);
+        //}
     }
 
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
