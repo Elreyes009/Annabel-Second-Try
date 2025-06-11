@@ -72,23 +72,26 @@ public class Enemigo : MonoBehaviour
             return;
 
         // Lógica de luz: solo avanza un paso por cada paso del jugador
-        if (inLight)
+        if (flowchart.GetBooleanVariable("Puede_moverse") == true)
         {
-            if (playerMovement != null && playerMovement.IsPlayerMoving() && !isMoving && !playerIsHiding && !pasoJugadorProcesado)
+            if (inLight)
             {
-                StartCoroutine(MoverEnemigo(objetivo));
-                pasoJugadorProcesado = true;
+                if (playerMovement != null && playerMovement.IsPlayerMoving() && !isMoving && !playerIsHiding && !pasoJugadorProcesado)
+                {
+                    StartCoroutine(MoverEnemigo(objetivo));
+                    pasoJugadorProcesado = true;
+                }
+                if (playerMovement != null && !playerMovement.IsPlayerMoving())
+                {
+                    pasoJugadorProcesado = false;
+                }
             }
-            if (playerMovement != null && !playerMovement.IsPlayerMoving())
+            else
             {
-                pasoJugadorProcesado = false;
+                // Movimiento libre fuera de la luz
+                if (!isMoving)
+                    StartCoroutine(MoverEnemigo(objetivo));
             }
-        }
-        else
-        {
-            // Movimiento libre fuera de la luz
-            if (!isMoving)
-                StartCoroutine(MoverEnemigo(objetivo));
         }
 
         UpdateAnimation();
