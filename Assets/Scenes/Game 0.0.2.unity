@@ -31664,7 +31664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1003642083
 Animator:
   serializedVersion: 7
@@ -39711,7 +39711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1467438482}
+  selectedFlowchart: {fileID: 1824822904}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -44335,8 +44335,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1824823344}
-  selectedCommands:
-  - {fileID: 1824823483}
+  selectedCommands: []
   variables:
   - {fileID: 1824822918}
   - {fileID: 1824822917}
@@ -44376,7 +44375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 1
   key: Seguir
-  value: 1
+  value: 0
 --- !u!114 &1824822906
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -44571,7 +44570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 1
   key: "Di\xE1logo"
-  value: 9
+  value: 1
 --- !u!114 &1824822919
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -88341,7 +88340,7 @@ PrefabInstance:
       objectReference: {fileID: 1824822904}
     - target: {fileID: 3546356021879322069, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3645531136027995570, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -88397,7 +88396,7 @@ PrefabInstance:
       objectReference: {fileID: 1824822904}
     - target: {fileID: 4208938102400643260, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4955724820152531433, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: player
@@ -88417,7 +88416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316216369788384081, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7423359597018427938, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: flowchart
