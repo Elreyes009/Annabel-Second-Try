@@ -28111,7 +28111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7497791654353453743, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8023562641662384458, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_IsTrigger
@@ -28139,7 +28139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8969060602304813603, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44348,8 +44348,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1824822919}
-  selectedCommands:
-  - {fileID: 1824823007}
+  selectedCommands: []
   variables:
   - {fileID: 1824822918}
   - {fileID: 1824822917}
