@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 6e2a401c4b0ba0340ba84861cd97def1
+guid: 48ad01b5df96f4745831b81fa9b41c24
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4632473610278829870
-    second: Annabel_0
+      213: -3742490284192992888
+    second: Daina_idle_0
+  - first:
+      213: -1432662100860263545
+    second: Daina_idle_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Annabel_0
+      name: Daina_idle_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 21
-        width: 369
-        height: 785
+        x: 32
+        y: 588
+        width: 8
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d085fb9bc526bfb0800000000000000
-      internalID: -4632473610278829870
+      spriteID: 88173534ae0001cc0800000000000000
+      internalID: -3742490284192992888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Daina_idle_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 364
+        height: 792
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7832f0be8692e1ce0800000000000000
+      internalID: -1432662100860263545
       vertices: []
       indices: 
       edges: []
@@ -134,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Annabel_0: -4632473610278829870
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
