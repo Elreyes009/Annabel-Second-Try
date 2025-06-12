@@ -16004,8 +16004,7 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 354431325}
-  selectedCommands:
-  - {fileID: 354431321}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -16107,7 +16106,7 @@ MonoBehaviour:
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &354431330
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -16137,7 +16136,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &354431331
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -32210,14 +32209,11 @@ GameObject:
   - component: {fileID: 1018978195}
   - component: {fileID: 1018978194}
   - component: {fileID: 1018978193}
-  - component: {fileID: 1018978192}
   - component: {fileID: 1018978191}
   - component: {fileID: 1018978190}
-  - component: {fileID: 1018978189}
   - component: {fileID: 1018978188}
   - component: {fileID: 1018978187}
   - component: {fileID: 1018978186}
-  - component: {fileID: 1018978185}
   - component: {fileID: 1018978184}
   - component: {fileID: 1018978183}
   - component: {fileID: 1018978182}
@@ -32802,7 +32798,7 @@ MonoBehaviour:
   portrait: {fileID: 0}
   offset: 0
   fromPosition: {fileID: 1102909109}
-  toPosition: {fileID: 2117232316}
+  toPosition: {fileID: 1102909109}
   facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
@@ -32833,36 +32829,6 @@ MonoBehaviour:
   offset: 0
   fromPosition: {fileID: 1102909109}
   toPosition: {fileID: 1102909109}
-  facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 1
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1018978185
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018978175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 9
-  indentLevel: 1
-  display: 2
-  stage: {fileID: 0}
-  character: {fileID: 1661544839}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 0}
-  offset: 0
-  fromPosition: {fileID: 2117232316}
-  toPosition: {fileID: 2117232316}
   facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
@@ -32952,36 +32918,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &1018978189
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018978175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 5
-  indentLevel: 1
-  display: 4
-  stage: {fileID: 0}
-  character: {fileID: 527195142}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: 0}
-  offset: 0
-  fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
-  facing: 0
-  useDefaultSettings: 1
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 0
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
 --- !u!114 &1018978190
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -33000,7 +32936,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 1875579276}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 6495446970679550999, guid: 84f9da48121989b46b65f318affa6b82, type: 3}
+  portrait: {fileID: 7345275490671837984, guid: 8c185488b57c113429ef67d3460759dd, type: 3}
   offset: 0
   fromPosition: {fileID: 1102909109}
   toPosition: {fileID: 1987875602}
@@ -33030,41 +32966,11 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 527195142}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: 1324089678864826058, guid: 01e179d99773b3544ab1edb78c784c2f, type: 3}
+  portrait: {fileID: -4135108868131677384, guid: 28ead85706afb3b428f93bb7fa543162, type: 3}
   offset: 0
-  fromPosition: {fileID: 2117232316}
-  toPosition: {fileID: 288847106}
-  facing: 1
-  useDefaultSettings: 1
-  fadeDuration: 0.5
-  moveDuration: 1
-  shiftOffset: {x: 0, y: 0}
-  move: 1
-  shiftIntoPlace: 0
-  waitUntilFinished: 0
---- !u!114 &1018978192
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018978175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 2
-  indentLevel: 1
-  display: 1
-  stage: {fileID: 0}
-  character: {fileID: 1661544839}
-  replacedCharacter: {fileID: 0}
-  portrait: {fileID: -4632473610278829870, guid: 6e2a401c4b0ba0340ba84861cd97def1, type: 3}
-  offset: 0
-  fromPosition: {fileID: 2117232316}
-  toPosition: {fileID: 149312405}
-  facing: 1
+  fromPosition: {fileID: 1102909109}
+  toPosition: {fileID: 1987875602}
+  facing: 2
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
@@ -33331,27 +33237,24 @@ MonoBehaviour:
     serializedVersion: 2
     x: 624.94
     y: 156
-    width: 159.83
+    width: 118.12
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 121
-  blockName: Escena_05.1 (Copy)
+  blockName: Escena_05.1
   description: 
   eventHandler: {fileID: 1018978180}
   commandList:
   - {fileID: 1018978193}
   - {fileID: 1018978177}
-  - {fileID: 1018978192}
   - {fileID: 1018978191}
-  - {fileID: 1018978190}
-  - {fileID: 1018978189}
   - {fileID: 1018978188}
+  - {fileID: 1018978183}
+  - {fileID: 1018978190}
   - {fileID: 1018978187}
   - {fileID: 1018978186}
-  - {fileID: 1018978185}
   - {fileID: 1018978184}
-  - {fileID: 1018978183}
   - {fileID: 1018978182}
   - {fileID: 1018978178}
   - {fileID: 1018978181}
@@ -33382,7 +33285,8 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 1018978194}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1018978191}
   variables: []
   description: 
   stepPause: 0
@@ -39663,7 +39567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1824822904}
+  selectedFlowchart: {fileID: 1018978195}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
