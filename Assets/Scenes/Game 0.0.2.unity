@@ -2272,6 +2272,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1609751983011298163, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
   m_PrefabInstance: {fileID: 751167800}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &177867255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6013181536961075879, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+  m_PrefabInstance: {fileID: 751167800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177867251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f150d1d3ad5b485479284fa8dbad022a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!213 &187847087
 Sprite:
   m_ObjectHideFlags: 0
@@ -3745,7 +3756,7 @@ MonoBehaviour:
   zonaMovimiento: {fileID: 1691249375}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   radioCercaniaEnemigo: 0.6
 --- !u!1 &282984731
 GameObject:
@@ -27881,6 +27892,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 684252217255784471, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 177867255}
+    - target: {fileID: 684252217255784471, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: flowchart
       value: 
       objectReference: {fileID: 1824822904}
@@ -27900,6 +27915,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1426938482819384040, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 177867251}
     - target: {fileID: 1426938482819384040, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: flowchart
       value: 
@@ -28005,6 +28024,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6013181536961075879, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+      propertyPath: r
+      value: 
+      objectReference: {fileID: 1069389411}
+    - target: {fileID: 6013181536961075879, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: NewAnim
       value: 
       objectReference: {fileID: 855671057}
@@ -28034,11 +28057,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8023562641662384458, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 0.25
+      value: 0.78125
       objectReference: {fileID: 0}
     - target: {fileID: 8023562641662384458, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 0.41
+      value: 1.28125
       objectReference: {fileID: 0}
     - target: {fileID: 8023562641662384458, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -40093,7 +40116,7 @@ MonoBehaviour:
   OldPosition: {x: 0, y: 0, z: 0}
   Respawn: {fileID: 0}
   flowchart: {fileID: 1824822904}
-  Player: 1
+  Player: 0
 --- !u!4 &1540235163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5233178217426416254, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
@@ -43163,17 +43186,17 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 3
   gridSize: {x: 1, y: 1}
-  gridOffset: {x: -0.35, y: 0.16}
+  gridOffset: {x: 0, y: 0}
   patrolEmty: {fileID: 254381891}
   flowchart: {fileID: 1824822904}
   spriteOscuro: 0
-  anim: {fileID: 1793412004}
+  anim: {fileID: 0}
   isMoving: 0
   enemManager: {fileID: 1691249376}
   inLight: 0
   inVision: 0
   posicionInicial: {x: 0, y: 0, z: 0}
-  colliderMovimiento: {fileID: 89053978}
+  colliderMovimiento: {fileID: 0}
 --- !u!95 &1793412004
 Animator:
   serializedVersion: 7
@@ -88225,6 +88248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCs
       objectReference: {fileID: 0}
+    - target: {fileID: 7715355429061438752, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7859740776048925606, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: player
       value: 
@@ -89169,6 +89196,10 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 6020010172882925035, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6270654714468246950, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
@@ -89201,6 +89232,14 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 7989514973076575098, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109880240215979254, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8111127950439185810, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: Target.TrackingTarget
       value: 

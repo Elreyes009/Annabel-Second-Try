@@ -17,6 +17,8 @@ public class RayCast : MonoBehaviour
     private GameObject player;
     [SerializeField] private float pushForce = 1f;
 
+    public PlayerAnimations sprite;
+
     private void Awake()
     {
         player = gameObject;
@@ -105,14 +107,19 @@ public class RayCast : MonoBehaviour
 
             }
 
-            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E) && wfs == false)
+            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
             {
-                flowchart.SetBooleanVariable("Escondido", true);
+                
+                
+                sprite.escondido = true;
+
                 AudioSource audio = hit.collider.GetComponent<AudioSource>();
                 if (audio != null)
                 {
                     audio.Play();
                 }
+
+
             }
         }
         else

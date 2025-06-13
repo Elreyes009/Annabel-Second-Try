@@ -12,6 +12,8 @@ public class PlayerAnimations : MonoBehaviour
     private Direccion direccionActiva = Direccion.Ninguna;
 
     public bool spriteOscuro;
+    public GameObject r;
+    public bool escondido = false;
 
     [SerializeField] Flowchart flowchart;
 
@@ -32,6 +34,28 @@ public class PlayerAnimations : MonoBehaviour
         if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 1f : 0f);
         if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
 
+        Escon();
+    }
+
+    public void Escon()
+    {
+        Mov mov = r.GetComponent<Mov>();
+        if (escondido)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+            
+            mov.enabled = false;
+        }
+
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            GetComponent<Collider2D>().enabled = true;
+            mov.enabled = true;
+            escondido = false;
+        }
 
     }
 
