@@ -65,6 +65,11 @@ public class GameManager : MonoBehaviour
             pause.SetActive(false);
             Time.timeScale = 1;
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == true && Controls.activeSelf == true)
+        {
+            Controls.SetActive(false);
+            pause.SetActive(true);
+        }
 
 
     }
@@ -84,15 +89,9 @@ public class GameManager : MonoBehaviour
 
     public void Opciones()
     {
-        if (Options.activeSelf == false)
-        {
-            Options.SetActive(true);
-        }
-        else
-        {
-            Options.SetActive(false);
-            pause.SetActive(true);
-        }
+        bool mostrarOpciones = !Options.activeSelf;
+        Options.SetActive(mostrarOpciones);
+        pause.SetActive(!mostrarOpciones);
     }
 
 
