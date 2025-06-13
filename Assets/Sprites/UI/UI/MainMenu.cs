@@ -1,30 +1,41 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
-    // Nombre de la escena de juego, cámbialo si tu escena tiene otro nombre
-    [SerializeField] private string NameScene = "Juego";
+    private bool sobreBotonSalir = false;
+    private Animator anim; 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && !sobreBotonSalir)
         {
             SceneManager.LoadScene(1);
         }
     }
 
-    // Este método se debe asignar al botón de salir en la UI
     public void SalirDelJuego()
     {
         Application.Quit();
         print("Saliendo del juego...");
+    }
+
+    public void OnPointerEnterSalir()
+    {
+        sobreBotonSalir = true;
+        anim.SetBool("Si",true);
+    }
+
+    public void OnPointerExitSalir()
+    {
+        sobreBotonSalir = false;
+        anim.SetBool("Si", false);
     }
 }
