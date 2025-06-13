@@ -1,4 +1,5 @@
 ﻿using Fungus;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -82,6 +83,10 @@ public class NpcMoveTo : MonoBehaviour
                 }
                 return;
             }
+        }
+        else if (flowchart.GetBooleanVariable("Seguir") == false && compañero)
+        {
+            siguiendo = false;
         }
 
         UpdateAnimation();
