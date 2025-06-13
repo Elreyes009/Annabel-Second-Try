@@ -16,7 +16,8 @@ public class RayCast : MonoBehaviour
     private Vector2 lastMovementDirection = Vector2.down;
     private GameObject player;
     [SerializeField] private float pushForce = 1f;
-    public bool wfs = false;
+
+    public PlayerAnimations sprite;
 
     private void Awake()
     {
@@ -28,11 +29,6 @@ public class RayCast : MonoBehaviour
         HandleInput();
         TryInteract();
 
-        if (wfs == true && Input.GetKeyUp(KeyCode.E))
-        {
-            flowchart.SetBooleanVariable("Escondido", false);
-            wfs = false;
-        }
     }
 
     private void HandleInput()
@@ -61,7 +57,7 @@ public class RayCast : MonoBehaviour
 
                 if (npc != null)
                 {
-                    Debug.Log("Detectado");
+
                     flowchart.SetBooleanVariable("InterObject", false);
                     flowchart.SetBooleanVariable("Personaje", true);
                     string name = npc.Name;
@@ -80,7 +76,7 @@ public class RayCast : MonoBehaviour
 
                 if (npc == null)
                 {
-                    Debug.Log("No detectado");
+
                     flowchart.SetBooleanVariable("Personaje", false);
                     flowchart.SetStringVariable("Name", null);
 
@@ -111,15 +107,19 @@ public class RayCast : MonoBehaviour
 
             }
 
-            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E) && wfs == false)
+            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
             {
-                wfs = true;
-                flowchart.SetBooleanVariable("Escondido", true);
+                
+                
+                sprite.escondido = true;
+
                 AudioSource audio = hit.collider.GetComponent<AudioSource>();
                 if (audio != null)
                 {
                     audio.Play();
                 }
+
+
             }
         }
         else

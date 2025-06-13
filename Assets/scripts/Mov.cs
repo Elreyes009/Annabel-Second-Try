@@ -15,7 +15,7 @@ public class Mov : MonoBehaviour
     [SerializeField] Vector3 puntoDeRespawn;                                                        
 
     private Mov playerMovement;                                  
-    private SpriteRenderer playerSprite;
+    public GameObject sprite;
 
     public GameObject pl;
 
@@ -26,7 +26,6 @@ public class Mov : MonoBehaviour
     void Awake()
     {
         playerMovement = GetComponent<Mov>();
-        playerSprite = GetComponentInChildren<SpriteRenderer>();
 
         obstacleLayer = LayerMask.GetMask("detalle");
     }
@@ -71,11 +70,9 @@ public class Mov : MonoBehaviour
     }
 
     public IEnumerator RespawnCoroutine()
-    {
-        playerSprite.enabled = false;            
+    { 
         yield return new WaitForSeconds(1f);       
-        transform.position = puntoDeRespawn;       
-        playerSprite.enabled = true;             
+        transform.position = puntoDeRespawn;              
         playerMovement.enabled = true;           
     }
 
