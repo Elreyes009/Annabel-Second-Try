@@ -27,6 +27,9 @@ public class NpcMoveTo : MonoBehaviour
     private bool hasArrived = false;
     bool compañero;
 
+    private int oscuroLayer = -1;
+    private int normalLayer = -1;
+
     private void Awake()
     {
         npcName = gameObject.GetComponent<NPC>().name;
@@ -51,17 +54,10 @@ public class NpcMoveTo : MonoBehaviour
         anim = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
 
-        int oscuroLayer = anim.GetLayerIndex("Oscuro");
-        int normalLayer = anim.GetLayerIndex("Default");
+        oscuroLayer = anim.GetLayerIndex("Oscuro");
+        normalLayer = anim.GetLayerIndex("Default");
 
-        if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, 0f);
-        if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, 1f);
-
-        if (spriteOscuro)
-        {
-            if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, 1f);
-            if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, 0f);
-        }
+        UpdateOscuroLayer();
     }
 
     private void Update()
@@ -88,13 +84,26 @@ public class NpcMoveTo : MonoBehaviour
             }
         }
 
-
         UpdateAnimation();
+        UpdateOscuroLayer();
+    }
 
-        int oscuroLayer = anim.GetLayerIndex("Oscuro");
-        int normalLayer = anim.GetLayerIndex("Default");
-        if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 1f : 0f);
-        if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
+    private void UpdateOscuroLayer()
+    {
+        if (anim == null) return;
+
+        if (oscuroLayer >= 0)
+        {
+            float targetWeight = spriteOscuro ? 1f : 0f;
+            if (anim.GetLayerWeight(oscuroLayer) != targetWeight)
+                anim.SetLayerWeight(oscuroLayer, targetWeight);
+        }
+        if (normalLayer >= 0)
+        {
+            float targetWeight = spriteOscuro ? 0f : 1f;
+            if (anim.GetLayerWeight(normalLayer) != targetWeight)
+                anim.SetLayerWeight(normalLayer, targetWeight);
+        }
     }
 
     void Moove()
