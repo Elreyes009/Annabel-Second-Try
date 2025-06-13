@@ -40,6 +40,7 @@ public class Lights : MonoBehaviour
             if (npc != null)
             {
                 npc.spriteOscuro = false;
+                Debug.Log("spriteOscuro activado en " + npc.name);
             }
         }
     }
