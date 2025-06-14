@@ -72,8 +72,6 @@ public class Enemigo : MonoBehaviour
             return;
 
         // Lógica de luz: solo avanza un paso por cada paso del jugador
-        if (flowchart.GetBooleanVariable("Puede_moverse") == true)
-        {
             if (inLight)
             {
                 if (playerMovement != null && playerMovement.IsPlayerMoving() && !isMoving && !playerIsHiding && !pasoJugadorProcesado)
@@ -92,7 +90,6 @@ public class Enemigo : MonoBehaviour
                 if (!isMoving)
                     StartCoroutine(MoverEnemigo(objetivo));
             }
-        }
 
         UpdateAnimation();
     }

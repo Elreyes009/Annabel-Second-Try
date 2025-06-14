@@ -24279,6 +24279,10 @@ PrefabInstance:
       propertyPath: flowchart
       value: 
       objectReference: {fileID: 1824822904}
+    - target: {fileID: 684252217255784471, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+      propertyPath: 'inventario.Array.data[0]'
+      value: Llave Mantenimiento
+      objectReference: {fileID: 0}
     - target: {fileID: 849109769978186094, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_Size.x
       value: 0.78125
@@ -96274,8 +96278,6 @@ GameObject:
   - component: {fileID: 2080981311}
   - component: {fileID: 2080981310}
   - component: {fileID: 2080981329}
-  - component: {fileID: 2080981331}
-  - component: {fileID: 2080981330}
   - component: {fileID: 2080981332}
   m_Layer: 0
   m_Name: 06 (1)
@@ -97888,8 +97890,6 @@ MonoBehaviour:
   - {fileID: 2080981296}
   - {fileID: 2080981295}
   - {fileID: 2080981332}
-  - {fileID: 2080981331}
-  - {fileID: 2080981330}
   - {fileID: 2080981297}
   - {fileID: 2080981294}
   - {fileID: 2080981292}
@@ -98107,7 +98107,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 2080981299}
   selectedCommands:
-  - {fileID: 2080981318}
+  - {fileID: 2080981297}
   variables: []
   description: 
   stepPause: 0
@@ -98899,48 +98899,6 @@ MonoBehaviour:
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &2080981330
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080981268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 271
-  indentLevel: 1
-  _targetGameObject:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 1756832618}
-  activeState:
-    booleanRef: {fileID: 0}
-    booleanVal: 1
-  targetGameObjectOLD: {fileID: 0}
---- !u!114 &2080981331
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080981268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 270
-  indentLevel: 1
-  _targetGameObject:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 639396852}
-  activeState:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  targetGameObjectOLD: {fileID: 0}
 --- !u!114 &2080981332
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -99582,6 +99540,14 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1069389414}
+    - target: {fileID: 2030775514620332950, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1469743
+      objectReference: {fileID: 0}
+    - target: {fileID: 2030775514620332950, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.20221868
+      objectReference: {fileID: 0}
     - target: {fileID: 2262823741086471471, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_Layer
       value: 6
