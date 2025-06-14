@@ -16,7 +16,7 @@ public class Angelina_tmer : MonoBehaviour
 
     private void Awake()
     {
-        timer = 20f;
+        timer = 23f;
         regulator = true;
     }
 
@@ -49,7 +49,7 @@ public class Angelina_tmer : MonoBehaviour
 
         if (!regulator && AngelinaFlowchart.GetBooleanVariable("Terminó") == true) //Esta variable permitirá que el sistema se reinicie
         {
-            timer = 20f;
+            timer = 23f;
             AngelinaFlowchart.SetBooleanVariable("Atrapado", false);
             AngelinaFlowchart.SetBooleanVariable("Terminó", false);
             Debug.Log("Reinicio");
@@ -104,7 +104,7 @@ public class Angelina_tmer : MonoBehaviour
 
         if (!regulator && AngelinaFlowchart.GetBooleanVariable("Terminó") == true) //Esta variable permitirá que el sistema se reinicie
         {
-            timer = 20f;
+            timer = 23f;
             AngelinaFlowchart.SetBooleanVariable("Atrapado", false);
             AngelinaFlowchart.SetBooleanVariable("Terminó", false);
             Debug.Log("Reinicio");
