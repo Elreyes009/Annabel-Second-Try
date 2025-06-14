@@ -1,9 +1,12 @@
 using UnityEngine;
+using Fungus;
 
 public class Interruptor_luz : MonoBehaviour
 {
     public bool encendido;
     [SerializeField] GameObject luz;
+
+    [SerializeField] Flowchart flowchart;
 
     private void Awake()
     {
@@ -17,7 +20,12 @@ public class Interruptor_luz : MonoBehaviour
         {
             luz.SetActive(true);
         }
-        else
+        else if (!encendido)
+        {
+            luz.SetActive(false);
+        }
+
+        if (flowchart != null && flowchart.GetBooleanVariable("Muerte") == true)
         {
             luz.SetActive(false);
         }

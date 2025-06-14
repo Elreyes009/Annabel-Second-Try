@@ -81,8 +81,11 @@ public class NpcMoveTo : MonoBehaviour
                 {
                     StartCoroutine(MoverEnemigo(player.transform.position));
                 }
+                UpdateAnimation();
+                UpdateOscuroLayer();
                 return;
             }
+
         }
         else if (flowchart.GetBooleanVariable("Seguir") == false && compañero)
         {
