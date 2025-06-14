@@ -27,7 +27,7 @@ public class Interruptor_luz : MonoBehaviour
 
         if (flowchart != null && flowchart.GetBooleanVariable("Muerte") == true)
         {
-            luz.SetActive(false);
+            encendido = false;
         }
     }
 }

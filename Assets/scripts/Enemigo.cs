@@ -99,49 +99,52 @@ public class Enemigo : MonoBehaviour
 
     IEnumerator MoverEnemigo(Vector2 targetPosition)
     {
-        if (isMoving) yield break;
-        isMoving = true;
-
-        Vector2 start = AlignToGrid(transform.position);
-        Vector2 goal = AlignToGrid(targetPosition);
-
-        List<Vector2> path = FindPathAStar(start, goal);
-        if (path == null || path.Count == 0)
+        if (flowchart.GetBooleanVariable("Puede_moverse") == true)
         {
-            isMoving = false;
-            yield break;
-        }
+            if (isMoving) yield break;
+            isMoving = true;
 
-        // En la luz, solo da un paso por movimiento del jugador
-        if (inLight)
-        {
-            Vector2 step = path[0];
-            if (!IsObstacle(step))
+            Vector2 start = AlignToGrid(transform.position);
+            Vector2 goal = AlignToGrid(targetPosition);
+
+            List<Vector2> path = FindPathAStar(start, goal);
+            if (path == null || path.Count == 0)
             {
-                ultimaDireccion = ((Vector2)step - (Vector2)transform.position).normalized;
-                UpdateAnimation();
-                yield return Move(step);
+                isMoving = false;
+                yield break;
             }
-        }
-        else
-        {
-            foreach (var step in path)
+
+            // En la luz, solo da un paso por movimiento del jugador
+            if (inLight)
             {
-                if (IsObstacle(step))
+                Vector2 step = path[0];
+                if (!IsObstacle(step))
                 {
-                    isMoving = false;
-                    StartCoroutine(MoverEnemigo(targetPosition)); // Reintenta con nueva ruta
-                    yield break;
+                    ultimaDireccion = ((Vector2)step - (Vector2)transform.position).normalized;
+                    UpdateAnimation();
+                    yield return Move(step);
                 }
-                ultimaDireccion = ((Vector2)step - (Vector2)transform.position).normalized;
-                UpdateAnimation();
-                yield return Move(step);
             }
-        }
+            else
+            {
+                foreach (var step in path)
+                {
+                    if (IsObstacle(step))
+                    {
+                        isMoving = false;
+                        StartCoroutine(MoverEnemigo(targetPosition)); // Reintenta con nueva ruta
+                        yield break;
+                    }
+                    ultimaDireccion = ((Vector2)step - (Vector2)transform.position).normalized;
+                    UpdateAnimation();
+                    yield return Move(step);
+                }
+            }
 
-        ultimaDireccion = Vector2.zero;
-        UpdateAnimation();
-        isMoving = false;
+            ultimaDireccion = Vector2.zero;
+            UpdateAnimation();
+            isMoving = false;
+        }
     }
 
     private void UpdateAnimation()
