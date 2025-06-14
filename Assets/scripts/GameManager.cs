@@ -11,12 +11,16 @@ public class GameManager : MonoBehaviour
     public GameObject Controls;
 
     public AudioMixer audioMixer;
-    [SerializeField] AudioSource sorrow;
-    [SerializeField] AudioSource unknown;
+    public AudioSource Music;
+    public AudioSource effects;
+
 
     public Slider masterSlider;
     public Slider bgmSlider;
     public Slider sfxSlider;
+
+    public AudioClip open;
+    public AudioClip close;
 
     void Start()
     {
@@ -58,11 +62,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == false)
         {
             pause.SetActive(true);
+            effects.PlayOneShot(open);
             Time.timeScale = 0;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == true && Controls.activeSelf == false && Options.activeSelf == false)
         {
             pause.SetActive(false);
+            effects.PlayOneShot(close);
             Time.timeScale = 1;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == true && Controls.activeSelf == true)
