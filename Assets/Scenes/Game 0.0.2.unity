@@ -36936,7 +36936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1989838627024793020, guid: 26f045f2a05df904b8f39e55b79b1c36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.11
+      value: 23.1
       objectReference: {fileID: 0}
     - target: {fileID: 1989838627024793020, guid: 26f045f2a05df904b8f39e55b79b1c36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -40039,7 +40039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1569968421}
+  selectedFlowchart: {fileID: 1824822904}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -41425,17 +41425,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 6228920911648028265, guid: a877a2de52799424d835afac28bfe49e, type: 3}
   m_PrefabInstance: {fileID: 2302339959193642026}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1569968421 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1005653291977275250, guid: a877a2de52799424d835afac28bfe49e, type: 3}
-  m_PrefabInstance: {fileID: 2302339959193642026}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569968379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1581467679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48823,6 +48812,8 @@ GameObject:
   - component: {fileID: 1824823788}
   - component: {fileID: 1824823791}
   - component: {fileID: 1824823790}
+  - component: {fileID: 1824823793}
+  - component: {fileID: 1824823792}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -48843,8 +48834,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 595.66406, y: -337.16937}
-  variablesScrollPos: {x: 0, y: 151}
+  scrollPos: {x: 595.66406, y: 40.490173}
+  variablesScrollPos: {x: 0, y: 103}
   variablesExpanded: 1
   blockViewHeight: 641
   zoom: 0.94000006
@@ -48855,9 +48846,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1824823334}
+  - {fileID: 1824823371}
   selectedCommands:
-  - {fileID: 1824823091}
+  - {fileID: 1824823792}
   variables:
   - {fileID: 1824822918}
   - {fileID: 1824822917}
@@ -72197,6 +72188,8 @@ MonoBehaviour:
   eventHandler: {fileID: 1824823492}
   commandList:
   - {fileID: 1824823317}
+  - {fileID: 1824823793}
+  - {fileID: 1824823792}
   - {fileID: 1824823494}
   - {fileID: 1824823053}
   - {fileID: 1824823370}
@@ -88004,6 +87997,48 @@ MonoBehaviour:
   _targetGameObject:
     gameObjectRef: {fileID: 0}
     gameObjectVal: {fileID: 1046626321}
+  activeState:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  targetGameObjectOLD: {fileID: 0}
+--- !u!114 &1824823792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824822903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 1232
+  indentLevel: 1
+  _targetGameObject:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 1046626321}
+  activeState:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  targetGameObjectOLD: {fileID: 0}
+--- !u!114 &1824823793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824822903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 1231
+  indentLevel: 1
+  _targetGameObject:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 1383323717}
   activeState:
     booleanRef: {fileID: 0}
     booleanVal: 0
@@ -107498,7 +107533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6020010172882925035, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6040736071906693918, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: Requerimiento
