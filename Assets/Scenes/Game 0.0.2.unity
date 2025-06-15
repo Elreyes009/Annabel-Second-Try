@@ -45788,7 +45788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 525734085}
+  selectedFlowchart: {fileID: 1824822904}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -46923,6 +46923,19 @@ MonoBehaviour:
   Respawn: {fileID: 1021354146}
   flowchart: {fileID: 1824822904}
   Player: 0
+--- !u!114 &1550470576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550470567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3390b4742fd044ca61d683945933ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowchart: {fileID: 1824822904}
 --- !u!213 &1555948470
 Sprite:
   m_ObjectHideFlags: 0
@@ -56312,7 +56325,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1824823371}
+  - {fileID: 1824822919}
   selectedCommands: []
   variables:
   - {fileID: 1824822918}
@@ -95468,7 +95481,7 @@ MonoBehaviour:
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &1824823792
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -95489,7 +95502,7 @@ MonoBehaviour:
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &1824823793
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -111429,6 +111442,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1361297541412201383, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       insertIndex: 4
       addedObject: {fileID: 1550470575}
+    - targetCorrespondingSourceObject: {fileID: 1361297541412201383, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 1550470576}
   m_SourcePrefab: {fileID: 100100000, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
 --- !u!213 &2030599435
 Sprite:
