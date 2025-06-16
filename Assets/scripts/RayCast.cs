@@ -66,9 +66,11 @@ public class RayCast : MonoBehaviour
                     if (name == "Luz")
                     {
                         Interruptor_luz interruptor = hit.collider.GetComponent<Interruptor_luz>();
+                        Debug.Log("interruptor");
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             interruptor.encendido = true;
+                            Debug.Log("Encendido");
                         }
                     }
                     return;
