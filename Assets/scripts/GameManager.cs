@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == false && Controls.activeSelf == false && Options.activeSelf == false)
         {
             pause.SetActive(true);
             effects.PlayOneShot(open);
@@ -71,13 +71,23 @@ public class GameManager : MonoBehaviour
             effects.PlayOneShot(close);
             Time.timeScale = 1;
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == false && Controls.activeSelf == true && Options.activeSelf == false)
+        {
+            Controls.SetActive(false);
+            pause.SetActive(true);
+            effects.PlayOneShot(close);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == false && Controls.activeSelf == false && Options.activeSelf == true)
+        {
+            Options.SetActive(false);
+            pause.SetActive(true);
+            effects.PlayOneShot(close);
+        }
         else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == true && Controls.activeSelf == true)
         {
             Controls.SetActive(false);
             pause.SetActive(true);
         }
-
-
     }
 
     public void Controles()
