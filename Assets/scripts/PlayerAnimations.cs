@@ -7,6 +7,7 @@ public class PlayerAnimations : MonoBehaviour
     private Animator anim;
     [SerializeField] Animator OldAnim; //El animator que asignaremos al volver
     [SerializeField] Animator NewAnim; //El animator que aplicaremos al hacer el cambio
+    public GameObject panel;
 
     private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
     private Direccion direccionActiva = Direccion.Ninguna;
@@ -24,6 +25,14 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update()
     {
+        if (panel.activeSelf)
+        {
+            anim.SetBool("Derecha", false);
+            anim.SetBool("Izquierda", false);
+            anim.SetBool("Arriba", false);
+            anim.SetBool("Abajo", false);
+        }
+
         if (flowchart.GetBooleanVariable("Hablando") == false)
         {
             Animations();
