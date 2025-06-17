@@ -151,7 +151,7 @@ public class RayCast : MonoBehaviour
             {
                 collision.transform.gameObject.SetActive(false);
                 inventario.Add(collision.transform.GetComponent<Recogible>().itemName);
-                AudioSource audio = collision.transform.GetComponent<AudioSource>();
+                AudioSource audio = GetComponent<AudioSource>();
                 if (audio != null)
                 {
                     audio.Play();
