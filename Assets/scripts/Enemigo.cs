@@ -21,6 +21,7 @@ public class Enemigo : MonoBehaviour
     // --- AUDIO ---
     [Header("Audio")]
     public AudioClip alertaClip; // Asigna el clip desde el inspector
+    public AudioClip muerteClip; // Asigna el clip desde el inspector
     private AudioSource audioSource;
     private bool haReproducidoAlerta = false;
 
@@ -326,6 +327,8 @@ public class Enemigo : MonoBehaviour
         Debug.Log("[Enemigo] MatarJugador()");
         Mov respawnScript = player.GetComponent<Mov>();
         StartCoroutine(respawnScript.RespawnCoroutine());
+
+        audioSource.PlayOneShot(muerteClip);
         if (playerMovement != null)
         {
             playerMovement.enabled = false;

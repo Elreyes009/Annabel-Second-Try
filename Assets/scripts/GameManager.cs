@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
         if (sfxSlider != null)
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         // Inicializa sliders con valores del mixer
         float vol;
         if (audioMixer.GetFloat("Master", out vol)) masterSlider.value = vol;
@@ -62,12 +65,16 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == false && Controls.activeSelf == false && Options.activeSelf == false)
         {
             pause.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             effects.PlayOneShot(open);
             Time.timeScale = 0;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf == true && Controls.activeSelf == false && Options.activeSelf == false)
         {
             pause.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             effects.PlayOneShot(close);
             Time.timeScale = 1;
         }
