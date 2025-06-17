@@ -18,6 +18,12 @@ public class Enemigo : MonoBehaviour
     [SerializeField] public bool spriteOscuro;
     [SerializeField] private Animator anim;
 
+    // --- AUDIO ---
+    [Header("Audio")]
+    public AudioClip alertaClip; // Asigna el clip desde el inspector
+    private AudioSource audioSource;
+    private bool haReproducidoAlerta = false;
+
     private Vector2 ultimaDireccion = Vector2.zero;
     public bool isMoving = false;
     private bool pasoJugadorProcesado = false;
@@ -52,6 +58,12 @@ public class Enemigo : MonoBehaviour
         if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
 
         posicionInicial = transform.position;
+
+        // AUDIO
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     private void Update()
@@ -72,24 +84,24 @@ public class Enemigo : MonoBehaviour
             return;
 
         // Lógica de luz: solo avanza un paso por cada paso del jugador
-            if (inLight)
+        if (inLight)
+        {
+            if (playerMovement != null && playerMovement.IsPlayerMoving() && !isMoving && !playerIsHiding && !pasoJugadorProcesado)
             {
-                if (playerMovement != null && playerMovement.IsPlayerMoving() && !isMoving && !playerIsHiding && !pasoJugadorProcesado)
-                {
-                    StartCoroutine(MoverEnemigo(objetivo));
-                    pasoJugadorProcesado = true;
-                }
-                if (playerMovement != null && !playerMovement.IsPlayerMoving())
-                {
-                    pasoJugadorProcesado = false;
-                }
+                StartCoroutine(MoverEnemigo(objetivo));
+                pasoJugadorProcesado = true;
             }
-            else
+            if (playerMovement != null && !playerMovement.IsPlayerMoving())
             {
-                // Movimiento libre fuera de la luz
-                if (!isMoving)
-                    StartCoroutine(MoverEnemigo(objetivo));
+                pasoJugadorProcesado = false;
             }
+        }
+        else
+        {
+            // Movimiento libre fuera de la luz
+            if (!isMoving)
+                StartCoroutine(MoverEnemigo(objetivo));
+        }
 
         UpdateAnimation();
     }
@@ -276,7 +288,15 @@ public class Enemigo : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             if (!playerIsHiding)
+            {
                 inVision = true;
+                // AUDIO: Solo reproducir si no se ha reproducido ya
+                if (!haReproducidoAlerta && alertaClip != null)
+                {
+                    audioSource.PlayOneShot(alertaClip);
+                    haReproducidoAlerta = true;
+                }
+            }
         }
     }
 
@@ -285,6 +305,8 @@ public class Enemigo : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             inVision = false;
+            // AUDIO: Permitir reproducir de nuevo si vuelve a ver al jugador
+            haReproducidoAlerta = false;
         }
     }
 
@@ -292,7 +314,11 @@ public class Enemigo : MonoBehaviour
     {
         playerIsHiding = isHiding;
         if (isHiding)
+        {
             inVision = false;
+            // AUDIO: Permitir reproducir de nuevo si el jugador se esconde
+            haReproducidoAlerta = false;
+        }
     }
 
     public IEnumerator MatarJugador()
