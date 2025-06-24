@@ -2025,11 +2025,13 @@ MonoBehaviour:
   Options: {fileID: 2608716488417125329}
   Controls: {fileID: 7441724263701276995}
   audioMixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
-  sorrow: {fileID: 0}
-  unknown: {fileID: 0}
+  Music: {fileID: 0}
+  effects: {fileID: 0}
   masterSlider: {fileID: 6893894083991434165}
   bgmSlider: {fileID: 4274234716376878696}
   sfxSlider: {fileID: 7593165710931788822}
+  open: {fileID: 0}
+  close: {fileID: 0}
 --- !u!82 &6228920911648028265
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5198,9 +5200,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1164497132023891776}
-  - {fileID: 8235516190370702815}
   - {fileID: 6814586881295782041}
   - {fileID: 7066939495079802454}
+  - {fileID: 8235516190370702815}
   m_Father: {fileID: 8297932955609401780}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
