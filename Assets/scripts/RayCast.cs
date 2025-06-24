@@ -111,8 +111,6 @@ public class RayCast : MonoBehaviour
 
             if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
             {
-                
-                
                 sprite.escondido = true;
 
                 AudioSource audio = hit.collider.GetComponent<AudioSource>();
@@ -120,8 +118,6 @@ public class RayCast : MonoBehaviour
                 {
                     audio.Play();
                 }
-
-
             }
         }
         else

@@ -8,8 +8,12 @@ public class Interruptor_luz : MonoBehaviour
 
     [SerializeField] Flowchart flowchart;
 
+    Animator anim;
+
     private void Awake()
     {
+        anim = GetComponent<Animator>();
+
         encendido = false;
         luz.SetActive(false);
     }
@@ -19,15 +23,18 @@ public class Interruptor_luz : MonoBehaviour
         if (encendido)
         {
             luz.SetActive(true);
+            anim.SetBool("Encender", true);
         }
         else if (!encendido)
         {
             luz.SetActive(false);
+            anim.SetBool("Encender", false);
         }
 
         if (flowchart != null && flowchart.GetBooleanVariable("Muerte") == true)
         {
             encendido = false;
+            anim.SetBool("Encender", false);
             Debug.Log("apagate");
         }
     }

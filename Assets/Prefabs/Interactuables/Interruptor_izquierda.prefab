@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5562234564203556715}
   - component: {fileID: 5887495426925040626}
   - component: {fileID: 2428092668473398937}
+  - component: {fileID: 70991576813391709}
   m_Layer: 6
   m_Name: Interruptor_izquierda
   m_TagString: Interactuable
@@ -129,7 +130,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.23809524, y: 0.52380955}
+    oldSize: {x: 0.3125, y: 0.6875}
     newSize: {x: 0.23809524, y: 0.52380955}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -164,6 +165,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encendido: 0
   luz: {fileID: 0}
+  flowchart: {fileID: 0}
+--- !u!95 &70991576813391709
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152770614449568686}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8956285148456525608
 GameObject:
   m_ObjectHideFlags: 0

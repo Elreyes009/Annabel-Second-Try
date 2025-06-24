@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 812996384600393805}
   - component: {fileID: 1910311266438606667}
   - component: {fileID: 8629283966488941657}
+  - component: {fileID: 1218871155771337866}
   m_Layer: 6
   m_Name: interruptor_frente
   m_TagString: Interactuable
@@ -128,7 +129,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3809524, y: 0.52380955}
+    oldSize: {x: 0.5, y: 0.6875}
     newSize: {x: 0.5, y: 0.6875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -163,3 +164,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encendido: 0
   luz: {fileID: 0}
+  flowchart: {fileID: 0}
+--- !u!95 &1218871155771337866
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623543564456574487}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
