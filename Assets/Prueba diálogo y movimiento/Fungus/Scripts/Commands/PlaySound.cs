@@ -2,6 +2,7 @@
 // It is released for free under the MIT open source license (https://github.com/snozbot/fungus/blob/master/LICENSE)
 
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Fungus
 {
@@ -20,6 +21,8 @@ namespace Fungus
         [Range(0,1)]
         [Tooltip("Volume level of the sound effect")]
         [SerializeField] protected float volume = 1;
+        [SerializeField] protected AudioMixer mixer;
+        [SerializeField] protected AudioMixerGroup group;
 
         [Tooltip("Wait until the sound has finished playing before continuing execution.")]
         [SerializeField] protected bool waitUntilFinished;
