@@ -73,7 +73,7 @@ public class Mov : MonoBehaviour
     { 
         PlayerAnimations playeranimations = GetComponentInChildren<PlayerAnimations>();
         playeranimations.anim.SetBool("Muerte", true);
-        yield return new WaitForSeconds(3f);       
+        yield return new WaitForSeconds(2f);
         transform.position = puntoDeRespawn;
         playeranimations.anim.SetBool("Muerte", false);
         playerMovement.enabled = true;           

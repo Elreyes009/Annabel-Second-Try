@@ -338,7 +338,7 @@ public class Enemigo : MonoBehaviour
             Debug.LogError("[Enemigo] Movimiento del jugador no encontrado.");
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         enemManager.VolverAposicionInicial();
 
