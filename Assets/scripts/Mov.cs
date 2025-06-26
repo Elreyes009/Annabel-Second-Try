@@ -71,8 +71,11 @@ public class Mov : MonoBehaviour
 
     public IEnumerator RespawnCoroutine()
     { 
-        yield return new WaitForSeconds(1f);       
-        transform.position = puntoDeRespawn;              
+        PlayerAnimations playeranimations = GetComponentInChildren<PlayerAnimations>();
+        playeranimations.anim.SetBool("Muerte", true);
+        yield return new WaitForSeconds(3f);       
+        transform.position = puntoDeRespawn;
+        playeranimations.anim.SetBool("Muerte", false);
         playerMovement.enabled = true;           
     }
 

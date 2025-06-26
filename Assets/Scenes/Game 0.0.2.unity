@@ -39168,7 +39168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 354431326}
+  selectedFlowchart: {fileID: 1824822904}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -48161,6 +48161,10 @@ GameObject:
   - component: {fileID: 1824823828}
   - component: {fileID: 1824823831}
   - component: {fileID: 1824823830}
+  - component: {fileID: 1824823832}
+  - component: {fileID: 1824823835}
+  - component: {fileID: 1824823834}
+  - component: {fileID: 1824823833}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -48181,11 +48185,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 529.0579, y: 5.2742004}
-  variablesScrollPos: {x: 0, y: 142}
+  scrollPos: {x: 486.80258, y: -388.279}
+  variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 641
-  zoom: 1
+  zoom: 0.94000006
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -48193,7 +48197,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1824823355}
+  - {fileID: 1824823186}
   selectedCommands: []
   variables:
   - {fileID: 1824822918}
@@ -60452,6 +60456,7 @@ MonoBehaviour:
   - {fileID: 1824823735}
   - {fileID: 1824823734}
   - {fileID: 1824823733}
+  - {fileID: 1824823833}
   - {fileID: 1824823732}
   - {fileID: 1824823731}
   - {fileID: 1824823730}
@@ -62531,6 +62536,7 @@ MonoBehaviour:
   - {fileID: 1824823749}
   - {fileID: 1824823748}
   - {fileID: 1824823747}
+  - {fileID: 1824823834}
   - {fileID: 1824823746}
   - {fileID: 1824823745}
   - {fileID: 1824823744}
@@ -64834,6 +64840,7 @@ MonoBehaviour:
   - {fileID: 1824823763}
   - {fileID: 1824823762}
   - {fileID: 1824823761}
+  - {fileID: 1824823835}
   - {fileID: 1824823760}
   - {fileID: 1824823759}
   - {fileID: 1824823758}
@@ -66756,6 +66763,7 @@ MonoBehaviour:
   - {fileID: 1824823705}
   - {fileID: 1824823721}
   - {fileID: 1824823046}
+  - {fileID: 1824823832}
   - {fileID: 1824823079}
   - {fileID: 1824823495}
   - {fileID: 1824823078}
@@ -89414,6 +89422,78 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &1824823832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824822903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 1270
+  indentLevel: 1
+  _duration:
+    floatRef: {fileID: 0}
+    floatVal: 1.5
+  durationOLD: 0
+--- !u!114 &1824823833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824822903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 1273
+  indentLevel: 1
+  _duration:
+    floatRef: {fileID: 0}
+    floatVal: 1.5
+  durationOLD: 0
+--- !u!114 &1824823834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824822903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 1272
+  indentLevel: 1
+  _duration:
+    floatRef: {fileID: 0}
+    floatVal: 1.5
+  durationOLD: 0
+--- !u!114 &1824823835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824822903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 1271
+  indentLevel: 1
+  _duration:
+    floatRef: {fileID: 0}
+    floatVal: 1.5
+  durationOLD: 0
 --- !u!1 &1844352223
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,9 +4,8 @@ using UnityEngine.Splines;
 
 public class PlayerAnimations : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
     [SerializeField] Animator OldAnim; //El animator que asignaremos al volver
-    [SerializeField] Animator NewAnim; //El animator que aplicaremos al hacer el cambio
     public GameObject panel;
 
     private enum Direccion { Ninguna, Derecha, Izquierda, Arriba, Abajo }
