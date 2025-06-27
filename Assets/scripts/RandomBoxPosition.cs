@@ -1,121 +1,134 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class RandomBoxPosition : MonoBehaviour
 {
     public Collider2D zonaMovimiento; // Asigna en el Inspector
     [SerializeField] private LayerMask obstacleLayer; // Asigna en el Inspector
-    [SerializeField] private float radioCercaniaEnemigo = 0.6f; // Radio para detectar al enemigo cerca
-    private List<Collider2D> zonasInLight = new List<Collider2D>();
+    [SerializeField] private float cooldownTeletransporte = 0.2f; // Cooldown entre teleports
+    [SerializeField] private float maxDistanciaTeletransporte = 4f; // Distancia máxima para el teletransporte
+    [SerializeField] private float tiempoMaxEsperaEnemigo = 7f; // Tiempo máximo de espera para el enemigo
+    [Header("Grid")]
+    [SerializeField] private Vector2 gridSize = new Vector2(1f, 1f);
+    [SerializeField] private Vector2 gridOffset = Vector2.zero; // Offset manual para centrar la tile
 
-    private bool enemigoEnObjetivo = false;
-    private bool playerDioPaso = false;
-    private bool playerEstabaMoviendo = false; // NUEVO: para detectar el cambio de estado
-    private Mov playerMovement;
-    private Vector2 gridSize = new Vector2(1f, 1f);
+    private bool enemigoDentro = false;
+    private float tiempoUltimoTeletransporte = 0f;
+    private float tiempoDesdeUltimoTP = 0f;
+    private Vector2 ultimaPosicionTP;
 
     private void Start()
     {
-        playerMovement = FindObjectOfType<Mov>();
+        // Alinear la caja al grid al iniciar
+        Vector2 alineada = AlignToGrid(transform.position);
+        transform.position = alineada;
+        ultimaPosicionTP = alineada;
+        tiempoDesdeUltimoTP = Time.time;
     }
 
-    public void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Detectar si hay un enemigo cerca
-        enemigoEnObjetivo = HayEnemigoCerca();
-
-        // Detectar un "paso" real del jugador (transición de quieto a moviendo)
-        bool playerMoviendoAhora = playerMovement != null && playerMovement.IsPlayerMoving();
-        if (playerMoviendoAhora && !playerEstabaMoviendo)
+        if (collision.CompareTag("Enemigo"))
         {
-            NotificarPasoJugador();
-        }
-        playerEstabaMoviendo = playerMoviendoAhora;
-
-        zonasInLight.Clear();
-
-        Lights[] luces = FindObjectsOfType<Lights>();
-        foreach (Lights luz in luces)
-        {
-            Collider2D col = luz.GetComponent<Collider2D>();
-            if (col != null)
-            {
-                zonasInLight.Add(col);
-            }
+            enemigoDentro = true;
         }
     }
 
-    private bool HayEnemigoCerca()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radioCercaniaEnemigo);
-        foreach (var col in colliders)
+        if (collision.CompareTag("Enemigo"))
         {
-            if (col.CompareTag("Enemigo"))
-                return true;
-        }
-        return false;
-    }
-
-    public void NotificarPasoJugador()
-    {
-        playerDioPaso = true;
-        IntentarTeletransportar();
-    }
-
-    private void IntentarTeletransportar()
-    {
-        if (enemigoEnObjetivo && playerDioPaso)
-        {
-            Vector2 nuevaPosicion = ObtenerPosicionValida();
-            transform.position = nuevaPosicion;
-            enemigoEnObjetivo = false;
-            playerDioPaso = false;
+            enemigoDentro = false;
         }
     }
 
-    private Vector2 ObtenerPosicionValida()
+    private void Update()
+    {
+        // Teletransporte manual (jugador + enemigo dentro)
+        if (enemigoDentro &&
+            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
+             Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||
+             Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) ||
+             Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) &&
+            (Time.time - tiempoUltimoTeletransporte > cooldownTeletransporte))
+        {
+            Teletransportar();
+            tiempoUltimoTeletransporte = Time.time;
+        }
+
+        // Teletransporte automático si el enemigo no llega en 7 segundos
+        if ((Vector2)transform.position == ultimaPosicionTP && Time.time - tiempoDesdeUltimoTP > tiempoMaxEsperaEnemigo)
+        {
+            Teletransportar();
+        }
+    }
+
+    private void Teletransportar()
+    {
+        Vector2 nuevaPosicion = ObtenerPosicionValidaCercana();
+        // Si no se encontró una posición válida, mueve al centro de la zona
+        if (nuevaPosicion == (Vector2)transform.position)
+        {
+            Debug.LogWarning("No se encontró una posición válida, moviendo al centro de la zona.");
+            nuevaPosicion = zonaMovimiento.bounds.center;
+        }
+        // Alinear siempre al grid
+        nuevaPosicion = AlignToGrid(nuevaPosicion);
+        transform.position = nuevaPosicion;
+        ultimaPosicionTP = nuevaPosicion;
+        tiempoDesdeUltimoTP = Time.time;
+    }
+
+    private Vector2 ObtenerPosicionValidaCercana()
     {
         Bounds boundsMovimiento = zonaMovimiento.bounds;
-
-        Vector2 posicionAleatoria;
+        Vector2 posicionActual = transform.position;
+        Vector2 posicionAleatoria = posicionActual; // Por defecto, posición actual
         int intentos = 0;
+        bool encontrada = false;
         do
         {
-            float x = Random.Range(boundsMovimiento.min.x, boundsMovimiento.max.x);
-            float y = Random.Range(boundsMovimiento.min.y, boundsMovimiento.max.y);
+            float angulo = Random.Range(0f, 2f * Mathf.PI);
+            float distancia = Random.Range(gridSize.x, maxDistanciaTeletransporte);
+            float x = posicionActual.x + Mathf.Cos(angulo) * distancia;
+            float y = posicionActual.y + Mathf.Sin(angulo) * distancia;
 
-            // Alinear al grid del enemigo
-            x = Mathf.Round(x / gridSize.x) * gridSize.x;
-            y = Mathf.Round(y / gridSize.y) * gridSize.y;
-            posicionAleatoria = new Vector2(x, y);
+            // Limitar dentro de la zona de movimiento
+            x = Mathf.Clamp(x, boundsMovimiento.min.x, boundsMovimiento.max.x);
+            y = Mathf.Clamp(y, boundsMovimiento.min.y, boundsMovimiento.max.y);
 
-            intentos++;
-            if (intentos > 100)
+            // Alinear al grid con offset
+            Vector2 alineada = AlignToGrid(new Vector2(x, y));
+            posicionAleatoria = alineada;
+
+            if (!HayObstaculo(posicionAleatoria))
             {
+                encontrada = true;
                 break;
             }
+
+            intentos++;
         }
-        while (EstaEnZonaInLight(posicionAleatoria) || HayObstaculo(posicionAleatoria));
+        while (intentos < 200);
+
+        if (!encontrada)
+        {
+            Debug.LogWarning("No se encontró una posición válida para el punto de patrulla. Considera revisar la zona de movimiento.");
+        }
 
         return posicionAleatoria;
     }
 
-    private bool EstaEnZonaInLight(Vector2 posicion)
+    private Vector2 AlignToGrid(Vector2 pos)
     {
-        foreach (Collider2D zona in zonasInLight)
-        {
-            if (zona.OverlapPoint(posicion))
-            {
-                return true;
-            }
-        }
-        return false;
+        return new Vector2(
+            Mathf.Round((pos.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
+            Mathf.Round((pos.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
+        );
     }
 
     private bool HayObstaculo(Vector2 posicion)
     {
-        // Ajusta el radio según el tamaño de la caja
         float radio = 0.3f;
         return Physics2D.OverlapCircle(posicion, radio, obstacleLayer) != null;
     }

@@ -44,7 +44,7 @@ public class GestorDeEnemigos : MonoBehaviour
     {
         foreach (Enemigo enemigo in enemigos)
         {
-            enemigo.SetPlayerHiding(estaEscondido); // Llama al método SetPlayerHiding para cada enemigo
+            enemigo.SetPlayerHiding(estaEscondido);
         }
     }
 

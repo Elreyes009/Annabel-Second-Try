@@ -17,6 +17,8 @@ public class Enemigo : MonoBehaviour
     [SerializeField] private Flowchart flowchart;
     [SerializeField] public bool spriteOscuro;
     [SerializeField] private Animator anim;
+    [Header("Collider del objetivo de patrulla")]
+    public Collider2D patrolCollider; // Asigna el collider del objetivo de patrulla en el inspector
 
     // --- AUDIO ---
     [Header("Audio")]
@@ -41,6 +43,12 @@ public class Enemigo : MonoBehaviour
     public Vector3 posicionInicial;
 
     [SerializeField] BoxCollider2D colliderMovimiento;
+
+    private Vector2 ultimaPosicionObjetivo;
+
+    private float tiempoUltimoPasoLuz = 0f;
+
+    private Coroutine movimientoActual;
 
     private void Awake()
     {
@@ -80,28 +88,56 @@ public class Enemigo : MonoBehaviour
             objetivo = patrolEmty != null ? patrolEmty.position : transform.position;
         }
 
-        // Evitar recalcular si ya está en el objetivo
-        if (Vector2.Distance(AlignToGrid(transform.position), AlignToGrid(objetivo)) < 0.01f)
-            return;
+        // Detectar si el objetivo ha cambiado (por ejemplo, el punto de patrulla se teletransportó)
+        bool objetivoCambio = (ultimaPosicionObjetivo != AlignToGrid(objetivo));
+        ultimaPosicionObjetivo = AlignToGrid(objetivo);
 
-        // Lógica de luz: solo avanza un paso por cada paso del jugador
-        if (inLight)
+        //if (Vector2.Distance(AlignToGrid(transform.position), AlignToGrid(objetivo)) < 0.01f && !objetivoCambio)
+        //    return;
+
+        // --- NUEVA LÓGICA ---
+        bool debeMover = false;
+
+        if (playerIsHiding)
         {
-            if (playerMovement != null && playerMovement.IsPlayerMoving() && !isMoving && !playerIsHiding && !pasoJugadorProcesado)
+            if (inLight)
             {
-                StartCoroutine(MoverEnemigo(objetivo));
-                pasoJugadorProcesado = true;
+                if ((Time.time - tiempoUltimoPasoLuz) >= 1f)
+                {
+                    debeMover = true;
+                    tiempoUltimoPasoLuz = Time.time;
+                }
             }
-            if (playerMovement != null && !playerMovement.IsPlayerMoving())
+            else
             {
-                pasoJugadorProcesado = false;
+                debeMover = true;
             }
         }
         else
         {
-            // Movimiento libre fuera de la luz
-            if (!isMoving)
-                StartCoroutine(MoverEnemigo(objetivo));
+            if (inLight)
+            {
+                if (playerMovement != null && playerMovement.IsPlayerMoving() && !pasoJugadorProcesado)
+                {
+                    debeMover = true;
+                    pasoJugadorProcesado = true;
+                }
+                if (playerMovement != null && !playerMovement.IsPlayerMoving())
+                {
+                    pasoJugadorProcesado = false;
+                }
+            }
+            else
+            {
+                debeMover = true;
+            }
+        }
+
+        if (debeMover && (!isMoving || objetivoCambio))
+        {
+            if (movimientoActual != null)
+                StopCoroutine(movimientoActual);
+            movimientoActual = StartCoroutine(MoverEnemigo(objetivo));
         }
 
         UpdateAnimation();
@@ -118,8 +154,21 @@ public class Enemigo : MonoBehaviour
             Vector2 goal = AlignToGrid(targetPosition);
 
             List<Vector2> path = FindPathAStar(start, goal);
+
+            // --- NUEVO: Si no hay camino, pero los colliders se tocan, considera alcanzado ---
+            if ((path == null || path.Count == 0) && patrolCollider != null && colliderMovimiento != null)
+            {
+                if (colliderMovimiento.IsTouching(patrolCollider))
+                {
+                    // Considera alcanzado: no hace falta moverse ni mostrar warning
+                    isMoving = false;
+                    yield break;
+                }
+            }
+
             if (path == null || path.Count == 0)
             {
+                Debug.LogWarning("[Enemigo] No hay camino al objetivo. Esperando a que sea accesible.");
                 isMoving = false;
                 yield break;
             }
@@ -306,7 +355,6 @@ public class Enemigo : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             inVision = false;
-            // AUDIO: Permitir reproducir de nuevo si vuelve a ver al jugador
             haReproducidoAlerta = false;
         }
     }
@@ -317,7 +365,6 @@ public class Enemigo : MonoBehaviour
         if (isHiding)
         {
             inVision = false;
-            // AUDIO: Permitir reproducir de nuevo si el jugador se esconde
             haReproducidoAlerta = false;
         }
     }
