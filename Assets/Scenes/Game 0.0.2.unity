@@ -49484,7 +49484,6 @@ GameObject:
   - component: {fileID: 1824823199}
   - component: {fileID: 1824823197}
   - component: {fileID: 1824823196}
-  - component: {fileID: 1824823195}
   - component: {fileID: 1824823194}
   - component: {fileID: 1824823193}
   - component: {fileID: 1824823192}
@@ -50049,9 +50048,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1824823242}
+  - {fileID: 1824823207}
   selectedCommands:
-  - {fileID: 1824823030}
+  - {fileID: 1824823125}
   variables:
   - {fileID: 1824822918}
   - {fileID: 1824822917}
@@ -58430,7 +58429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 680
   indentLevel: 1
-  storyText: "Escuchame... necesito que  reacciones. No s\xE9 que sea eso, pero se
+  storyText: "Escuchame... necesito que reacciones. No s\xE9 que sea eso, pero se
     que es peligroso."
   description: 
   character: {fileID: 527195142}
@@ -60673,7 +60672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 553
   indentLevel: 1
-  storyText: "No est\xE1 haciendo nada, tratemos de alejarnos muy lento \xBFOk?"
+  storyText: "La luz... parece que le est\xE1 haciendo algo."
   description: 
   character: {fileID: 527195142}
   portrait: {fileID: 0}
@@ -60808,7 +60807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 546
   indentLevel: 1
-  storyText: Tratemos de llegar a la otra puerta.
+  storyText: Tratemos de llegar a la puerta del patio.
   description: 
   character: {fileID: 527195142}
   portrait: {fileID: 0}
@@ -60864,33 +60863,6 @@ MonoBehaviour:
   itemId: 544
   indentLevel: 1
   storyText: S-si.
-  description: 
-  character: {fileID: 1661544839}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1824823195
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824822903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 543
-  indentLevel: 1
-  storyText: ...
   description: 
   character: {fileID: 1661544839}
   portrait: {fileID: 0}
@@ -61015,7 +60987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 533
   indentLevel: 1
-  storyText: "Esto no est\xE1 pasando."
+  storyText: No de nuevo...
   description: 
   character: {fileID: 1661544839}
   portrait: {fileID: 0}
@@ -61069,7 +61041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 530
   indentLevel: 1
-  storyText: Esto...
+  storyText: No...
   description: 
   character: {fileID: 1661544839}
   portrait: {fileID: 0}
@@ -62730,7 +62702,6 @@ MonoBehaviour:
   - {fileID: 1824823196}
   - {fileID: 1824823604}
   - {fileID: 1824823603}
-  - {fileID: 1824823195}
   - {fileID: 1824823194}
   - {fileID: 1824823602}
   - {fileID: 1824823601}
@@ -91688,7 +91659,7 @@ MonoBehaviour:
   durationOLD: 0
 --- !u!114 &1824823910
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91716,7 +91687,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1824823911
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91746,7 +91717,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1824823912
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91776,7 +91747,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1824823913
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91803,7 +91774,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1824823914
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91833,7 +91804,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1824823915
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91863,7 +91834,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1824823916
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91890,7 +91861,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 148125101}
 --- !u!114 &1824823917
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91920,7 +91891,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1824823918
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91947,7 +91918,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1824823919
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -91977,7 +91948,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1824823920
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -92005,7 +91976,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1824823921
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
