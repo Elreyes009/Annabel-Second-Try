@@ -16,13 +16,9 @@ public class QuestPanelHandler : MonoBehaviour
 
     TMP_Text texto;
 
-    bool activate;
-
-
     private void Awake()
     {
         temporizador = 10f;
-        activate = false;
 
         anim = GetComponent<Animator>();
         texto = GetComponentInChildren<TMP_Text>();
