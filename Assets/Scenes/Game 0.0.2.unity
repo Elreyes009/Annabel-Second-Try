@@ -50016,6 +50016,7 @@ GameObject:
   - component: {fileID: 1824823919}
   - component: {fileID: 1824823921}
   - component: {fileID: 1824823920}
+  - component: {fileID: 1824823922}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -50048,9 +50049,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1824823207}
+  - {fileID: 1824823172}
   selectedCommands:
-  - {fileID: 1824823125}
+  - {fileID: 1824823116}
   variables:
   - {fileID: 1824822918}
   - {fileID: 1824822917}
@@ -58045,7 +58046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 693
   indentLevel: 1
-  storyText: Bien, de acuerdo.
+  storyText: Bien...de acuerdo.
   description: 
   character: {fileID: 527195142}
   portrait: {fileID: 0}
@@ -58072,8 +58073,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 692
   indentLevel: 1
-  storyText: "La luz parece hacerle algo, intentemos salir r\xE1pido y mantenernos
-    en los espacios iluminados."
+  storyText: "La luz parece hacerle algo, no se puede mover bien en ella, intentemos
+    salir r\xE1pido y mantenernos en los espacios iluminados."
   description: 
   character: {fileID: 1661544839}
   portrait: {fileID: 0}
@@ -58176,7 +58177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 689
   indentLevel: 1
-  storyText: (Si tan solo no tuviese que encender esa luz...)
+  storyText: (Si tan solo no tuviese que encender esa luz...).
   description: 
   character: {fileID: 1661544839}
   portrait: {fileID: 0}
@@ -60019,7 +60020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 575
   indentLevel: 1
-  storyText: "Intentemos hacerlo r\xE1pido \xBFOk?"
+  storyText: "Hag\xE1moslo r\xE1pido, tengo un mal presentimiento de este lugar."
   description: 
   character: {fileID: 1661544839}
   portrait: {fileID: 0}
@@ -60073,8 +60074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 573
   indentLevel: 1
-  storyText: "Intentemos llegar a la puerta del fondo, no podemos volver donde est\xE9
-    la profesora."
+  storyText: Hay que llegar hasta el otro lado del pasillo.
   description: 
   character: {fileID: 1661544839}
   portrait: {fileID: 0}
@@ -60128,7 +60128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 570
   indentLevel: 1
-  storyText: "Creo que... Creo que ser\xEDa mejor volver."
+  storyText: "Creo que... creo que ser\xEDa mejor volver."
   description: 
   character: {fileID: 527195142}
   portrait: {fileID: 0}
@@ -60182,7 +60182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 561
   indentLevel: 1
-  storyText: "Ay no \xBFQu\xE9 les pas\xF3 a las luces?"
+  storyText: "\xBFQu\xE9 les pas\xF3 a las luces? \xBFPor qu\xE9 est\xE1 todo apagado?"
   description: 
   character: {fileID: 527195142}
   portrait: {fileID: 0}
@@ -60638,6 +60638,7 @@ MonoBehaviour:
   - {fileID: 1824823647}
   - {fileID: 1824823646}
   - {fileID: 1824823177}
+  - {fileID: 1824823922}
   - {fileID: 1824823645}
   - {fileID: 1824823644}
   - {fileID: 1824823176}
@@ -91991,6 +91992,33 @@ MonoBehaviour:
   storyText: ...
   description: 
   character: {fileID: 527195142}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1824823922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824822903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 1362
+  indentLevel: 1
+  storyText: "No podemos regresar por donde est\xE1 la profesora."
+  description: 
+  character: {fileID: 1661544839}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
