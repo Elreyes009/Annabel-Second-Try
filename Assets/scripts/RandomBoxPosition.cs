@@ -31,6 +31,9 @@ public class RandomBoxPosition : MonoBehaviour
         if (collision.CompareTag("Enemigo"))
         {
             enemigoDentro = true;
+            // Teletransporte inmediato si el enemigo llega
+            Teletransportar();
+            tiempoUltimoTeletransporte = Time.time;
         }
     }
 
@@ -44,23 +47,23 @@ public class RandomBoxPosition : MonoBehaviour
 
     private void Update()
     {
-        // Teletransporte manual (jugador + enemigo dentro)
+        // Teletransporte si el jugador PRESIONA una tecla de movimiento y el enemigo está dentro
         if (enemigoDentro &&
-            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
-             Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||
-             Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) ||
-             Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) &&
+            (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
+             Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
+             Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
+             Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)) &&
             (Time.time - tiempoUltimoTeletransporte > cooldownTeletransporte))
         {
             Teletransportar();
             tiempoUltimoTeletransporte = Time.time;
         }
+    }
 
-        // Teletransporte automático si el enemigo no llega en 7 segundos
-        if ((Vector2)transform.position == ultimaPosicionTP && Time.time - tiempoDesdeUltimoTP > tiempoMaxEsperaEnemigo)
-        {
-            Teletransportar();
-        }
+    // Método público para que el enemigo notifique que no puede llegar
+    public void NotificarInaccesible()
+    {
+        Teletransportar();
     }
 
     private void Teletransportar()
