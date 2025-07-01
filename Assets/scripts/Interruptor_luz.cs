@@ -24,6 +24,7 @@ public class Interruptor_luz : MonoBehaviour
         {
             luz.SetActive(true);
             anim.SetBool("Encender", true);
+            gameObject.gameObject.tag = "Untagged";
         }
         else if (!encendido)
         {
@@ -35,7 +36,6 @@ public class Interruptor_luz : MonoBehaviour
         {
             encendido = false;
             anim.SetBool("Encender", false);
-            Debug.Log("apagate");
         }
     }
 }

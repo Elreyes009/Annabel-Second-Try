@@ -118,6 +118,12 @@ public class RayCast : MonoBehaviour
                 }
             }
 
+            if (hit.collider.CompareTag("Escondite"))
+            {
+                anim.SetBool("SeDespliega", true);
+                anim.SetBool("SeRepliega", false);
+            }
+
             if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
             {
                 sprite.escondido = true;
