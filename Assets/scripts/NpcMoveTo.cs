@@ -304,20 +304,4 @@ public class NpcMoveTo : MonoBehaviour
             this.h = h;
         }
     }
-
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.yellow;
-    //    for (float x = -10; x < 10; x += gridSize.x)
-    //    {
-    //        for (float y = -10; y < 10; y += gridSize.y)
-    //        {
-    //            Vector2 pos = AlignToGrid(new Vector2(x, y));
-    //            if (IsObstacle(pos))
-    //            {
-    //                Gizmos.DrawCube(pos, gridSize * 0.9f);
-    //            }
-    //        }
-    //    }
-    //}
 }
