@@ -26932,6 +26932,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6013181536353219487}
     - target: {fileID: 684252217255784471, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+      propertyPath: Estandar
+      value: 
+      objectReference: {fileID: 148125095}
+    - target: {fileID: 684252217255784471, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: flowchart
       value: 
       objectReference: {fileID: 1824822904}
@@ -40616,7 +40620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1299079215255999320}
+  selectedFlowchart: {fileID: 1824822904}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -53642,9 +53646,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1824823371}
+  - {fileID: 1824822919}
   selectedCommands:
-  - {fileID: 1824823109}
+  - {fileID: 1824823879}
   variables:
   - {fileID: 1824822918}
   - {fileID: 1824822917}
@@ -93200,7 +93204,7 @@ MonoBehaviour:
   indentLevel: 1
   _targetGameObject:
     gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 1714540532}
+    gameObjectVal: {fileID: 747642989}
   activeState:
     booleanRef: {fileID: 0}
     booleanVal: 0
@@ -93221,7 +93225,7 @@ MonoBehaviour:
   indentLevel: 1
   _targetGameObject:
     gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 2089800943}
+    gameObjectVal: {fileID: 756620974}
   activeState:
     booleanRef: {fileID: 0}
     booleanVal: 0
