@@ -13,60 +13,44 @@ public class Enemigo : MonoBehaviour
     public Vector2 gridOffset = Vector2.zero;
 
     [Header("Referencias")]
-    public Transform patrolEmty;
+    public GameObject moveTo; // Punto actual de patrulla
     [SerializeField] private Flowchart flowchart;
-    [SerializeField] public bool spriteOscuro;
     [SerializeField] private Animator anim;
-    [Header("Collider del objetivo de patrulla")]
     public Collider2D patrolCollider;
+    [SerializeField] private BoxCollider2D colliderMovimiento;
+    private GameObject player;
 
     [Header("Audio")]
     public AudioClip alertaClip;
     public AudioClip muerteClip;
     private AudioSource audioSource;
-    private bool haReproducidoAlerta = false;
 
     private Vector2 ultimaDireccion = Vector2.zero;
-    public bool isMoving = false;
-    private bool pasoJugadorProcesado = false;
-    private bool playerIsHiding = false;
-
-    private Transform player;
-    private Mov playerMovement;
-
-    public GestorDeEnemigos enemManager;
-
-    public bool inLight;
-    public bool inVision;
-
-    public Vector3 posicionInicial;
-
-    [SerializeField] BoxCollider2D colliderMovimiento;
+    private Coroutine movimientoActual;
 
     private Vector2 ultimaPosicionObjetivo;
     private Vector2 ultimoIntentoObjetivo = Vector2.positiveInfinity;
     private Vector2 ultimaRawPosicionObjetivo = Vector2.positiveInfinity;
 
-    private float tiempoUltimoPasoLuz = 0f;
-    private Coroutine movimientoActual;
-
     private float tiempoUltimoIntento = 0f;
     private float intervaloReintento = 1.0f;
+    private float tiempoUltimoPasoLuz = 0f;
+
+    public bool isMoving = false;
+    public bool inLight;
+    public bool inVision;
+    private bool pasoJugadorProcesado = false;
+    private bool playerIsHiding = false;
+    private bool haReproducidoAlerta = false;
+
+    public Vector3 posicionInicial;
+    public GestorDeEnemigos enemManager;
 
     private void Awake()
     {
-        Vector2 aligned = AlignToGrid(transform.position);
-        transform.position = aligned;
-
+        transform.position = AlignToGrid(transform.position);
         anim = GetComponent<Animator>();
-        player = FindAnyObjectByType<Mov>()?.transform;
-        if (player != null)
-            playerMovement = player.GetComponent<Mov>();
-
-        int oscuroLayer = anim.GetLayerIndex("Oscuro");
-        int normalLayer = anim.GetLayerIndex("Default");
-        if (oscuroLayer >= 0) anim.SetLayerWeight(oscuroLayer, spriteOscuro ? 1f : 0f);
-        if (normalLayer >= 0) anim.SetLayerWeight(normalLayer, spriteOscuro ? 0f : 1f);
+        player = GameObject.FindWithTag("Player");
 
         posicionInicial = transform.position;
 
@@ -78,18 +62,20 @@ public class Enemigo : MonoBehaviour
 
     private void Update()
     {
+        UpdateAnimation();
         Vector2 objetivo;
         Collider2D objetivoCollider = null;
 
-        if (inVision && player != null)
+        // Si ve al jugador y las condiciones lo permiten, lo sigue
+        if (inVision && player != null && !playerIsHiding)
         {
-            objetivo = player.position;
+            objetivo = player.transform.position;
             objetivoCollider = player.GetComponent<Collider2D>();
         }
-        else if (patrolEmty != null)
+        else if (!inVision && moveTo != null)
         {
-            objetivo = patrolEmty.position;
-            objetivoCollider = patrolCollider;
+            objetivo = moveTo.transform.position;
+            objetivoCollider = moveTo.GetComponent<Collider2D>();
         }
         else
         {
@@ -97,66 +83,50 @@ public class Enemigo : MonoBehaviour
         }
 
         Vector2 rawObjetivo = objetivo;
-
         if (objetivoCollider != null)
-        {
             objetivo = GetNearestGridPointTouchingCollider(objetivoCollider);
-        }
 
-        bool objetivoCambio = (ultimaPosicionObjetivo != AlignToGrid(objetivo)) || (rawObjetivo != ultimaRawPosicionObjetivo);
+        bool objetivoCambio = !SonIguales(ultimaPosicionObjetivo, AlignToGrid(objetivo)) || !SonIguales(rawObjetivo, ultimaRawPosicionObjetivo);
         ultimaPosicionObjetivo = AlignToGrid(objetivo);
         ultimaRawPosicionObjetivo = rawObjetivo;
 
-        bool debeMover = false;
+        // Siempre debe moverse si tiene objetivo
+        bool debeMover = true;
 
-        if (playerIsHiding)
-        {
-            debeMover = !inLight || (Time.time - tiempoUltimoPasoLuz >= 1f);
-            if (inLight) tiempoUltimoPasoLuz = Time.time;
-        }
-        else
-        {
-            if (inLight)
-            {
-                if (playerMovement != null && playerMovement.IsPlayerMoving() && !pasoJugadorProcesado)
-                {
-                    debeMover = true;
-                    pasoJugadorProcesado = true;
-                }
-                if (playerMovement != null && !playerMovement.IsPlayerMoving())
-                {
-                    pasoJugadorProcesado = false;
-                }
-            }
-            else
-            {
-                debeMover = true;
-            }
-        }
+        // Ajusta la velocidad según la luz
+        float velocidadActual = inLight ? moveSpeed * 0.5f : moveSpeed;
 
         bool forzarReintento = !isMoving && (Time.time - tiempoUltimoIntento > intervaloReintento);
         Vector2 posObjetivo = AlignToGrid(objetivo);
 
         if ((debeMover && (!isMoving || objetivoCambio)) || forzarReintento)
         {
-            if (posObjetivo != ultimoIntentoObjetivo || forzarReintento)
+            if (!SonIguales(posObjetivo, ultimoIntentoObjetivo) || forzarReintento)
             {
                 if (movimientoActual != null)
                     StopCoroutine(movimientoActual);
-                movimientoActual = StartCoroutine(MoverEnemigo(objetivoCollider));
+                movimientoActual = StartCoroutine(MoverEnemigo(objetivo, velocidadActual));
                 ultimoIntentoObjetivo = posObjetivo;
                 tiempoUltimoIntento = Time.time;
             }
         }
 
-        UpdateAnimation();
+        if (moveTo != null && moveTo.activeSelf && Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
+        {
+            Next nextComponent = moveTo.GetComponent<Next>();
+            if (nextComponent != null)
+            {
+                if (nextComponent.nextObject != null)
+                    nextComponent.nextObject.SetActive(true);
+                moveTo.SetActive(false);
+            }
+        }
     }
 
     private Vector2 GetNearestGridPointTouchingCollider(Collider2D objetivoCollider)
     {
         Vector2 mejorPunto = AlignToGrid(objetivoCollider.bounds.center);
         float mejorDist = float.MaxValue;
-
         Bounds b = objetivoCollider.bounds;
         for (float x = b.min.x; x <= b.max.x; x += gridSize.x)
         {
@@ -177,109 +147,29 @@ public class Enemigo : MonoBehaviour
         return mejorPunto;
     }
 
-    IEnumerator MoverEnemigo(Collider2D objetivoCollider)
+    IEnumerator MoverEnemigo(Vector2 objetivo, float velocidad)
     {
-        if (!flowchart.GetBooleanVariable("Puede_moverse") || isMoving) yield break;
-
         isMoving = true;
         Vector2 start = AlignToGrid(transform.position);
-        Vector2 goal = GetNearestGridPointTouchingCollider(objetivoCollider);
+        Vector2 goal = AlignToGrid(objetivo);
 
         List<Vector2> path = FindPathAStar(start, goal);
-
-        // Si ya está tocando el collider, no hace falta moverse
-        if (colliderMovimiento != null && objetivoCollider != null && colliderMovimiento.IsTouching(objetivoCollider))
-        {
-            isMoving = false;
-            yield break;
-        }
-
-        // Si no hay path directo, buscar el punto más cercano posible al objetivo
         if (path == null || path.Count == 0)
         {
-            // Buscar el punto más cercano al objetivo al que sí se puede llegar
-            Vector2 mejorPunto = start;
-            float mejorDist = float.MaxValue;
-            for (float x = -5; x <= 5; x += gridSize.x)
-            {
-                for (float y = -5; y <= 5; y += gridSize.y)
-                {
-                    Vector2 posible = AlignToGrid(goal + new Vector2(x, y));
-                    if (!IsObstacle(posible))
-                    {
-                        float dist = Vector2.Distance(posible, goal);
-                        if (dist < mejorDist)
-                        {
-                            mejorDist = dist;
-                            mejorPunto = posible;
-                        }
-                    }
-                }
-            }
-
-            // Si el mejor punto es diferente al start, intenta moverse hasta ahí
-            if (mejorPunto != start)
-            {
-                List<Vector2> pathCercano = FindPathAStar(start, mejorPunto);
-                if (pathCercano != null && pathCercano.Count > 0)
-                {
-                    foreach (var step in pathCercano)
-                    {
-                        ultimaDireccion = (step - (Vector2)transform.position).normalized;
-                        UpdateAnimation();
-                        yield return Move(step);
-                    }
-                }
-                // Reintentar moverse al objetivo real después de acercarse
-                isMoving = false;
-                movimientoActual = StartCoroutine(MoverEnemigo(objetivoCollider));
-                yield break;
-            }
-
-            // Notificar que no puede llegar más cerca
-            Debug.LogWarning("[Enemigo] Objetivo inaccesible, llegué lo más cerca posible.");
             isMoving = false;
-            if (objetivoCollider != null)
-            {
-                var box = objetivoCollider.GetComponent<RandomBoxPosition>();
-                if (box != null)
-                    box.NotificarInaccesible();
-            }
             yield break;
         }
 
-        // Movimiento normal por el path
-        if (inLight)
+        foreach (var step in path)
         {
-            Vector2 step = path[0];
-            if (!IsObstacle(step))
+            if (IsObstacle(step))
             {
-                ultimaDireccion = (step - (Vector2)transform.position).normalized;
-                UpdateAnimation();
-                yield return Move(step);
+                isMoving = false;
+                yield break;
             }
-        }
-        else
-        {
-            foreach (var step in path)
-            {
-                if (IsObstacle(step))
-                {
-                    isMoving = false;
-                    // Reintentar siempre que se bloquee
-                    movimientoActual = StartCoroutine(MoverEnemigo(objetivoCollider));
-                    yield break;
-                }
-                ultimaDireccion = (step - (Vector2)transform.position).normalized;
-                UpdateAnimation();
-                yield return Move(step);
-
-                // Si después de moverse ya está tocando el collider, termina
-                if (colliderMovimiento != null && objetivoCollider != null && colliderMovimiento.IsTouching(objetivoCollider))
-                {
-                    break;
-                }
-            }
+            ultimaDireccion = (step - (Vector2)transform.position).normalized;
+            UpdateAnimation();
+            yield return Move(step, velocidad);
         }
 
         ultimaDireccion = Vector2.zero;
@@ -287,10 +177,19 @@ public class Enemigo : MonoBehaviour
         isMoving = false;
     }
 
+    private IEnumerator Move(Vector2 targetPosition, float velocidad)
+    {
+        while (((Vector2)transform.position - targetPosition).sqrMagnitude > 0.01f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, velocidad * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = targetPosition;
+    }
+
     private void UpdateAnimation()
     {
         if (anim == null) return;
-
         anim.SetBool("Derecha", isMoving && ultimaDireccion.x > 0);
         anim.SetBool("Izquierda", isMoving && ultimaDireccion.x < 0);
         anim.SetBool("Arriba", isMoving && ultimaDireccion.y > 0);
@@ -299,30 +198,19 @@ public class Enemigo : MonoBehaviour
 
     private Vector2 AlignToGrid(Vector2 pos)
     {
-        return new Vector2(
-            Mathf.Round((pos.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x,
-            Mathf.Round((pos.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y
-        );
+        float x = Mathf.Round((pos.x - gridOffset.x) / gridSize.x) * gridSize.x + gridOffset.x;
+        float y = Mathf.Round((pos.y - gridOffset.y) / gridSize.y) * gridSize.y + gridOffset.y;
+        x = Mathf.Round(x * 1000f) / 1000f;
+        y = Mathf.Round(y * 1000f) / 1000f;
+        return new Vector2(x, y);
     }
 
-    IEnumerator Move(Vector2 targetPosition)
+    private bool SonIguales(Vector2 a, Vector2 b, float tolerancia = 0.01f)
     {
-        while (((Vector2)transform.position - targetPosition).sqrMagnitude > 0.01f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-        transform.position = targetPosition;
-
-        // --- NUEVO: Alinear si está desfasado ---
-        Vector2 aligned = AlignToGrid(transform.position);
-        if ((Vector2)transform.position != aligned)
-        {
-            transform.position = aligned;
-        }
+        return (a - b).sqrMagnitude < tolerancia * tolerancia;
     }
 
-    bool IsObstacle(Vector2 targetPosition)
+    private bool IsObstacle(Vector2 targetPosition)
     {
         Vector2 aligned = AlignToGrid(targetPosition);
         if (colliderMovimiento == null)
@@ -362,7 +250,7 @@ public class Enemigo : MonoBehaviour
             Nodo actual = open[0];
             open.RemoveAt(0);
 
-            if (Vector2.Distance(actual.pos, goal) < 0.01f)
+            if (SonIguales(actual.pos, goal))
             {
                 List<Vector2> path = new List<Vector2>();
                 Nodo paso = actual;
@@ -385,7 +273,7 @@ public class Enemigo : MonoBehaviour
                 float g = actual.g + gridSize.magnitude;
                 float h = Vector2.Distance(vecino, goal);
 
-                Nodo existente = open.Find(n => n.pos == vecino);
+                Nodo existente = open.Find(n => SonIguales(n.pos, vecino));
                 if (existente != null && existente.g <= g)
                     continue;
 
@@ -410,6 +298,31 @@ public class Enemigo : MonoBehaviour
         }
     }
 
+    // Métodos públicos para esconderse y matar jugador (igual que antes)
+    public void SetPlayerHiding(bool isHiding)
+    {
+        playerIsHiding = isHiding;
+        if (isHiding)
+        {
+            inVision = false;
+            haReproducidoAlerta = false;
+        }
+    }
+
+    public IEnumerator MatarJugador()
+    {
+        Mov respawnScript = player.GetComponent<Mov>();
+        StartCoroutine(respawnScript.RespawnCoroutine());
+        audioSource.PlayOneShot(muerteClip);
+        if (player.GetComponent<Mov>() != null)
+            player.GetComponent<Mov>().enabled = false;
+        yield return new WaitForSeconds(2f);
+        enemManager.VolverAposicionInicial();
+        flowchart.SetBooleanVariable("Muerte", true);
+        int reinicio = flowchart.GetIntegerVariable("Reinicio");
+        flowchart.ExecuteBlock($"Reinicio_{reinicio + 1}");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !playerIsHiding)
@@ -430,35 +343,5 @@ public class Enemigo : MonoBehaviour
             inVision = false;
             haReproducidoAlerta = false;
         }
-    }
-
-    public void SetPlayerHiding(bool isHiding)
-    {
-        playerIsHiding = isHiding;
-        if (isHiding)
-        {
-            inVision = false;
-            haReproducidoAlerta = false;
-        }
-    }
-
-    public IEnumerator MatarJugador()
-    {
-        Debug.Log("[Enemigo] MatarJugador()");
-        Mov respawnScript = player.GetComponent<Mov>();
-        StartCoroutine(respawnScript.RespawnCoroutine());
-
-        audioSource.PlayOneShot(muerteClip);
-        if (playerMovement != null)
-            playerMovement.enabled = false;
-        else
-            Debug.LogError("[Enemigo] Movimiento del jugador no encontrado.");
-
-        yield return new WaitForSeconds(2f);
-        enemManager.VolverAposicionInicial();
-
-        flowchart.SetBooleanVariable("Muerte", true);
-        int reinicio = flowchart.GetIntegerVariable("Reinicio");
-        flowchart.ExecuteBlock($"Reinicio_{reinicio + 1}");
     }
 }
