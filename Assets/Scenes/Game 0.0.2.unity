@@ -17095,7 +17095,8 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 354431325}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 354431332}
   variables: []
   description: 
   stepPause: 0
@@ -24253,7 +24254,8 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 626089596}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 626089600}
   variables: []
   description: 
   stepPause: 0
@@ -31511,7 +31513,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 992229702}
   selectedCommands:
-  - {fileID: 992229701}
+  - {fileID: 992229704}
   variables: []
   description: 
   stepPause: 0
@@ -33218,7 +33220,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 1875579276}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: -5041625753540389654, guid: ed7463b7f9b86e042b1c54ca2e1aed4e, type: 3}
+  portrait: {fileID: 7345275490671837984, guid: 8c185488b57c113429ef67d3460759dd, type: 3}
   offset: 0
   fromPosition: {fileID: 1102909109}
   toPosition: {fileID: 1987875602}
@@ -33575,7 +33577,8 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 1018978194}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1018978202}
   variables: []
   description: 
   stepPause: 0
@@ -34023,7 +34026,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 1875579276}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: -5041625753540389654, guid: ed7463b7f9b86e042b1c54ca2e1aed4e, type: 3}
+  portrait: {fileID: 7345275490671837984, guid: 8c185488b57c113429ef67d3460759dd, type: 3}
   offset: 0
   fromPosition: {fileID: 1102909109}
   toPosition: {fileID: 1987875602}
@@ -39189,8 +39192,10 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 1467438481}
+  selectedCommands:
+  - {fileID: 1467438514}
   variables: []
   description: 
   stepPause: 0
@@ -39430,7 +39435,7 @@ MonoBehaviour:
   stage: {fileID: 0}
   character: {fileID: 1875579276}
   replacedCharacter: {fileID: 0}
-  portrait: {fileID: -3694194337961586254, guid: ae724fd79b49f484ea380fcc27021da1, type: 3}
+  portrait: {fileID: 7345275490671837984, guid: 8c185488b57c113429ef67d3460759dd, type: 3}
   offset: 0
   fromPosition: {fileID: 1102909109}
   toPosition: {fileID: 1987875602}
@@ -53563,11 +53568,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 616.3446, y: -25.082062}
+  scrollPos: {x: 652.35486, y: -144.39136}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 528
-  zoom: 1
+  zoom: 0.97
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -53577,7 +53582,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1824822919}
   selectedCommands:
-  - {fileID: 1824823879}
+  - {fileID: 1824822976}
   variables:
   - {fileID: 1824822918}
   - {fileID: 1824822917}
@@ -54387,7 +54392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 70
   indentLevel: 1
-  storyText: Alguien debe sacar a la profe de su oficina y distraerla.
+  storyText: Alguien debe sacar a la profesora de su oficina y distraerla.
   description: 
   character: {fileID: 834463704}
   portrait: {fileID: 0}
@@ -88854,13 +88859,13 @@ MonoBehaviour:
   portrait: {fileID: 0}
   offset: 0
   fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
+  toPosition: {fileID: 2117232316}
   facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
-  move: 0
+  move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
 --- !u!114 &1824823770
@@ -92268,13 +92273,13 @@ MonoBehaviour:
   portrait: {fileID: 0}
   offset: 0
   fromPosition: {fileID: 0}
-  toPosition: {fileID: 0}
+  toPosition: {fileID: 1102909109}
   facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
-  move: 0
+  move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
 --- !u!114 &1824823852
@@ -106468,8 +106473,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1864136072}
-  selectedCommands: []
+  - {fileID: 1864136084}
+  selectedCommands:
+  - {fileID: 1864136059}
   variables:
   - {fileID: 1864136082}
   - {fileID: 1864136083}
@@ -110905,7 +110911,7 @@ PrefabInstance:
       objectReference: {fileID: 1824822904}
     - target: {fileID: 4955724820152531433, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: siguiendo
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5134300791434992260, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: nextObject
@@ -113247,7 +113253,8 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 2080981299}
   selectedCommands: []
   variables: []
   description: 
