@@ -19,6 +19,8 @@ public class RayCast : MonoBehaviour
 
     public PlayerAnimations sprite;
 
+    [SerializeField] Animator anim;
+
     private void Awake()
     {
         player = gameObject;
@@ -29,6 +31,11 @@ public class RayCast : MonoBehaviour
         HandleInput();
         TryInteract();
 
+        if (flowchart.GetBooleanVariable("Hablando") == true)
+        {
+            anim.SetBool("SeRepliega", true);
+            anim.SetBool("SeDespliega", false);
+        }
     }
 
     private void HandleInput()
@@ -54,6 +61,8 @@ public class RayCast : MonoBehaviour
             if (hit.collider.CompareTag("Interactuable"))
             {
                 NPC npc = hit.collider.GetComponent<NPC>();
+                anim.SetBool("SeDespliega", true);
+                anim.SetBool("SeRepliega", false);
 
                 if (npc != null)
                 {
@@ -66,11 +75,11 @@ public class RayCast : MonoBehaviour
                     if (name == "Luz")
                     {
                         Interruptor_luz interruptor = hit.collider.GetComponent<Interruptor_luz>();
-                        Debug.Log("interruptor");
                         if (Input.GetKeyDown(KeyCode.E))
                         {
+                            anim.SetBool("SeRepliega", true);
+                            anim.SetBool("SeDespliega", false);
                             interruptor.encendido = true;
-                            Debug.Log("Encendido");
                         }
                     }
                     return;
@@ -84,7 +93,8 @@ public class RayCast : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-
+                        anim.SetBool("SeRepliega", true);
+                        anim.SetBool("SeDespliega", false);
                         Vector2 pushDir = (hit.transform.position - player.transform.position).normalized;
                         Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
                         if (Mathf.Abs(pushDir.x) > 0.1f)
@@ -106,7 +116,6 @@ public class RayCast : MonoBehaviour
                         StartCoroutine(ReleasePlayerConstraints(rb));
                     }
                 }
-
             }
 
             if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
@@ -125,6 +134,8 @@ public class RayCast : MonoBehaviour
             flowchart.SetBooleanVariable("Personaje", false);
             flowchart.SetStringVariable("Name", null);
             flowchart.SetBooleanVariable("InterObject", false);
+            anim.SetBool("SeRepliega", true);
+            anim.SetBool("SeDespliega", false);
         }
     }
 
