@@ -63,8 +63,6 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isMoving);
-
         UpdateAnimation();
         UpdateOscuroLayer();
 
