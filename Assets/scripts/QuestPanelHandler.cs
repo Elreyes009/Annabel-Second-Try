@@ -18,7 +18,7 @@ public class QuestPanelHandler : MonoBehaviour
 
     private void Awake()
     {
-        temporizador = 10f;
+        temporizador = 5f;
 
         anim = GetComponent<Animator>();
         texto = GetComponentInChildren<TMP_Text>();
@@ -32,12 +32,11 @@ public class QuestPanelHandler : MonoBehaviour
         {
             Show();
             temporizador -= Time.deltaTime;
-            Debug.Log(temporizador);
 
             if (temporizador <= 0f)
             {
                 Hide();
-                temporizador = 10f;
+                temporizador = 5f;
                 flowchart.SetBooleanVariable("Show", false);
             }
         }

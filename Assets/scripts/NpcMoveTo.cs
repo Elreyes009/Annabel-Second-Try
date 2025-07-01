@@ -63,6 +63,11 @@ public class NpcMoveTo : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(isMoving);
+
+        UpdateAnimation();
+        UpdateOscuroLayer();
+
         if (flowchart.GetBooleanVariable("Puede_moverse") && moveTo != null && !siguiendo)
         {
             Moove();
@@ -91,9 +96,6 @@ public class NpcMoveTo : MonoBehaviour
         {
             siguiendo = false;
         }
-
-        UpdateAnimation();
-        UpdateOscuroLayer();
     }
 
     private void UpdateOscuroLayer()
@@ -171,6 +173,11 @@ public class NpcMoveTo : MonoBehaviour
             yield return Move(step);
         }
 
+        if (ultimaDireccion.x == 0 && ultimaDireccion.y == 0)
+        {
+            isMoving = false;
+        }
+
         ultimaDireccion = Vector2.zero;
         UpdateAnimation();
         isMoving = false;
@@ -182,12 +189,40 @@ public class NpcMoveTo : MonoBehaviour
 
         if (isMoving)
         {
-            anim.SetBool("Derecha", ultimaDireccion.x > 0);
-            anim.SetBool("Izquierda", ultimaDireccion.x < 0);
-            anim.SetBool("Arriba", ultimaDireccion.y > 0);
-            anim.SetBool("Abajo", ultimaDireccion.y < 0);
+            if (ultimaDireccion.x > 0)
+            {
+                anim.SetBool("Derecha", true);
+                anim.SetBool("Izquierda", false);
+                anim.SetBool("Abajo", false);
+                anim.SetBool("Arriba", false);
+            }
+
+            if (ultimaDireccion.x < 0)
+            {
+                anim.SetBool("Izquierda", true);
+                anim.SetBool("Derecha", false);
+                anim.SetBool("Arriba", false);
+                anim.SetBool("Abajo", false);
+            }
+
+            if (ultimaDireccion.y > 0)
+            {
+                anim.SetBool("Arriba", true);
+                anim.SetBool("Abajo", false);
+                anim.SetBool("Izquierda", false);
+                anim.SetBool("Derecha", false);
+            }
+
+            if (ultimaDireccion.y < 0)
+            {
+                anim.SetBool("Abajo", true);
+                anim.SetBool("Arriba", false);
+                anim.SetBool("Izquierda", false);
+                anim.SetBool("Derecha", false);
+            }
+
         }
-        else
+        else if (!isMoving)
         {
             anim.SetBool("Derecha", false);
             anim.SetBool("Izquierda", false);
