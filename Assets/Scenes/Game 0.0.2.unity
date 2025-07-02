@@ -195,6 +195,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 5fd4bf8cd5d480345a7b292dd28b0eb6, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!61 &23911155
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2745,6 +2746,52 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!1 &148699267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148699268}
+  - component: {fileID: 148699269}
+  m_Layer: 0
+  m_Name: 1
+  m_TagString: MarcoPoints
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &148699268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148699267}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.74, y: 16.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1297246192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &148699269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148699267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d481e3170fb7cf14b908250c00fa1e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextObject: {fileID: 866630334}
+  seguir: 1
 --- !u!1 &149312404
 GameObject:
   m_ObjectHideFlags: 0
@@ -3748,6 +3795,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 3fbf5ecf9c077dd43a598b815a7c3973, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!61 &193451422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26769,6 +26817,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 352197aa3f96df2459439e8d52e56e56, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!61 &688301351
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29315,6 +29364,98 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 981067324751277841, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
   m_PrefabInstance: {fileID: 2021523194}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &864916976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864916977}
+  - component: {fileID: 864916978}
+  m_Layer: 0
+  m_Name: 3
+  m_TagString: MarcoPoints
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &864916977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864916976}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.71, y: 20.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1297246192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &864916978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864916976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d481e3170fb7cf14b908250c00fa1e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextObject: {fileID: 0}
+  seguir: 1
+--- !u!1 &866630334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866630335}
+  - component: {fileID: 866630336}
+  m_Layer: 0
+  m_Name: 2
+  m_TagString: MarcoPoints
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &866630335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866630334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.69, y: 20.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1297246192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &866630336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866630334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d481e3170fb7cf14b908250c00fa1e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextObject: {fileID: 864916976}
+  seguir: 1
 --- !u!213 &872982948
 Sprite:
   m_ObjectHideFlags: 0
@@ -37280,6 +37421,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296333980}
   m_CullTransparentMesh: 1
+--- !u!1 &1297246191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1297246192}
+  m_Layer: 0
+  m_Name: MarcoPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1297246192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297246191}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 148699268}
+  - {fileID: 866630335}
+  - {fileID: 864916977}
+  m_Father: {fileID: 2021523195}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1305967498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38216,6 +38391,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: bdf4b44c2ca55624d87ff1f421aec301, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!1 &1390589100
 GameObject:
   m_ObjectHideFlags: 0
@@ -41939,7 +42115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 165390118}
+  selectedFlowchart: {fileID: 1824822904}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -42450,7 +42626,7 @@ PrefabInstance:
     - target: {fileID: 684252217255784471, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: anim
       value: 
-      objectReference: {fileID: 1540235154}
+      objectReference: {fileID: 2007072945}
     - target: {fileID: 684252217255784471, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: sprite
       value: 
@@ -54715,7 +54891,6 @@ GameObject:
   - component: {fileID: 1824823480}
   - component: {fileID: 1824823482}
   - component: {fileID: 1824823481}
-  - component: {fileID: 1824823483}
   - component: {fileID: 1824823487}
   - component: {fileID: 1824823486}
   - component: {fileID: 1824823485}
@@ -55072,11 +55247,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 75.613495, y: -298.30432}
+  scrollPos: {x: 622.88074, y: -228.17485}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 528
-  zoom: 0.7900002
+  zoom: 0.8200002
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -75820,7 +75995,6 @@ MonoBehaviour:
   - {fileID: 1824823313}
   - {fileID: 1824823784}
   - {fileID: 1824823375}
-  - {fileID: 1824823483}
   - {fileID: 1824823374}
   - {fileID: 1824823411}
   - {fileID: 1824823087}
@@ -80230,27 +80404,6 @@ MonoBehaviour:
   move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
---- !u!114 &1824823483
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824822903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 921
-  indentLevel: 1
-  _targetGameObject:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 1263702336}
-  activeState:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  targetGameObjectOLD: {fileID: 0}
 --- !u!114 &1824823484
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -112355,6 +112508,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1824822904}
     - target: {fileID: 1949611978264744688, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: moveTo
+      value: 
+      objectReference: {fileID: 148699267}
+    - target: {fileID: 1949611978264744688, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: flowchart
       value: 
       objectReference: {fileID: 1824822904}
@@ -112578,6 +112735,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7423310004400530357, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7423359597018427938, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: flowchart
       value: 
@@ -112663,6 +112824,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 721431122618982865, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
     - {fileID: 8795932080719820773, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+    - {fileID: 1349636086306090782, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3645531136027995570, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       insertIndex: 5
@@ -112673,6 +112835,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8324792809719419664, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1021354146}
+    - targetCorrespondingSourceObject: {fileID: 2751924941368275083, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1297246192}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1361297541412201383, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       insertIndex: 4
@@ -112681,6 +112846,11 @@ PrefabInstance:
       insertIndex: 5
       addedObject: {fileID: 1550470576}
   m_SourcePrefab: {fileID: 100100000, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+--- !u!4 &2021523195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2751924941368275083, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+  m_PrefabInstance: {fileID: 2021523194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!213 &2030599435
 Sprite:
   m_ObjectHideFlags: 0
@@ -120035,6 +120205,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 43e21515d0dec6a45ab35506387ee436, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!1 &3468219712958696872
 GameObject:
   m_ObjectHideFlags: 0
@@ -123898,6 +124069,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: bdf4b44c2ca55624d87ff1f421aec301, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
