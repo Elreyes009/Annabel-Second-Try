@@ -140,16 +140,16 @@ public class RayCast : MonoBehaviour
                 Mov mov = GetComponent<Mov>();
 
 
-                foreach (string nombre in inventario)
-                {
-                    if (nombre == hit.collider.GetComponent<Puerta>().requerimiento)
-                    {
-                        puertaAnim.SetBool("Puerta", true);
-                        //puertaAnim.SetBool("Puerta", true);
-                        AudioSource audio = hit.collider.transform.GetComponent<AudioSource>();
-                        return;
-                    }
-                }
+                //foreach (string nombre in inventario)
+                //{
+                //    if (nombre == hit.collider.GetComponent<Puerta>().requerimiento)
+                //    {
+                //        puertaAnim.SetBool("Puerta", true);
+                //        puertaAnim.SetBool("Puerta", true);
+                //        AudioSource audio = hit.collider.transform.GetComponent<AudioSource>();
+                //        return;
+                //    }
+                //}
             }
 
             if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
