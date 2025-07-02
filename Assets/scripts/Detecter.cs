@@ -11,15 +11,12 @@ public class Detecter : MonoBehaviour
         au = GetComponent<AudioSource>();
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            //monsters2.siguiendo = true;
             monsters2.moveTo = player;
-            au.Play();
+            if (au != null) au.Play();
         }
     }
 
@@ -27,9 +24,10 @@ public class Detecter : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //monsters2.siguiendo = false;
-            monsters2.moveTo = null;
+            // Vuelve a buscar el punto de patrulla usando el npcName del enemigo
+            string patrolTag = monsters2.npcName + "Points";
+            GameObject patrolPoint = GameObject.FindWithTag(patrolTag);
+            monsters2.moveTo = patrolPoint;
         }
     }
-
 }

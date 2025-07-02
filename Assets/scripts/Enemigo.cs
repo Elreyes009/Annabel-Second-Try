@@ -17,7 +17,7 @@ public class Enemigo : MonoBehaviour
 
     [Header("Referencias")]
     public GameObject moveTo;
-    [SerializeField] private string npcName;
+    [SerializeField] public string npcName;
     [SerializeField] private GameObject player;
     [SerializeField] private Flowchart flowchart;
     public AudioClip muerteClip;
@@ -52,7 +52,10 @@ public class Enemigo : MonoBehaviour
         UpdateAnimation();
         if (flowchart.GetBooleanVariable("Puede_moverse"))
         {
-            Moove();
+            if (moveTo != null)
+            {
+                Moove();
+            }
         }
     }
 
@@ -64,18 +67,38 @@ public class Enemigo : MonoBehaviour
             if (moveTo == null) return;
         }
 
+        // Si el moveTo es el jugador, no busques Next ni patrulla
+        if (!moveTo.activeSelf) return;
         Next nextComponent = moveTo.GetComponent<Next>();
         if (nextComponent == null) return;
         if (!nextComponent.seguir) return;
         if (hasArrived) return;
 
-        if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
+        if(moveTo == player)
         {
-            if (nextComponent.nextObject != null)
+            if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.02f)
             {
-                nextComponent.nextObject.SetActive(true);
+                if (nextComponent.nextObject != null)
+                {
+                    nextComponent.nextObject.SetActive(true);
+                }
+                moveTo.SetActive(false);
             }
-            moveTo.SetActive(false);
+
+
+
+
+        }
+        else
+        {
+            if (Vector2.Distance(transform.position, moveTo.transform.position) < 1f)
+            {
+                if (nextComponent.nextObject != null)
+                {
+                    nextComponent.nextObject.SetActive(true);
+                }
+                moveTo.SetActive(false);
+            }
         }
 
         if (!isMoving)
