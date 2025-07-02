@@ -33,6 +33,25 @@ public class Enemigo : MonoBehaviour
     public Vector3 posicionInicial;
     public GestorDeEnemigos enemManager;
 
+    public enum EstadoEnemigo { Patrullando, Persiguiendo }
+    public EstadoEnemigo estadoActual = EstadoEnemigo.Patrullando;
+
+    public void PerseguirJugador(GameObject objetivo)
+    {
+        moveTo = objetivo;
+        estadoActual = EstadoEnemigo.Persiguiendo;
+        StopAllCoroutines(); // Detiene movimiento anterior
+        isMoving = false;
+    }
+
+    public void VolverAPatrullar()
+    {
+        moveTo = GameObject.FindWithTag(npcName + "Points");
+        estadoActual = EstadoEnemigo.Patrullando;
+        StopAllCoroutines(); // Detiene movimiento anterior
+        isMoving = false;
+    }
+
     private void Awake()
     {
         posicionInicial = transform.position;
@@ -63,42 +82,42 @@ public class Enemigo : MonoBehaviour
     {
         if (moveTo == null || !moveTo.activeSelf)
         {
-            moveTo = GameObject.FindWithTag(npcName + "Points");
-            if (moveTo == null) return;
+            if (estadoActual == EstadoEnemigo.Patrullando)
+            {
+                moveTo = GameObject.FindWithTag(npcName + "Points");
+                if (moveTo == null) return;
+            }
+            else
+            {
+                return;
+            }
         }
 
-        // Si el moveTo es el jugador, no busques Next ni patrulla
-        if (!moveTo.activeSelf) return;
+        if (estadoActual == EstadoEnemigo.Persiguiendo)
+        {
+            // Solo intenta moverse si no está ya en rango
+            if (Vector2.Distance(transform.position, moveTo.transform.position) > 0.1f)
+            {
+                if (!isMoving)
+                {
+                    StartCoroutine(MoverEnemigo(moveTo.transform.position));
+                }
+            }
+
+            return;
+        }
         Next nextComponent = moveTo.GetComponent<Next>();
         if (nextComponent == null) return;
         if (!nextComponent.seguir) return;
         if (hasArrived) return;
 
-        if(moveTo == player)
+        if (Vector2.Distance(transform.position, moveTo.transform.position) < 1f)
         {
-            if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.02f)
+            if (nextComponent.nextObject != null)
             {
-                if (nextComponent.nextObject != null)
-                {
-                    nextComponent.nextObject.SetActive(true);
-                }
-                moveTo.SetActive(false);
+                nextComponent.nextObject.SetActive(true);
             }
-
-
-
-
-        }
-        else
-        {
-            if (Vector2.Distance(transform.position, moveTo.transform.position) < 1f)
-            {
-                if (nextComponent.nextObject != null)
-                {
-                    nextComponent.nextObject.SetActive(true);
-                }
-                moveTo.SetActive(false);
-            }
+            moveTo.SetActive(false);
         }
 
         if (!isMoving)
@@ -119,16 +138,21 @@ public class Enemigo : MonoBehaviour
         if (path == null || path.Count == 0)
         {
             isMoving = false;
+            if (estadoActual == EstadoEnemigo.Persiguiendo)
+            {
+                yield return new WaitForSeconds(0.3f);
+                StartCoroutine(MoverEnemigo(moveTo.transform.position));
+            }
             yield break;
+
         }
 
         foreach (var step in path)
         {
             if (IsObstacle(step))
             {
-                isMoving = false;
-                StartCoroutine(MoverEnemigo(targetPosition)); // Reintenta con nueva ruta
-                yield break;
+                Debug.Log($"Obstáculo encontrado en {step}, cancelando movimiento.");
+                break; // no reintentar inmediatamente
             }
 
             ultimaDireccion = ((Vector2)step - (Vector2)transform.position).normalized;
@@ -136,15 +160,11 @@ public class Enemigo : MonoBehaviour
             yield return Move(step);
         }
 
-        if (ultimaDireccion.x == 0 && ultimaDireccion.y == 0)
-        {
-            isMoving = false;
-        }
-
         ultimaDireccion = Vector2.zero;
         UpdateAnimation();
         isMoving = false;
     }
+
 
     private void UpdateAnimation()
     {

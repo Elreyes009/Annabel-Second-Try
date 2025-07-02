@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Enemigo;
 
 public class Detecter : MonoBehaviour
 {
@@ -11,11 +12,32 @@ public class Detecter : MonoBehaviour
         au = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        Collider2D col = player.GetComponent<Collider2D>();
+        if (col != enabled)
+        {
+            monsters2.VolverAPatrullar();
+        }
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (monsters2.estadoActual != EstadoEnemigo.Persiguiendo)
+            {
+                monsters2.PerseguirJugador(collision.gameObject);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            monsters2.moveTo = player;
+            monsters2.PerseguirJugador(collision.gameObject);
             if (au != null) au.Play();
         }
     }
@@ -24,10 +46,7 @@ public class Detecter : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Vuelve a buscar el punto de patrulla usando el npcName del enemigo
-            string patrolTag = monsters2.npcName + "Points";
-            GameObject patrolPoint = GameObject.FindWithTag(patrolTag);
-            monsters2.moveTo = patrolPoint;
+            monsters2.VolverAPatrullar();
         }
     }
 }
