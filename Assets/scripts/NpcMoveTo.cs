@@ -86,7 +86,7 @@ public class NpcMoveTo : MonoBehaviour
                 }
                 UpdateAnimation();
                 UpdateOscuroLayer();
-                return;
+                
             }
 
         }

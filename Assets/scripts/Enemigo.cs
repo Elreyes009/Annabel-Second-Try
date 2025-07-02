@@ -40,7 +40,7 @@ public class Enemigo : MonoBehaviour
     {
         moveTo = objetivo;
         estadoActual = EstadoEnemigo.Persiguiendo;
-        StopAllCoroutines(); // Detiene movimiento anterior
+        /*StopAllCoroutines();*/
         isMoving = false;
     }
 
@@ -48,7 +48,7 @@ public class Enemigo : MonoBehaviour
     {
         moveTo = GameObject.FindWithTag(npcName + "Points");
         estadoActual = EstadoEnemigo.Patrullando;
-        StopAllCoroutines(); // Detiene movimiento anterior
+        StopAllCoroutines();
         isMoving = false;
     }
 
@@ -96,7 +96,7 @@ public class Enemigo : MonoBehaviour
         if (estadoActual == EstadoEnemigo.Persiguiendo)
         {
             // Solo intenta moverse si no está ya en rango
-            if (Vector2.Distance(transform.position, moveTo.transform.position) > 0.1f)
+            if (Vector2.Distance(transform.position, moveTo.transform.position) > -0.000000001f)
             {
                 if (!isMoving)
                 {
@@ -232,7 +232,13 @@ public class Enemigo : MonoBehaviour
         transform.position = targetPosition;
 
         if (inLight)
+        {
             yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     bool IsObstacle(Vector2 targetPosition)
@@ -300,7 +306,6 @@ public class Enemigo : MonoBehaviour
                 float g = actual.g + gridSize.magnitude;
                 float h = Vector2.Distance(vecino, goal);
 
-                // Evitar nodos duplicados en open con peor g
                 Nodo existente = open.Find(n => n.pos == vecino);
                 if (existente != null && existente.g <= g)
                     continue;

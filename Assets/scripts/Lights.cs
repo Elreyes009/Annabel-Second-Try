@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -34,7 +35,7 @@ public class Lights : MonoBehaviour
                 light2D.intensity = 0f;
         }
 
-        if (collision.CompareTag("Interactuable"))
+        if (collision.GetComponent<NpcMoveTo>() != null)
         {
             var npc = collision.GetComponent<NpcMoveTo>();
             if (npc != null)
@@ -64,7 +65,7 @@ public class Lights : MonoBehaviour
                 panim.spriteOscuro = true;
         }
 
-        if (collision.CompareTag("Interactuable"))
+        if (collision.GetComponent<NpcMoveTo>() != null)
         {
             var npc = collision.GetComponent<NpcMoveTo>();
             if (npc != null)
