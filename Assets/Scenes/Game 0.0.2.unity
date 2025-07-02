@@ -195,7 +195,6 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 5fd4bf8cd5d480345a7b292dd28b0eb6, type: 3}
   flowchart: {fileID: 1824822904}
-  active: 0
 --- !u!61 &23911155
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1670,19 +1669,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 499, y: -45}
+  scrollPos: {x: 304.0312, y: 1.2297691}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.9100001
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 37579482}
+  selectedCommands:
+  - {fileID: 37579476}
   variables:
   - {fileID: 37579472}
   - {fileID: 37579471}
@@ -3066,11 +3067,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 0, y: 0}
+  scrollPos: {x: -87.54048, y: 10.78296}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.94000006
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -3158,7 +3159,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!114 &165390121
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3310,7 +3311,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &165390122
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3747,7 +3748,6 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 3fbf5ecf9c077dd43a598b815a7c3973, type: 3}
   flowchart: {fileID: 1824822904}
-  active: 0
 --- !u!61 &193451422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15179,18 +15179,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 531.37915, y: -33.214893}
+  scrollPos: {x: 96.01954, y: 108.38615}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.8800001
+  zoom: 0.7000003
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 290787501}
   selectedCommands: []
   variables:
   - {fileID: 290787614}
@@ -16108,11 +16109,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 194.91411, y: -36.735973}
+  scrollPos: {x: 35.260983, y: -50.20835}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.9100001
+  zoom: 0.7900002
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -17217,11 +17218,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 159.82353, y: -43.04763}
+  scrollPos: {x: -65.41208, y: 11.029322}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 476
-  zoom: 0.8200002
+  zoom: 0.7000003
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -17231,7 +17232,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 354431325}
   selectedCommands:
-  - {fileID: 354431332}
+  - {fileID: 354431341}
   variables: []
   description: 
   stepPause: 0
@@ -21436,11 +21437,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 98.14502, y: -30}
+  scrollPos: {x: -140.65498, y: -43.69093}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 595
-  zoom: 1
+  zoom: 0.8800001
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -21449,7 +21450,8 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 525734083}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 525734106}
   variables: []
   description: 
   stepPause: 0
@@ -21999,8 +22001,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: dd5c14a9e8af24548a348123a7dc4c96, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 1
 --- !u!114 &525734107
 MonoBehaviour:
@@ -24908,7 +24910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -25, y: -37.5}
+  scrollPos: {x: -250.60004, y: -39.09999}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -24921,7 +24923,8 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 626089596}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 626089602}
   variables: []
   description: 
   stepPause: 0
@@ -25051,8 +25054,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: dd5c14a9e8af24548a348123a7dc4c96, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 0
 --- !u!114 &626089603
 MonoBehaviour:
@@ -25175,7 +25178,7 @@ MonoBehaviour:
   indentLevel: 1
   _duration:
     floatRef: {fileID: 0}
-    floatVal: 1
+    floatVal: 0.5
   durationOLD: 0
 --- !u!1 &629286607
 GameObject:
@@ -26353,11 +26356,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 499, y: -45}
+  scrollPos: {x: 352.53784, y: -27.044094}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.8800001
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -26766,7 +26769,6 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 352197aa3f96df2459439e8d52e56e56, type: 3}
   flowchart: {fileID: 1824822904}
-  active: 0
 --- !u!61 &688301351
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27621,7 +27623,7 @@ PrefabInstance:
       objectReference: {fileID: 3709119928229954751, guid: e086cc384c4c90b4794dd3f9400d6a30, type: 3}
     - target: {fileID: 849109769978186094, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_SortingOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 849109769978186094, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -29038,7 +29040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 92.1817, y: -29.227303}
+  scrollPos: {x: -95.090996, y: 8.045422}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -29051,8 +29053,7 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 847415034}
-  selectedCommands:
-  - {fileID: 847415028}
+  selectedCommands: []
   variables: []
   description: Cierra la puerta que conecta el Pasillo Distoriconado con el Patio.
   stepPause: 0
@@ -32451,11 +32452,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 0.1506958, y: 1.2417145}
+  scrollPos: {x: -10.946634, y: 44.935574}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.8800001
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -32464,8 +32465,7 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 992229702}
-  selectedCommands:
-  - {fileID: 992229704}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -34608,11 +34608,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -124, y: -68}
+  scrollPos: {x: -266.83078, y: -58.676933}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.9100001
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -34621,8 +34621,7 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 1018978194}
-  selectedCommands:
-  - {fileID: 1018978202}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -38217,7 +38216,6 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: bdf4b44c2ca55624d87ff1f421aec301, type: 3}
   flowchart: {fileID: 1824822904}
-  active: 1
 --- !u!1 &1390589100
 GameObject:
   m_ObjectHideFlags: 0
@@ -40409,10 +40407,10 @@ MonoBehaviour:
   - {fileID: 1467438513}
   - {fileID: 1467438525}
   - {fileID: 1467438454}
+  - {fileID: 1467438487}
+  - {fileID: 1467438486}
   - {fileID: 1467438518}
   - {fileID: 1467438452}
-  - {fileID: 1467438486}
-  - {fileID: 1467438487}
   - {fileID: 1467438453}
   - {fileID: 1467438495}
   - {fileID: 1467438468}
@@ -40456,11 +40454,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 89.90897, y: -53.09094}
+  scrollPos: {x: -209.00479, y: 27.855045}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 615
-  zoom: 0.8800001
+  zoom: 0.8200002
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -40470,7 +40468,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1467438481}
   selectedCommands:
-  - {fileID: 1467438452}
+  - {fileID: 1467438515}
   variables: []
   description: 
   stepPause: 0
@@ -41410,7 +41408,7 @@ MonoBehaviour:
   itemId: 1270
   indentLevel: 1
   storyText: "Ya s\xE9, antes de que se vayan toquen la puerta, as\xED sabr\xE9 que
-    que la profe regresa y que tengo que salir."
+    tengo que la profe regresa."
   description: 
   character: {fileID: 1875579276}
   portrait: {fileID: 0}
@@ -41526,8 +41524,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: dd5c14a9e8af24548a348123a7dc4c96, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 0
 --- !u!114 &1467438516
 MonoBehaviour:
@@ -41941,7 +41939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1824822904}
+  selectedFlowchart: {fileID: 165390118}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -48498,11 +48496,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 17.14502, y: -73}
+  scrollPos: {x: -154.30115, y: -70.32308}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 560
-  zoom: 1
+  zoom: 0.9100001
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -55074,11 +55072,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 555.2289, y: -269.45282}
+  scrollPos: {x: 75.613495, y: -298.30432}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 528
-  zoom: 1
+  zoom: 0.7900002
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -107390,7 +107388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 71.93617
+    x: 69.8309
     y: 141.93617
     width: 117.57
     height: 40
@@ -107965,11 +107963,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 454.9883, y: 35.84141}
+  scrollPos: {x: 127.91883, y: 103.459114}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.94000006
+  zoom: 0.7600002
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -107977,9 +107975,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1864136084}
-  selectedCommands:
-  - {fileID: 1864136059}
+  - {fileID: 1864135982}
+  selectedCommands: []
   variables:
   - {fileID: 1864136082}
   - {fileID: 1864136083}
@@ -112265,14 +112262,6 @@ PrefabInstance:
       propertyPath: flowchart
       value: 
       objectReference: {fileID: 1824822904}
-    - target: {fileID: 276447208548668759, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 276447208548668759, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20.26
-      objectReference: {fileID: 0}
     - target: {fileID: 314322401521102688, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -112384,10 +112373,6 @@ PrefabInstance:
     - target: {fileID: 2308352824784097144, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_TagString
       value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 2515170012285676217, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2797550426843586717, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_Layer
@@ -112521,10 +112506,6 @@ PrefabInstance:
       propertyPath: siguiendo
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4994119439069591830, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5134300791434992260, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: nextObject
       value: 
@@ -112561,10 +112542,6 @@ PrefabInstance:
       propertyPath: spriteOscuro
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5863092710473382726, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
-      propertyPath: nextObject
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5995351307486834599, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -112598,10 +112575,6 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7316216369788384081, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7423310004400530357, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -112643,7 +112616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7779235358241629908, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.267
+      value: 24.79
       objectReference: {fileID: 0}
     - target: {fileID: 7859740776048925606, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: player
@@ -114866,11 +114839,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 66.99608, y: -30.166195}
+  scrollPos: {x: 66.84796, y: 15.440216}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.73000026
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -114879,7 +114852,8 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 2080981299}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 2080981339}
   variables: []
   description: 
   stepPause: 0
@@ -115597,8 +115571,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: c98b4e4f75b67ad4aa3c38ace09af741, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 1
 --- !u!114 &2080981336
 MonoBehaviour:
@@ -115616,8 +115590,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: e1dbe142579e670408758c92f093d197, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 1
 --- !u!114 &2080981337
 MonoBehaviour:
@@ -115635,8 +115609,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: e1dbe142579e670408758c92f093d197, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 1
 --- !u!114 &2080981338
 MonoBehaviour:
@@ -115654,8 +115628,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: e1dbe142579e670408758c92f093d197, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 1
 --- !u!114 &2080981339
 MonoBehaviour:
@@ -115673,8 +115647,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: e1dbe142579e670408758c92f093d197, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 1
 --- !u!114 &2080981340
 MonoBehaviour:
@@ -115692,8 +115666,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: e1dbe142579e670408758c92f093d197, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 1
 --- !u!114 &2080981341
 MonoBehaviour:
@@ -115711,8 +115685,8 @@ MonoBehaviour:
   indentLevel: 1
   soundClip: {fileID: 8300000, guid: e1dbe142579e670408758c92f093d197, type: 3}
   volume: 1
-  mixer: {fileID: 0}
-  group: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
+  group: {fileID: 6210754562034888548, guid: 14ff40b0445158d4dbe67e809a0bca54, type: 2}
   waitUntilFinished: 1
 --- !u!114 &2080981342
 MonoBehaviour:
@@ -117288,7 +117262,7 @@ MonoBehaviour:
   scrollPos: {x: -578.8688, y: 255.3079}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 200
+  blockViewHeight: 458.40002
   zoom: 0.8800001
   scrollViewRect:
     serializedVersion: 2
@@ -117296,7 +117270,8 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 9209994960933603639}
   selectedCommands: []
   variables:
   - {fileID: 1163752979817242128}
@@ -118785,7 +118760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6020010172882925035, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6190581891272297599, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_Size.x
@@ -119017,7 +118992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7989514973076575098, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8009812092838624682, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_Size.x
@@ -120060,7 +120035,6 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 43e21515d0dec6a45ab35506387ee436, type: 3}
   flowchart: {fileID: 1824822904}
-  active: 0
 --- !u!1 &3468219712958696872
 GameObject:
   m_ObjectHideFlags: 0
@@ -123924,7 +123898,6 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: bdf4b44c2ca55624d87ff1f421aec301, type: 3}
   flowchart: {fileID: 1824822904}
-  active: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
