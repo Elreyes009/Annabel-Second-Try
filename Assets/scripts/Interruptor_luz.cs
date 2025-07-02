@@ -4,6 +4,7 @@ using Fungus;
 public class Interruptor_luz : MonoBehaviour
 {
     public bool encendido;
+    bool Recogida; //booleana que determina si la llave asociada al interruptor ha sido recogida
 
     [SerializeField] GameObject luz, Llave;
 
@@ -33,6 +34,12 @@ public class Interruptor_luz : MonoBehaviour
             if (Llave != null)
             {
                 Llave.SetActive(true);
+                Recogida = true;
+
+                if (Recogida) //Si la llave ya ha sido recogida se desasocia del código para evitar que vuelva a reaparecer al salir de su casilla
+                {
+                    Llave = null;
+                }
             }
         }
         else if (!encendido)

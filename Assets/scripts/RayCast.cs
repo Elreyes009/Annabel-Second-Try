@@ -190,7 +190,7 @@ public class RayCast : MonoBehaviour
 
             if (rec != null)
             {
-                collision.transform.gameObject.SetActive(false);
+                collision.transform.gameObject.gameObject.SetActive(false);
                 inventario.Add(collision.transform.GetComponent<Recogible>().itemName);
                 AudioSource audio = GetComponent<AudioSource>();
                 if (audio != null)
@@ -218,7 +218,7 @@ public class RayCast : MonoBehaviour
                     if (nombre == puerta.requerimiento)
                     {
                         puertaAnim.SetBool("Puerta", true);
-                        //puertaAnim.SetBool("Puerta", true);
+                        puertaAnim.SetBool("Puerta", true);
                         AudioSource audio = collision.transform.GetComponent<AudioSource>();
                         return;
                     }
