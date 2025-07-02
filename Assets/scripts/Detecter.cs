@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class KillerZone : MonoBehaviour
+public class Detecter : MonoBehaviour
 {
-    public Monsters2 monsters2;
+    public Enemigo monsters2;
     public GameObject player;
     private AudioSource au;
 
@@ -15,18 +15,20 @@ public class KillerZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision == player)
+        if (collision.CompareTag("Player"))
         {
-            monsters2.inVision = true;
+            //monsters2.siguiendo = true;
+            monsters2.moveTo = player;
             au.Play();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision == player)
+        if (collision.CompareTag("Player"))
         {
-            monsters2.inVision = false;
+            //monsters2.siguiendo = false;
+            monsters2.moveTo = null;
         }
     }
 

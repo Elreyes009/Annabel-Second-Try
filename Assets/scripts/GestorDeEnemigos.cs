@@ -33,27 +33,27 @@ public class GestorDeEnemigos : MonoBehaviour
 
     private void AplicarEstadoEscondido(bool estaEscondido)
     {
-        NotificarEscondite(estaEscondido);
+        //NotificarEscondite(estaEscondido);
         playerMove.GetComponent<Mov>().enabled = !estaEscondido;
         playerSprite.GetComponent<PlayerAnimations>().enabled = !estaEscondido;
         playerSprite.GetComponent<SpriteRenderer>().enabled = !estaEscondido;
         playerSprite.GetComponent<BoxCollider2D>().enabled = !estaEscondido;
     }
 
-    public void NotificarEscondite(bool estaEscondido)
-    {
-        foreach (Enemigo enemigo in enemigos)
-        {
-            enemigo.SetPlayerHiding(estaEscondido);
-        }
-    }
+    //public void NotificarEscondite(bool estaEscondido)
+    //{
+    //    foreach (Enemigo enemigo in enemigos)
+    //    {
+    //        enemigo.SetPlayerHiding(estaEscondido);
+    //    }
+    //}
 
     public void VolverAposicionInicial()
     {
         foreach (Enemigo enemigo in enemigos)
         {
             enemigo.StopAllCoroutines();
-            enemigo.isMoving = false;
+            //enemigo.isMoving = false;
             enemigo.transform.position = enemigo.posicionInicial;
         }
     }
