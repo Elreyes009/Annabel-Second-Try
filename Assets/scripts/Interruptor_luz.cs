@@ -5,13 +5,14 @@ public class Interruptor_luz : MonoBehaviour
 {
     public bool encendido;
     [SerializeField] GameObject luz;
-
+    [SerializeField] string nameTag;
     [SerializeField] Flowchart flowchart;
 
     Animator anim;
 
     private void Awake()
     {
+        nameTag = gameObject.tag;
         anim = GetComponent<Animator>();
 
         encendido = false;
@@ -34,6 +35,7 @@ public class Interruptor_luz : MonoBehaviour
 
         if (flowchart != null && flowchart.GetBooleanVariable("Muerte") == true)
         {
+            gameObject.gameObject.tag = nameTag;
             encendido = false;
             anim.SetBool("Encender", false);
         }
