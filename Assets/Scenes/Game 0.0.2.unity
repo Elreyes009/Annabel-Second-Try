@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 5fd4bf8cd5d480345a7b292dd28b0eb6, type: 3}
-  flowchart: {fileID: 0}
+  flowchart: {fileID: 1824822904}
 --- !u!61 &23911155
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3745,7 +3745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 3fbf5ecf9c077dd43a598b815a7c3973, type: 3}
-  flowchart: {fileID: 0}
+  flowchart: {fileID: 1824822904}
 --- !u!61 &193451422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18785,6 +18785,7 @@ MonoBehaviour:
   player: {fileID: 3659267799965754085}
   flowchart: {fileID: 1824822904}
   muerteClip: {fileID: 8300000, guid: 5fc9037a635a57b48939663de8218c4e, type: 3}
+  audioSource: {fileID: 432049599}
   anim: {fileID: 432049596}
   inLight: 0
   posicionInicial: {x: 0, y: 0, z: 0}
@@ -26763,7 +26764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 352197aa3f96df2459439e8d52e56e56, type: 3}
-  flowchart: {fileID: 0}
+  flowchart: {fileID: 1824822904}
 --- !u!61 &688301351
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27632,6 +27633,18 @@ PrefabInstance:
       propertyPath: flowchart
       value: 
       objectReference: {fileID: 1824822904}
+    - target: {fileID: 1426938482819384040, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+      propertyPath: puntoDeRespawn
+      value: 
+      objectReference: {fileID: 1390589101}
+    - target: {fileID: 1426938482819384040, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+      propertyPath: puntoDeRespawn.x
+      value: -29.439999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426938482819384040, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
+      propertyPath: puntoDeRespawn.y
+      value: 33.9
+      objectReference: {fileID: 0}
     - target: {fileID: 1609751983011298163, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -41925,7 +41938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1824822904}
+  selectedFlowchart: {fileID: 1467438482}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -55058,21 +55071,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 652.35486, y: -144.39136}
+  scrollPos: {x: 482.22885, y: -389.45282}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 528
-  zoom: 0.97
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1824822919}
-  selectedCommands:
-  - {fileID: 1824822976}
+  selectedBlocks: []
+  selectedCommands: []
   variables:
   - {fileID: 1824822918}
   - {fileID: 1824822917}
@@ -71738,8 +71749,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 335.26035
-    y: 522.7409
+    x: 334.26035
+    y: 523.7409
     width: 103.71
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -116558,6 +116569,7 @@ MonoBehaviour:
   player: {fileID: 3659267799965754085}
   flowchart: {fileID: 1824822904}
   muerteClip: {fileID: 8300000, guid: 5fc9037a635a57b48939663de8218c4e, type: 3}
+  audioSource: {fileID: 547534484294948434}
   anim: {fileID: 591961729862676497}
   inLight: 0
   posicionInicial: {x: 0, y: 0, z: 0}
@@ -117399,7 +117411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1516512686379733074
 RectTransform:
   m_ObjectHideFlags: 0
@@ -118488,6 +118500,10 @@ PrefabInstance:
       propertyPath: zettings
       value: 
       objectReference: {fileID: 4927884543344931747}
+    - target: {fileID: 2484326633800951787, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: flowchart
+      value: 
+      objectReference: {fileID: 1824822904}
     - target: {fileID: 2499868772194643249, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_Size.x
       value: 0.5
@@ -118988,6 +119004,10 @@ PrefabInstance:
       propertyPath: zettings
       value: 
       objectReference: {fileID: 4927884543344931747}
+    - target: {fileID: 8131448162658874272, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
+      propertyPath: flowchart
+      value: 
+      objectReference: {fileID: 1824822904}
     - target: {fileID: 8231641254589460404, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_Size.x
       value: 0.94
@@ -120012,7 +120032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 43e21515d0dec6a45ab35506387ee436, type: 3}
-  flowchart: {fileID: 0}
+  flowchart: {fileID: 1824822904}
 --- !u!1 &3468219712958696872
 GameObject:
   m_ObjectHideFlags: 0

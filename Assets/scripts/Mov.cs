@@ -12,7 +12,7 @@ public class Mov : MonoBehaviour
     private Vector2 direction;                                   
                                                                    
     private bool isMoving = false;                               
-    [SerializeField] Vector3 puntoDeRespawn;                                                        
+    [SerializeField] Transform puntoDeRespawn;                                                        
 
     private Mov playerMovement;                                  
     public GameObject sprite;
@@ -64,19 +64,19 @@ public class Mov : MonoBehaviour
         isMoving = false;
     }
 
-    public void ActualizarPuntoDeRespawn(Vector3 nuevaPosicion)
-    {
-        puntoDeRespawn = nuevaPosicion;
-    }
+    //public void ActualizarPuntoDeRespawn(Vector3 nuevaPosicion)
+    //{
+    //    puntoDeRespawn = nuevaPosicion;
+    //}
 
     public IEnumerator RespawnCoroutine()
     { 
         PlayerAnimations playeranimations = GetComponentInChildren<PlayerAnimations>();
         playeranimations.anim.SetBool("Muerte", true);
         yield return new WaitForSeconds(2f);
-        transform.position = puntoDeRespawn;
+        transform.position = puntoDeRespawn.position;
         playeranimations.anim.SetBool("Muerte", false);
-        playerMovement.enabled = true;           
+        //playerMovement.enabled = true;           
     }
 
     #region Métodos Auxiliares

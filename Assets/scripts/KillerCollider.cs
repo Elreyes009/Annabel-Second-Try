@@ -8,7 +8,6 @@ public class KillerCollider : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             StartCoroutine(enemigo.MatarJugador());
-            Debug.Log("muerte");
         }
     }
 }

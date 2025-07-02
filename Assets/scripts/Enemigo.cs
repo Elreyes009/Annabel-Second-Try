@@ -21,7 +21,7 @@ public class Enemigo : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Flowchart flowchart;
     public AudioClip muerteClip;
-    private AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
 
     [SerializeField] private Animator anim;
     private Vector2 ultimaDireccion = Vector2.zero;
@@ -336,12 +336,30 @@ public class Enemigo : MonoBehaviour
         Mov respawnScript = player.GetComponent<Mov>();
         StartCoroutine(respawnScript.RespawnCoroutine());
         audioSource.PlayOneShot(muerteClip);
-        if (player.GetComponent<Mov>() != null)
-            player.GetComponent<Mov>().enabled = false;
+        //if (player.GetComponent<Mov>() != null)
+        //{
+        //    player.GetComponent<Mov>().enabled = false;
+        //}
         yield return new WaitForSeconds(2f);
         enemManager.VolverAposicionInicial();
         flowchart.SetBooleanVariable("Muerte", true);
-        int reinicio = flowchart.GetIntegerVariable("Reinicio");
-        flowchart.ExecuteBlock($"Reinicio_{reinicio + 1}");
+        if (flowchart.GetIntegerVariable("Reinicio") == 0)
+        {
+            flowchart.ExecuteBlock("Reinicio_1");
+        }
+        else if (flowchart.GetIntegerVariable("Reinicio") == 1)
+        {
+            flowchart.ExecuteBlock("Reinicio_2");
+        }
+        else if (flowchart.GetIntegerVariable("Reinicio") == 2)
+        {
+            flowchart.ExecuteBlock("Reinicio_3");
+        }
+        else if (flowchart.GetIntegerVariable("Reinicio") == 3)
+        {
+            flowchart.ExecuteBlock("Reinicio_4");
+        }
+        //int reinicio = flowchart.GetIntegerVariable("Reinicio");
+        //flowchart.ExecuteBlock($"Reinicio_{reinicio + 1}");
     }
 }
