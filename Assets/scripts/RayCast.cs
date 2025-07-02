@@ -88,6 +88,8 @@ public class RayCast : MonoBehaviour
                             interruptor.encendido = true;
                         }
                     }
+
+
                     return;
                 }
 
@@ -128,6 +130,26 @@ public class RayCast : MonoBehaviour
             {
                 anim.SetBool("SeDespliega", true);
                 anim.SetBool("SeRepliega", false);
+            }
+
+            if (hit.collider.CompareTag("Puerta"))
+            {
+                anim.SetBool("SeDespliega", true);
+                anim.SetBool("SeRepliega", false);
+
+                Mov mov = GetComponent<Mov>();
+
+
+                foreach (string nombre in inventario)
+                {
+                    if (nombre == hit.collider.GetComponent<Puerta>().requerimiento)
+                    {
+                        puertaAnim.SetBool("Puerta", true);
+                        //puertaAnim.SetBool("Puerta", true);
+                        AudioSource audio = hit.collider.transform.GetComponent<AudioSource>();
+                        return;
+                    }
+                }
             }
 
             if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
@@ -196,7 +218,7 @@ public class RayCast : MonoBehaviour
                     if (nombre == puerta.requerimiento)
                     {
                         puertaAnim.SetBool("Puerta", true);
-                        puertaAnim.SetBool("Puerta", true);
+                        //puertaAnim.SetBool("Puerta", true);
                         AudioSource audio = collision.transform.GetComponent<AudioSource>();
                         return;
                     }
