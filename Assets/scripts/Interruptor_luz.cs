@@ -5,7 +5,7 @@ public class Interruptor_luz : MonoBehaviour
 {
     public bool encendido;
     [SerializeField] GameObject luz;
-    [SerializeField] string nameTag;
+    private string nameTag;
     [SerializeField] Flowchart flowchart;
 
     Animator anim;
