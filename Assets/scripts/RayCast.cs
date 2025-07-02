@@ -36,6 +36,12 @@ public class RayCast : MonoBehaviour
             anim.SetBool("SeRepliega", true);
             anim.SetBool("SeDespliega", false);
         }
+
+        if (!gameObject.activeSelf)
+        {
+            anim.SetBool("SeRepliega", true);
+            anim.SetBool("SeDespliega", false);
+        }
     }
 
     private void HandleInput()

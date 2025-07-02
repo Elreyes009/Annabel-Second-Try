@@ -9,7 +9,7 @@ public class BGM_Selecter : MonoBehaviour
 
     [SerializeField] Flowchart flowchart;
 
-    bool active;
+    [SerializeField] bool active;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class BGM_Selecter : MonoBehaviour
 
     private void Update()
     {
-        if (flowchart != null)
+        if (flowchart != null && active)
         {
             if (flowchart.GetBooleanVariable("Iniciar") == true)
             {

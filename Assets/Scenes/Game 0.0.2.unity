@@ -195,6 +195,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 5fd4bf8cd5d480345a7b292dd28b0eb6, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!61 &23911155
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3746,6 +3747,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 3fbf5ecf9c077dd43a598b815a7c3973, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!61 &193451422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24919,8 +24921,7 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 626089596}
-  selectedCommands:
-  - {fileID: 626089600}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -25174,7 +25175,7 @@ MonoBehaviour:
   indentLevel: 1
   _duration:
     floatRef: {fileID: 0}
-    floatVal: 0.5
+    floatVal: 1
   durationOLD: 0
 --- !u!1 &629286607
 GameObject:
@@ -26765,6 +26766,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 352197aa3f96df2459439e8d52e56e56, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!61 &688301351
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27619,7 +27621,7 @@ PrefabInstance:
       objectReference: {fileID: 3709119928229954751, guid: e086cc384c4c90b4794dd3f9400d6a30, type: 3}
     - target: {fileID: 849109769978186094, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_SortingOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 849109769978186094, guid: 23478692972087d4bb75aa03dd3965cc, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -38215,6 +38217,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: bdf4b44c2ca55624d87ff1f421aec301, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 1
 --- !u!1 &1390589100
 GameObject:
   m_ObjectHideFlags: 0
@@ -40406,10 +40409,10 @@ MonoBehaviour:
   - {fileID: 1467438513}
   - {fileID: 1467438525}
   - {fileID: 1467438454}
-  - {fileID: 1467438487}
-  - {fileID: 1467438486}
   - {fileID: 1467438518}
   - {fileID: 1467438452}
+  - {fileID: 1467438486}
+  - {fileID: 1467438487}
   - {fileID: 1467438453}
   - {fileID: 1467438495}
   - {fileID: 1467438468}
@@ -40467,7 +40470,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1467438481}
   selectedCommands:
-  - {fileID: 1467438514}
+  - {fileID: 1467438452}
   variables: []
   description: 
   stepPause: 0
@@ -41407,7 +41410,7 @@ MonoBehaviour:
   itemId: 1270
   indentLevel: 1
   storyText: "Ya s\xE9, antes de que se vayan toquen la puerta, as\xED sabr\xE9 que
-    tengo que la profe regresa."
+    que la profe regresa y que tengo que salir."
   description: 
   character: {fileID: 1875579276}
   portrait: {fileID: 0}
@@ -41938,7 +41941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1467438482}
+  selectedFlowchart: {fileID: 1824822904}
 --- !u!4 &1481459976
 Transform:
   m_ObjectHideFlags: 1
@@ -55071,7 +55074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 482.22885, y: -389.45282}
+  scrollPos: {x: 555.2289, y: -269.45282}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 528
@@ -112262,6 +112265,14 @@ PrefabInstance:
       propertyPath: flowchart
       value: 
       objectReference: {fileID: 1824822904}
+    - target: {fileID: 276447208548668759, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 276447208548668759, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20.26
+      objectReference: {fileID: 0}
     - target: {fileID: 314322401521102688, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -112373,6 +112384,10 @@ PrefabInstance:
     - target: {fileID: 2308352824784097144, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515170012285676217, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2797550426843586717, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_Layer
@@ -112506,6 +112521,10 @@ PrefabInstance:
       propertyPath: siguiendo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4994119439069591830, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5134300791434992260, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: nextObject
       value: 
@@ -112542,6 +112561,10 @@ PrefabInstance:
       propertyPath: spriteOscuro
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5863092710473382726, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: nextObject
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5995351307486834599, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -112575,6 +112598,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7316216369788384081, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423310004400530357, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -112616,7 +112643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7779235358241629908, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.79
+      value: 25.267
       objectReference: {fileID: 0}
     - target: {fileID: 7859740776048925606, guid: 5e2fcb55ca078b84ea9e73d4ed6a5beb, type: 3}
       propertyPath: player
@@ -118758,7 +118785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6020010172882925035, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6190581891272297599, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_Size.x
@@ -118990,7 +119017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7989514973076575098, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8009812092838624682, guid: 7ab68f87cb00b2244b70b2092acdd8c9, type: 3}
       propertyPath: m_Size.x
@@ -120033,6 +120060,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: 43e21515d0dec6a45ab35506387ee436, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!1 &3468219712958696872
 GameObject:
   m_ObjectHideFlags: 0
@@ -123896,6 +123924,7 @@ MonoBehaviour:
   zettings: {fileID: 4927884543344931747}
   music: {fileID: 8300000, guid: bdf4b44c2ca55624d87ff1f421aec301, type: 3}
   flowchart: {fileID: 1824822904}
+  active: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
