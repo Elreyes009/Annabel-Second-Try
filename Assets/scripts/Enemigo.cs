@@ -338,12 +338,10 @@ public class Enemigo : MonoBehaviour
     public IEnumerator MatarJugador()
     {
         Mov respawnScript = player.GetComponent<Mov>();
+        respawnScript.enabled = true;
         StartCoroutine(respawnScript.RespawnCoroutine());
+        respawnScript.enabled = false;
         audioSource.PlayOneShot(muerteClip);
-        //if (player.GetComponent<Mov>() != null)
-        //{
-        //    player.GetComponent<Mov>().enabled = false;
-        //}
         yield return new WaitForSeconds(2f);
         enemManager.VolverAposicionInicial();
         flowchart.SetBooleanVariable("Muerte", true);
