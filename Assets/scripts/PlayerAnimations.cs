@@ -47,9 +47,14 @@ public class PlayerAnimations : MonoBehaviour
     public void Escon()
     {
         Mov mov = r.GetComponent<Mov>();
+
+
         if (escondido)
         {
+            SpriteRenderer serena_render = GameObject.FindWithTag("Serena").GetComponent<SpriteRenderer>();
+
             GetComponent<SpriteRenderer>().enabled = false;
+            serena_render.enabled = false;
             GetComponent<Collider2D>().enabled = false;
             
             mov.enabled = false;
@@ -58,7 +63,10 @@ public class PlayerAnimations : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.E))
         {
+            SpriteRenderer serena_render = GameObject.FindWithTag("Serena").GetComponent<SpriteRenderer>();
+
             GetComponent<SpriteRenderer>().enabled = true;
+            serena_render.enabled = true;
             GetComponent<Collider2D>().enabled = true;
             mov.enabled = true;
             escondido = false;
