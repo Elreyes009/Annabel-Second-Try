@@ -1,6 +1,5 @@
 using UnityEngine;
 using Fungus;
-using UnityEngine.Splines;
 
 public class PlayerAnimations : MonoBehaviour
 {
