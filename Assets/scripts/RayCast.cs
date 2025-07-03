@@ -42,6 +42,11 @@ public class RayCast : MonoBehaviour
             anim.SetBool("SeRepliega", true);
             anim.SetBool("SeDespliega", false);
         }
+
+        if (flowchart.GetBooleanVariable("Muerte") == true)
+        {
+            CleanInventory();
+        }
     }
 
     private void HandleInput()
@@ -171,6 +176,11 @@ public class RayCast : MonoBehaviour
             anim.SetBool("SeRepliega", true);
             anim.SetBool("SeDespliega", false);
         }
+    }
+
+    void CleanInventory() //Función que limpia el inventario
+    {
+        inventario.Clear();
     }
 
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
