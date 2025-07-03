@@ -16,7 +16,7 @@ public class Mov : MonoBehaviour
 
     private Mov playerMovement;                                  
     public GameObject sprite;
-
+    private Coroutine moveCoroutine;
     public GameObject pl;
 
     [SerializeField] Flowchart flowchart;
@@ -28,6 +28,25 @@ public class Mov : MonoBehaviour
         playerMovement = GetComponent<Mov>();
 
         obstacleLayer = LayerMask.GetMask("detalle");
+
+        StartCoroutine(fixeoMovimiento());
+    }
+
+    IEnumerator fixeoMovimiento()
+    {
+        while (true)
+        {
+            Vector2 first = transform.position;
+            yield return new WaitForSeconds(5f);
+            Vector2 second = transform.position;
+
+            if (Vector2.Distance(first, second) < 0.01f && moveCoroutine != null)
+            {
+                StopCoroutine(moveCoroutine);
+                moveCoroutine = null;
+                isMoving = false;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -44,9 +63,8 @@ public class Mov : MonoBehaviour
 
             if (!IsObstacle(targetPosition))
             {
-                StartCoroutine(Move(targetPosition));
+                moveCoroutine = StartCoroutine(Move(targetPosition));
             }
-            // Si hay obstáculo, simplemente no se mueve. El jugador debe elegir otra dirección.
         }
     }
 
@@ -62,6 +80,7 @@ public class Mov : MonoBehaviour
 
         transform.position = targetPosition;
         isMoving = false;
+        moveCoroutine = null;
     }
 
     //public void ActualizarPuntoDeRespawn(Vector3 nuevaPosicion)
