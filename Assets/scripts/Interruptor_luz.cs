@@ -4,7 +4,7 @@ using Fungus;
 public class Interruptor_luz : MonoBehaviour
 {
     public bool encendido;
-    bool Recogida; //booleana que determina si la llave asociada al interruptor ha sido recogida
+    [SerializeField] bool Recogida; //booleana que determina si la llave asociada al interruptor ha sido recogida
 
     [SerializeField] GameObject luz, Llave, Enemigo;
 
@@ -20,6 +20,7 @@ public class Interruptor_luz : MonoBehaviour
         anim = GetComponent<Animator>();
 
         encendido = false;
+        Recogida = false;
         luz.SetActive(false);
     }
 
@@ -31,15 +32,10 @@ public class Interruptor_luz : MonoBehaviour
             anim.SetBool("Encender", true);
             gameObject.gameObject.tag = "Untagged";
 
-            if (Llave != null)
+            if (Llave != null && !Recogida)
             {
                 Llave.SetActive(true);
                 Recogida = true;
-
-                if (Recogida) //Si la llave ya ha sido recogida se desasocia del código para evitar que vuelva a reaparecer al salir de su casilla
-                {
-                    Llave.SetActive(false);
-                }
             }
 
             if (Enemigo != null && flowchart.GetIntegerVariable("Diálogo") == 17) //Si nos encontramos en el punto adecuado de la historia y no se han activado otros enemigos antes
