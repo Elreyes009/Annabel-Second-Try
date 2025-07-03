@@ -47,31 +47,31 @@ public class PlayerAnimations : MonoBehaviour
     public void Escon()
     {
         Mov mov = r.GetComponent<Mov>();
-
+        SpriteRenderer serena_render = GameObject.FindWithTag("Serena")?.GetComponent<SpriteRenderer>();
 
         if (escondido)
         {
-            SpriteRenderer serena_render = GameObject.FindWithTag("Serena").GetComponent<SpriteRenderer>();
-
+            // Esconder
+            if (serena_render != null)
+            {
+                serena_render.enabled = false;
+            }
             GetComponent<SpriteRenderer>().enabled = false;
-            serena_render.enabled = false;
             GetComponent<Collider2D>().enabled = false;
-            
             mov.enabled = false;
         }
-
-
-        if (Input.GetKeyUp(KeyCode.E))
+        if(escondido && Input.GetKeyDown(KeyCode.E) || escondido && Input.GetKeyUp(KeyCode.Z) || escondido && Input.GetKeyUp(KeyCode.Space))
         {
-            SpriteRenderer serena_render = GameObject.FindWithTag("Serena").GetComponent<SpriteRenderer>();
-
+            if (serena_render != null)
+            {
+                serena_render.enabled = true;
+            }
             GetComponent<SpriteRenderer>().enabled = true;
-            serena_render.enabled = true;
             GetComponent<Collider2D>().enabled = true;
             mov.enabled = true;
+
             escondido = false;
         }
-
     }
 
     private void Animations()

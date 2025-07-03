@@ -86,7 +86,7 @@ public class RayCast : MonoBehaviour
                     if (name == "Luz")
                     {
                         Interruptor_luz interruptor = hit.collider.GetComponent<Interruptor_luz>();
-                        if (Input.GetKeyDown(KeyCode.E))
+                        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Z))
                         {
                             anim.SetBool("SeRepliega", true);
                             anim.SetBool("SeDespliega", false);
@@ -104,7 +104,7 @@ public class RayCast : MonoBehaviour
                     flowchart.SetBooleanVariable("Personaje", false);
                     flowchart.SetStringVariable("Name", null);
 
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z))
                     {
                         anim.SetBool("SeRepliega", true);
                         anim.SetBool("SeDespliega", false);
@@ -133,6 +133,7 @@ public class RayCast : MonoBehaviour
 
             if (hit.collider.CompareTag("Escondite"))
             {
+                
                 anim.SetBool("SeDespliega", true);
                 anim.SetBool("SeRepliega", false);
             }
@@ -157,7 +158,7 @@ public class RayCast : MonoBehaviour
                 //}
             }
 
-            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
+            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E) || hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.Space) || hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.Z))
             {
                 sprite.escondido = true;
 
