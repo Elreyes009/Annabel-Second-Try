@@ -6,7 +6,7 @@ public class Interruptor_luz : MonoBehaviour
     public bool encendido;
     bool Recogida; //booleana que determina si la llave asociada al interruptor ha sido recogida
 
-    [SerializeField] GameObject luz, Llave;
+    [SerializeField] GameObject luz, Llave, Enemigo;
 
     private string nameTag;
 
@@ -38,8 +38,13 @@ public class Interruptor_luz : MonoBehaviour
 
                 if (Recogida) //Si la llave ya ha sido recogida se desasocia del código para evitar que vuelva a reaparecer al salir de su casilla
                 {
-                    Llave = null;
+                    Llave.SetActive(false);
                 }
+            }
+
+            if (Enemigo != null && flowchart.GetIntegerVariable("Diálogo") == 17) //Si nos encontramos en el punto adecuado de la historia y no se han activado otros enemigos antes
+            {
+                Enemigo.SetActive(true);
             }
         }
         else if (!encendido)
@@ -50,6 +55,11 @@ public class Interruptor_luz : MonoBehaviour
             if (Llave != null)
             {
                 Llave.SetActive(false);
+            }
+
+            if (Enemigo != null)
+            {
+                Enemigo.SetActive(false);
             }
         }
 
