@@ -24,7 +24,7 @@ public class Teleport : MonoBehaviour
             transform.position = Respawn.position;
         }
 
-        if (flowchart != null && flowchart.GetBooleanVariable("Regreso") == true && Player && flowchart.GetIntegerVariable("Diálogo") <= 16)
+        if (flowchart != null && flowchart.GetBooleanVariable("Regreso") == true && Player && flowchart.GetIntegerVariable("Diálogo") >= 16)
         {
             transform.position = OldPosition;
         }

@@ -337,6 +337,7 @@ public class Enemigo : MonoBehaviour
 
     public IEnumerator MatarJugador()
     {
+        flowchart.SetBooleanVariable("Hablando", true);
         Mov respawnScript = player.GetComponent<Mov>();
         respawnScript.enabled = true;
         StartCoroutine(respawnScript.RespawnCoroutine());
