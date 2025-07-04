@@ -51,6 +51,7 @@ public class RayCast : MonoBehaviour
 
     private void HandleInput()
     {
+        if (sprite.escondido) return;
         Vector2 rawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (rawInput.x != 0) rawInput.y = 0;
         if (rawInput != Vector2.zero)
@@ -158,15 +159,13 @@ public class RayCast : MonoBehaviour
                 //}
             }
 
-            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E) || hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.Space) || hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.Z))
+            if (hit.collider.CompareTag("Escondite") && InputTriggered())
             {
-                sprite.escondido = true;
+                sprite.escondido = !sprite.escondido;
 
                 AudioSource audio = hit.collider.GetComponent<AudioSource>();
                 if (audio != null)
-                {
                     audio.Play();
-                }
             }
         }
         else
@@ -189,6 +188,11 @@ public class RayCast : MonoBehaviour
         yield return new WaitForSeconds(1f);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    private bool InputTriggered()
+    {
+        return Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

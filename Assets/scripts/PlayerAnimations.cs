@@ -51,26 +51,21 @@ public class PlayerAnimations : MonoBehaviour
 
         if (escondido)
         {
-            // Esconder
             if (serena_render != null)
-            {
                 serena_render.enabled = false;
-            }
+
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
             mov.enabled = false;
         }
-        if(escondido && Input.GetKeyDown(KeyCode.E) || escondido && Input.GetKeyUp(KeyCode.Z) || escondido && Input.GetKeyUp(KeyCode.Space))
+        else
         {
             if (serena_render != null)
-            {
                 serena_render.enabled = true;
-            }
+
             GetComponent<SpriteRenderer>().enabled = true;
             GetComponent<Collider2D>().enabled = true;
             mov.enabled = true;
-
-            escondido = false;
         }
     }
 
