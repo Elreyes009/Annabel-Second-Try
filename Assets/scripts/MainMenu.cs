@@ -17,7 +17,11 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.anyKeyDown && !sobreBotonSalir)
         {
-            SceneManager.LoadScene(1);
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
+            {
+                return;
+            }
+                SceneManager.LoadScene(1);
         }
     }
 

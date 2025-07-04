@@ -1,6 +1,5 @@
 using UnityEngine;
 using Fungus;
-using UnityEngine.Splines;
 
 public class PlayerAnimations : MonoBehaviour
 {
@@ -48,23 +47,26 @@ public class PlayerAnimations : MonoBehaviour
     public void Escon()
     {
         Mov mov = r.GetComponent<Mov>();
+        SpriteRenderer serena_render = GameObject.FindWithTag("Serena")?.GetComponent<SpriteRenderer>();
+
         if (escondido)
         {
+            if (serena_render != null)
+                serena_render.enabled = false;
+
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
-            
             mov.enabled = false;
         }
-
-
-        if (Input.GetKeyUp(KeyCode.E))
+        else
         {
+            if (serena_render != null)
+                serena_render.enabled = true;
+
             GetComponent<SpriteRenderer>().enabled = true;
             GetComponent<Collider2D>().enabled = true;
             mov.enabled = true;
-            escondido = false;
         }
-
     }
 
     private void Animations()

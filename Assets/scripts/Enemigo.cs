@@ -30,7 +30,7 @@ public class Enemigo : MonoBehaviour
 
     public bool inLight;
 
-    public Vector3 posicionInicial;
+    public Transform posicionInicial; //Se cambió el Vector3 por un Transform devido a que el primero estaba funcionando mal
     public GestorDeEnemigos enemManager;
 
     public enum EstadoEnemigo { Patrullando, Persiguiendo }
@@ -54,7 +54,11 @@ public class Enemigo : MonoBehaviour
 
     private void Awake()
     {
-        posicionInicial = transform.position;
+        //if (posicionInicial == null)
+        //{
+        //    posicionInicial.position = transform.position;
+        //}
+
         if (moveTo == null)
         {
             moveTo = GameObject.FindWithTag(npcName + "Points");
@@ -233,7 +237,7 @@ public class Enemigo : MonoBehaviour
 
         if (inLight)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.6f);
         }
         else
         {
@@ -333,13 +337,12 @@ public class Enemigo : MonoBehaviour
 
     public IEnumerator MatarJugador()
     {
+        flowchart.SetBooleanVariable("Hablando", true);
         Mov respawnScript = player.GetComponent<Mov>();
+        respawnScript.enabled = true;
         StartCoroutine(respawnScript.RespawnCoroutine());
+        respawnScript.enabled = false;
         audioSource.PlayOneShot(muerteClip);
-        //if (player.GetComponent<Mov>() != null)
-        //{
-        //    player.GetComponent<Mov>().enabled = false;
-        //}
         yield return new WaitForSeconds(2f);
         enemManager.VolverAposicionInicial();
         flowchart.SetBooleanVariable("Muerte", true);

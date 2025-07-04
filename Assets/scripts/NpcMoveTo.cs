@@ -129,7 +129,6 @@ public class NpcMoveTo : MonoBehaviour
 
         if (Vector2.Distance(transform.position, moveTo.transform.position) < 0.2f)
         {
-            Debug.Log("siguiente");
             if (nextComponent.nextObject != null)
             {
                 nextComponent.nextObject.SetActive(true);

@@ -54,7 +54,7 @@ public class GestorDeEnemigos : MonoBehaviour
         {
             enemigo.StopAllCoroutines();
             //enemigo.isMoving = false;
-            enemigo.transform.position = enemigo.posicionInicial;
+            enemigo.transform.position = enemigo.posicionInicial.position;
         }
     }
 }

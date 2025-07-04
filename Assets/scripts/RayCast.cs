@@ -42,10 +42,16 @@ public class RayCast : MonoBehaviour
             anim.SetBool("SeRepliega", true);
             anim.SetBool("SeDespliega", false);
         }
+
+        if (flowchart.GetBooleanVariable("Muerte") == true)
+        {
+            CleanInventory();
+        }
     }
 
     private void HandleInput()
     {
+        if (sprite.escondido) return;
         Vector2 rawInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (rawInput.x != 0) rawInput.y = 0;
         if (rawInput != Vector2.zero)
@@ -81,13 +87,15 @@ public class RayCast : MonoBehaviour
                     if (name == "Luz")
                     {
                         Interruptor_luz interruptor = hit.collider.GetComponent<Interruptor_luz>();
-                        if (Input.GetKeyDown(KeyCode.E))
+                        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Z))
                         {
                             anim.SetBool("SeRepliega", true);
                             anim.SetBool("SeDespliega", false);
                             interruptor.encendido = true;
                         }
                     }
+
+
                     return;
                 }
 
@@ -97,7 +105,7 @@ public class RayCast : MonoBehaviour
                     flowchart.SetBooleanVariable("Personaje", false);
                     flowchart.SetStringVariable("Name", null);
 
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z))
                     {
                         anim.SetBool("SeRepliega", true);
                         anim.SetBool("SeDespliega", false);
@@ -110,7 +118,6 @@ public class RayCast : MonoBehaviour
                         }
                         else
                         {
-                            // Empujando vertical → bloquea movimiento horizontal
                             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
                         }
                         rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
@@ -126,19 +133,38 @@ public class RayCast : MonoBehaviour
 
             if (hit.collider.CompareTag("Escondite"))
             {
+                
                 anim.SetBool("SeDespliega", true);
                 anim.SetBool("SeRepliega", false);
             }
 
-            if (hit.collider.CompareTag("Escondite") && Input.GetKeyDown(KeyCode.E))
+            if (hit.collider.CompareTag("Puerta"))
             {
-                sprite.escondido = true;
+                anim.SetBool("SeDespliega", true);
+                anim.SetBool("SeRepliega", false);
+
+                Mov mov = GetComponent<Mov>();
+
+
+                //foreach (string nombre in inventario)
+                //{
+                //    if (nombre == hit.collider.GetComponent<Puerta>().requerimiento)
+                //    {
+                //        puertaAnim.SetBool("Puerta", true);
+                //        puertaAnim.SetBool("Puerta", true);
+                //        AudioSource audio = hit.collider.transform.GetComponent<AudioSource>();
+                //        return;
+                //    }
+                //}
+            }
+
+            if (hit.collider.CompareTag("Escondite") && InputTriggered())
+            {
+                sprite.escondido = !sprite.escondido;
 
                 AudioSource audio = hit.collider.GetComponent<AudioSource>();
                 if (audio != null)
-                {
                     audio.Play();
-                }
             }
         }
         else
@@ -151,11 +177,20 @@ public class RayCast : MonoBehaviour
         }
     }
 
+    void CleanInventory() //Función que limpia el inventario
+    {
+        inventario.Clear();
+    }
+
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
     {
         yield return new WaitForSeconds(1f);
-        rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    private bool InputTriggered()
+    {
+        return Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -168,7 +203,7 @@ public class RayCast : MonoBehaviour
 
             if (rec != null)
             {
-                collision.transform.gameObject.SetActive(false);
+                collision.transform.gameObject.gameObject.SetActive(false);
                 inventario.Add(collision.transform.GetComponent<Recogible>().itemName);
                 AudioSource audio = GetComponent<AudioSource>();
                 if (audio != null)
