@@ -64,6 +64,7 @@ public class Interruptor_luz : MonoBehaviour
             gameObject.gameObject.tag = nameTag;
             encendido = false;
             anim.SetBool("Encender", false);
+            Recogida = false;
         }
     }
 }
