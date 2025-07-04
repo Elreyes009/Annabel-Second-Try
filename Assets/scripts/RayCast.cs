@@ -87,7 +87,7 @@ public class RayCast : MonoBehaviour
                     if (name == "Luz")
                     {
                         Interruptor_luz interruptor = hit.collider.GetComponent<Interruptor_luz>();
-                        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Z))
+                        if (Input.GetKeyDown(KeyCode.E))
                         {
                             anim.SetBool("SeRepliega", true);
                             anim.SetBool("SeDespliega", false);
@@ -105,7 +105,7 @@ public class RayCast : MonoBehaviour
                     flowchart.SetBooleanVariable("Personaje", false);
                     flowchart.SetStringVariable("Name", null);
 
-                    if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         anim.SetBool("SeRepliega", true);
                         anim.SetBool("SeDespliega", false);
@@ -190,7 +190,7 @@ public class RayCast : MonoBehaviour
 
     private bool InputTriggered()
     {
-        return Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Z);
+        return Input.GetKeyDown(KeyCode.E);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
