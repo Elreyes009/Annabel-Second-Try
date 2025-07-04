@@ -118,7 +118,6 @@ public class RayCast : MonoBehaviour
                         }
                         else
                         {
-                            // Empujando vertical → bloquea movimiento horizontal
                             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
                         }
                         rb.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
@@ -186,7 +185,6 @@ public class RayCast : MonoBehaviour
     private IEnumerator ReleasePlayerConstraints(Rigidbody2D rb)
     {
         yield return new WaitForSeconds(1f);
-        rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
