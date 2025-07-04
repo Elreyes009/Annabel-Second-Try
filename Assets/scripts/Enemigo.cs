@@ -40,7 +40,7 @@ public class Enemigo : MonoBehaviour
     {
         moveTo = objetivo;
         estadoActual = EstadoEnemigo.Persiguiendo;
-        /*StopAllCoroutines();*/
+        StopAllCoroutines();
         isMoving = false;
     }
 
